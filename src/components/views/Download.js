@@ -50,7 +50,7 @@ const styles = (theme) => ({
     display:'flex',
     justifyContent:'center',
     alignItems:'center',
-    transform: 'rotateX(180deg)',
+
   },
   phone:{
     width: '36.7%',
