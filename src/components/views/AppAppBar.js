@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import  { isWidthDown } from '@material-ui/core/withWidth';
+import { useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import logo from '../../assets/GoodGain-logo.png'
 import kingdom from '../../assets/united-kingdom.png'
 import brazil from '../../assets/brazil.png'
@@ -151,12 +152,12 @@ appBar:{
 
 function AppAppBar(props) {
   const { classes } = props;
-  if(isWidthDown('xs',props.theme.width)){
-    console.log('a')
-  }
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down("xs"));
   return (
     <div>
-      <AppBar id="fixed" className={classes.appBar}>
+
+      {matches ? '<AppBar id="fixed" className={classes.appBar}>' : '<AppBar className={classes.appBar}>'} 
         <Toolbar className={classes.toolbar}>
           <div className={classes.left}>
           <Link
