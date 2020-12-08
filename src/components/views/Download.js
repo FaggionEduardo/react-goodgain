@@ -2,7 +2,7 @@ import React from 'react';
 
 import { withStyles } from '@material-ui/core/styles';
 
-import background from '../../assets/arco.svg';
+import background from '../../assets/arco2.svg';
 import Scrollbar from 'smooth-scrollbar';
 import phone from '../../assets/phone.png';
 import appstore from '../../assets/appstore2.png';
