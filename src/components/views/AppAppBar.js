@@ -151,7 +151,7 @@ appBar:{
 
 function AppAppBar(props) {
   const { classes } = props;
-  if(isWidthDown('xs',props.width)){
+  if(isWidthDown('xs',props.theme.width)){
     console.log('a')
   }
   return (
