@@ -16,9 +16,11 @@ var options={
 var scrollbar=Scrollbar.init(document.getElementById('scroll'), options);
 scrollbar.addListener(function(status) { 
   var fixed=document.getElementById('fixed')
-  var offset = status.offset; 
-  fixed.style.top = offset.y + 'px';
-  fixed.style.left = offset.x + 'px';
+  if(fixed!=undefined){
+    var offset = status.offset; 
+    fixed.style.top = offset.y + 'px';
+    fixed.style.left = offset.x + 'px';
+  }
 });
 // eslint-disable-next-line 
 if ('scrollRestoration' in history) {
