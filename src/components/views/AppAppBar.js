@@ -176,9 +176,9 @@ function AppAppBar(props) {
           </Link>
           </MenuItem>
           <MenuItem>
-          <a className={classes.item} onClick={scrollHowWork}>
+          <p className={classes.item} onClick={scrollHowWork}>
             {'Como Funciona'}
-            </a>
+            </p>
           </MenuItem>
           <MenuItem>
           <Link
@@ -255,9 +255,9 @@ function AppAppBar(props) {
           >
             {'Inicio'}
           </Link>
-          <a className={classes.item} onClick={scrollHowWork}>
+          <p className={classes.item} onClick={scrollHowWork}>
             {'Como Funciona'}
-            </a>
+            </p>
           <Link
             variant="h6"
             underline="none"
