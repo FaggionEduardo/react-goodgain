@@ -21,9 +21,8 @@ scrollbar.addListener(function(status) {
   fixed.style.left = offset.x + 'px';
 });
 // eslint-disable-next-line 
-var scrollRestoration = history.scrollRestoration
-if (scrollRestoration) {
-  scrollRestoration='manual'
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
 }
 
 
