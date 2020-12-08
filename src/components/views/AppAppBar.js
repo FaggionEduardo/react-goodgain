@@ -156,8 +156,7 @@ function AppAppBar(props) {
   const matches = useMediaQuery(theme.breakpoints.down("xs"));
   return (
     <div>
-
-      {matches ? '<AppBar id="fixed" className={classes.appBar}>' : '<AppBar className={classes.appBar}>'} 
+      <AppBar id={matches ? "fixed" : 'nofixed'} className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
           <div className={classes.left}>
           <Link
