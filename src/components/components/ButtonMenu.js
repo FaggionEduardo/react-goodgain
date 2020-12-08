@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles } from '@material-ui/core/styles';
-import { ClickAwayListener, Collapse, Menu, Paper } from "@material-ui/core";
+import { Collapse } from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Dehaze";
 

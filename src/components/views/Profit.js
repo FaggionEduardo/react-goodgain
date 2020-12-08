@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import GilroyMedium from '../../assets/Gilroy-Medium.ttf';
 import xPlay from '../../assets/Group-74.png';
@@ -45,7 +44,6 @@ const styles = (theme) => ({
     marginLeft: 'auto',
     fontFamily: "'Gilroy-medium',Helvetica,Arial,Lucida,sans-serif",
     fontSize: 16,
-    marginTop: 0,
     marginBottom: 0, 
     color: '#C4C4C4',
     display:'flex',

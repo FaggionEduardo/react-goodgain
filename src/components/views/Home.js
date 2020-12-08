@@ -9,7 +9,6 @@ import phone from '../../assets/phone.png';
 import c1 from '../../assets/Group-156.png';
 import c2 from '../../assets/Group-151.png';
 import c3 from '../../assets/Group-157.png';
-import Scrollbar from 'smooth-scrollbar'
 import {Grow} from '@material-ui/core';
 
 const styles = (theme) => ({
@@ -35,7 +34,6 @@ const styles = (theme) => ({
     position: 'relative',
     padding:"2% 0",
     margin:'auto',
-    display:'flex',
     [theme.breakpoints.down("sm")]: {
       flexDirection:'column',
       padding:"30px 0!important",
@@ -244,7 +242,7 @@ divC3:{
 
 
 function Start(props) {
-  const [checked, setChecked] = React.useState(true);
+  const checked=true
   
  
  

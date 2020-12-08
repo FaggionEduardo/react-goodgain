@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+
 import { withStyles } from '@material-ui/core/styles';
 import control from '../../assets/Group-152.png';
 import background from '../../assets/arco.svg';

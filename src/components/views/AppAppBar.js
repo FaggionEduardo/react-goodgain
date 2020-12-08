@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
+
 import logo from '../../assets/GoodGain-logo.png'
 import kingdom from '../../assets/united-kingdom.png'
 import brazil from '../../assets/brazil.png'
 import { withStyles } from '@material-ui/core/styles';
 import Link from '@material-ui/core/Link';
 import AppBar from '../components/AppBar';
-import Toolbar, { styles as toolbarStyles } from '../components/Toolbar';
+import Toolbar from '../components/Toolbar';
 import ButtonMenu from '../components/ButtonMenu';
 import { MenuItem } from '@material-ui/core';
 import GilroyMedium from '../../assets/Gilroy-Medium.ttf';
@@ -150,7 +150,7 @@ appBar:{
 
 function AppAppBar(props) {
   const { classes } = props;
-  const {theme}=props
+  
   return (
     <div>
       <AppBar id="fixed" className={classes.appBar}>
@@ -160,7 +160,7 @@ function AppAppBar(props) {
            
             href="/"
           >
-            <img src={logo}  className={classes.logo}/>
+            <img src={logo} alt="logo" className={classes.logo}/>
             
           </Link>
           <ButtonMenu>
@@ -238,8 +238,8 @@ function AppAppBar(props) {
           
          
             <div className={classes.divFlag2} >
-            <img src={kingdom}  className={classes.flag}/>
-            <img src={brazil}  className={classes.flag}/>
+            <img src={kingdom} alt="kingdom" className={classes.flag}/>
+            <img src={brazil} alt="brazil" className={classes.flag}/>
             </div>
         
             
@@ -306,8 +306,8 @@ function AppAppBar(props) {
           </div>
           <div className={classes.right}>
             <div className={classes.divFlag} >
-            <img src={kingdom}  className={classes.flag}/>
-            <img src={brazil}  className={classes.flag}/>
+            <img src={kingdom} alt="kingdom" className={classes.flag}/>
+            <img src={brazil} alt="brazil" className={classes.flag}/>
             </div>
           <Link
             variant="h6"

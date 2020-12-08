@@ -1,7 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+
 import { withStyles } from '@material-ui/core/styles';
-import control from '../../assets/Group-152.png';
+
 import background from '../../assets/arco.svg';
 import Scrollbar from 'smooth-scrollbar';
 import phone from '../../assets/phone.png';
@@ -20,7 +20,7 @@ const styles = (theme) => ({
     backgroundColor:'#121212',
   },
   div:{
-    transform: 'rotateX(-180deg)',
+    
     width: '80%',
     margin: 'auto',
     backgroundSize: 'cover',
