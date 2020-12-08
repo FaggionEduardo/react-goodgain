@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import  { isWidthDown } from '@material-ui/core/withWidth';
 import logo from '../../assets/GoodGain-logo.png'
 import kingdom from '../../assets/united-kingdom.png'
 import brazil from '../../assets/brazil.png'
@@ -151,7 +151,9 @@ appBar:{
 
 function AppAppBar(props) {
   const { classes } = props;
-  
+  if(isWidthDown('xs',props.width)){
+    console.log('a')
+  }
   return (
     <div>
       <AppBar id="fixed" className={classes.appBar}>
