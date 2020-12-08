@@ -45,7 +45,8 @@ const styles = (theme) => ({
     transition: 'color 300ms ease 0ms',
     paddingLeft:11,
     paddingRight:11,
-    whiteSpace: 'nowrap'
+    whiteSpace: 'nowrap',
+    margin:0
   },
   '@font-face': {
     fontFamily: 'Gilroy-medium',
