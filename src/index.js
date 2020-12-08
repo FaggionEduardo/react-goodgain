@@ -4,8 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Scrollbar from 'smooth-scrollbar'
-import { useHistory } from "react-router-dom";
-var history= useHistory();
+
 var options={
   damping:0.01,
   speed:0.1,
@@ -21,10 +20,12 @@ scrollbar.addListener(function(status) {
   fixed.style.top = offset.y + 'px';
   fixed.style.left = offset.x + 'px';
 });
-
-if ('scrollRestoration' in history) {
-  history.scrollRestoration = 'manual';
+// eslint-disable-next-line 
+var scrollRestoration = history.scrollRestoration
+if (scrollRestoration) {
+  scrollRestoration='manual'
 }
+
 
 
 ReactDOM.render(
