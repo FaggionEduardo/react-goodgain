@@ -4,7 +4,8 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Scrollbar from 'smooth-scrollbar'
-
+import { useHistory } from "react-router-dom";
+var history= useHistory();
 var options={
   damping:0.01,
   speed:0.1,
