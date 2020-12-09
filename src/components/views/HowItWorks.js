@@ -1,9 +1,8 @@
 import React from 'react';
-
 import { withStyles } from '@material-ui/core/styles';
 import rectangle from '../../assets/Rectangle.png';
-import item1 from '../../assets/image-3.png';
-import item3 from '../../assets/image-1.png';
+import item1 from '../../assets/image-3.jpeg';
+import item3 from '../../assets/image-1.jpeg';
 import GilroyRegular from '../../assets/Gilroy-Regular.ttf';
 import background1 from '../../assets/Group-155.png';
 import background2 from '../../assets/Group-158.png';
@@ -74,17 +73,18 @@ const styles = (theme) => ({
     width:'30%',
     marginRight:'5.5%',
     backgroundImage: 'linear-gradient(180deg,#e6007e 0%,#e94834 100%)',
-    paddingTop: 70,
-    paddingRight: 70,
-    paddingBottom: 90,
-    paddingLeft: 70,
+    paddingTop: 40,
+    paddingRight: 20,
+    paddingBottom: 40,
+    paddingLeft: 40,
+    
     [theme.breakpoints.down("sm")]: {
-      paddingTop: 70,
-      paddingRight: 30,
-      paddingBottom: 50,
-      paddingLeft: 30,
+      paddingTop: 20,
+      paddingRight: 10,
+      paddingBottom: 10,
+      paddingLeft: 15,
       marginRight:0,
-      marginBottom:30,
+      marginBottom:10,
       width:'100%',
     },
   },
@@ -95,47 +95,62 @@ const styles = (theme) => ({
     }
   },
   itemImg:{
-    paddingTop: 50,
-    paddingRight: 70,
-    paddingBottom: 50,
-    paddingLeft: 40,
-    marginTop: 15,
+    paddingTop: '2.5%',
+    paddingRight: '10%',
+    paddingBottom: '2.5%',
+    paddingLeft: '10%',
     transition: 'transform 300ms ease 0ms',
     textAlign: 'center',
-    width:'100%',
+    width:'95%',
+    
     '&:hover': {
       transform:'scale(0.95)',
       
    },
     [theme.breakpoints.down("sm")]: {
       paddingTop: 0,
-      paddingRight: 30,
-      paddingBottom: 25,
-      paddingLeft: 30,
+      paddingRight: 10,
+      paddingBottom: 15,
+      paddingLeft: 10,
       marginTop:0,
       marginBottom:0,
       marginRight:'auto',
       marginLeft:'auto',
-      height:'auto'
+      height:'auto',
+      width:'100%',
     },
   },
   num:{
     fontFamily: "'Gilroy-regular',Helvetica,Arial,Lucida,sans-serif",
-    fontSize:60,
+    fontSize:50,
     color: '#ffffff',
     lineHeight:'0.53px',
     margin:0,
-    fontWeight:'bold'
+    fontWeight:'bold',
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 25,
+      
+    },
   },
   
   text:{
     fontFamily: "'Gilroy-regular',Helvetica,Arial,Lucida,sans-serif",
-    fontSize: 32,
+    fontSize: 30,
     color: '#ffffff',
     paddingTop: 15,
     paddingBottom: 25,
     marginTop: 40,
-    fontWeight:'normal'
+    fontWeight:'normal',
+    display:'flex',
+    flexDirection:'column',
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 20,
+      paddingTop: 5,
+      paddingBottom: 5,
+      marginTop: 10,
+      marginBottom:0,
+      display:'block'
+    },
   },
   '@font-face': {
     fontFamily: 'Gilroy-regular',
@@ -151,18 +166,20 @@ const styles = (theme) => ({
     }
   },
   itemText2:{
-    marginRight:0,
     width:'30%',
+    margin:0,
     backgroundImage: 'linear-gradient(180deg,#e6007e 0%,#e94834 100%)',
-    paddingTop: 70,
-    paddingRight: 70,
-    paddingBottom: 90,
-    paddingLeft: 70,
+    paddingTop: 40,
+    paddingRight: 20,
+    paddingBottom: 40,
+    paddingLeft: 40,
     [theme.breakpoints.down("sm")]: {
-      paddingTop: 70,
-      paddingRight: 30,
-      paddingBottom: 50,
-      paddingLeft: 30,
+      paddingTop: 20,
+      paddingRight: 10,
+      paddingBottom: 10,
+      paddingLeft: 15,
+      marginRight:0,
+      
       width:'100%',
     },
   },
@@ -201,7 +218,7 @@ function HowItWorks(props) {
 
   return (
     
-    <section >
+    <section id="howWork" >
     <div className={classes.root}>
       <div className={classes.divTitle}>
       <h2 className={classes.how}>Como Funciona?</h2>
@@ -212,7 +229,7 @@ function HowItWorks(props) {
         <div className={classes.itemText}>
           <h1 className={classes.num}>1</h1>
           <h3 className={classes.text}>
-            <strong>Baixe</strong> o<br/>aplicativo e<br/><strong>crie sua</strong><br/><strong>conta</strong>
+          <strong>Crie sua conta </strong><span>e escolha </span><span>seu jogo </span><span>favorito.</span>
           </h3>
         </div>
         <div className={classes.divItemImg}>
@@ -231,7 +248,7 @@ function HowItWorks(props) {
         <div className={classes.itemText2}>
           <h1 className={classes.num}>2</h1>
           <h3 className={classes.text}>
-            <strong>Crie uma</strong><br/><strong>partida</strong> ou<br/><strong>desafie</strong> um<br/>oponente
+            <span>Dispute  </span><span><strong>campeonatos </strong>e </span><strong>amistosos </strong><span>diários.</span>
           </h3>
         </div>
       </div>
@@ -241,7 +258,7 @@ function HowItWorks(props) {
         <div className={classes.itemText}>
           <h1 className={classes.num}>3</h1>
           <h3 className={classes.text}>
-            <strong>Jogue</strong> a<br/>partida em<br/><strong>seu console</strong><br/>Xbox ou<br/>Ps4/Ps5
+          <strong>Sua vitória </strong><strong>vale dinheiro. </strong><span>Divirta-se </span><span>e lucre! </span>
           </h3>
         </div>
         <div className={classes.divItemImg}>

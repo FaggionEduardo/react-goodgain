@@ -66,6 +66,7 @@ const styles = (theme) => ({
     marginTop: '-48px',
     marginBottom: '-46px',
     maxWidth: 300,
+    maxHeight: 300,
     
   },
   text:{

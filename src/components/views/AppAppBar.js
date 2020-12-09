@@ -1,7 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
 import logo from '../../assets/GoodGain-logo.png'
 import kingdom from '../../assets/united-kingdom.png'
 import brazil from '../../assets/brazil.png'
@@ -13,14 +11,17 @@ import ButtonMenu from '../components/ButtonMenu';
 import { MenuItem } from '@material-ui/core';
 import GilroyMedium from '../../assets/Gilroy-Medium.ttf';
 import Scrollbar from 'smooth-scrollbar';
+
+
+
 var options={
   damping:0.05,
   syncCallbacks: true,
   continuousScrolling:true
 }
 var scrollbar = Scrollbar.init(document.getElementById('scroll'),options)
-function scrollHowWork() {
 
+function scrollHowWork() {
   scrollbar.scrollIntoView ( document.getElementById( 'howWork' ), {
     offsetTop:100,
     onlyScrollIfNeeded: true,
@@ -28,7 +29,8 @@ function scrollHowWork() {
 })
 
 }
-const styles = (theme) => ({
+const styles = (theme) => (
+  {
   title: {
     fontSize: 24,
   },
@@ -59,7 +61,7 @@ const styles = (theme) => ({
     justifyContent: 'space-between',
   },
   left:{
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("sm")]: {
       marginBottom:30
     },
     flex:1,
@@ -80,7 +82,7 @@ const styles = (theme) => ({
   },
   
   logo:{
-    height:51
+    height:51,
   },
   button:{
     [theme.breakpoints.down("xs")]: {
@@ -152,11 +154,20 @@ appBar:{
 
 function AppAppBar(props) {
   const { classes } = props;
-  const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.down("xs"));
+ 
+  scrollbar.addListener(function(status) { 
+    var fixed=document.getElementById('fixed')
+    // eslint-disable-next-line 
+      if(screen.width>600){
+         // eslint-disable-next-line 
+        var offset = status.offset; 
+        fixed.style.top = offset.y + 'px';
+        fixed.style.left = offset.x + 'px';
+      }
+  });
   return (
     <div>
-      <AppBar id={matches ? "fixed" : 'nofixed'} className={classes.appBar}>
+      <AppBar id="fixed"  className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
           <div className={classes.left}>
           <Link

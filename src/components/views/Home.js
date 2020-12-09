@@ -25,7 +25,10 @@ const styles = (theme) => ({
     paddingTop:150,
     paddingBottom:250,
     margin:0,
-    maxWidth:'none'
+    maxWidth:'none',
+    [theme.breakpoints.down("xs")]: {
+      paddingBottom:0,
+    },
   },
   container2: {
     maxWidth: 1440,
@@ -105,11 +108,20 @@ const styles = (theme) => ({
     paddingBottom: 40,
     marginTop: '-22px',
     marginBottom: 0,
-    verticalAlign: 'baseline'
+    verticalAlign: 'baseline',
+    display:'flex',
+    flexDirection:'column',
   },
   '@font-face': {
     fontFamily: 'Gilroy-regular',
     src: `url(${GilroyRegular})`
+  },
+  responsiveText:{
+    display:'flex',
+    flexDirection:'column',
+    [theme.breakpoints.down("sm")]: {
+      display:'block'
+    },
   },
   
   app:{
@@ -264,10 +276,11 @@ function Start(props) {
           em lucro
          </h2>
          <span  className={classes.text2}>
-          Desafie outros jogadores ou
-          <br/> 
-          participe de torneios online.
-          <br/> 
+           <span className={classes.responsiveText}>
+              <span>Desafie outros jogadores ou </span>
+              <span>participe de torneios online. </span>
+           </span>
+         
           <span  style={{color: "#ffffff"}}>
           Sua vitória vale dinheiro!
           </span>
