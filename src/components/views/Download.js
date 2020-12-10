@@ -15,6 +15,7 @@ var options={
   continuousScrolling:true
 }
 var scrollbar = Scrollbar.init(document.getElementById('scroll'),options)
+
 const styles = (theme) => ({
   root: {
     backgroundColor:'#121212',
@@ -140,7 +141,7 @@ function Download(props) {
   scrollbar.removeListener();
  }
   return (
-    <div className={classes.root}>
+    <div id="download" className={classes.root}>
     <div className={classes.background}>
       
     </div>

@@ -3,13 +3,14 @@ import { withStyles } from '@material-ui/core/styles';
 import Scrollbar from 'smooth-scrollbar';
 import callofduty from '../../assets/callofduty.jpg'
 import fifa from '../../assets/fifa.jpeg'
-
+import {Slide} from '@material-ui/core';
 var options={
   damping:0.05,
   syncCallbacks: true,
   continuousScrolling:true
 }
 var scrollbar = Scrollbar.init(document.getElementById('scroll'),options)
+
 const styles = (theme) => ({
   root: {
     backgroundColor:'#121212',
@@ -113,20 +114,39 @@ const styles = (theme) => ({
 
 function Game(props) {
   const { classes } = props;
+  const [checkedGame, setCheckedGame] = React.useState(false);
+  scrollbar.addListener(function(status) { 
+    if(scrollbar.isVisible(document.getElementById('games'))){
+     
+      setCheckedGame(true)
+      
+    }
+    
+    
+  
+ })
+ if(checkedGame){
+  scrollbar.removeListener();
+ }
   return (
+    <section id='games'> 
     <div className={classes.root}>
     <div className={classes.div}>
+    <Slide direction='right' timeout={2000} in={checkedGame}>
       <div className={classes.divImg}>
         <img src={fifa} alt="fifa" className={classes.img}/>
         <div className={classes.animation}><h2 className={classes.text}>Lucre enquanto joga</h2></div>
       </div>
+    </Slide>
+    <Slide direction='left' timeout={2000} in={checkedGame}>
       <div className={classes.divImg}>
         <img src={callofduty} alt="callofduty" className={classes.img}/> 
         <div className={classes.animation} style={{backgroundColor:'#e6007e'}}><h2 className={classes.text}>Receba em sua conta</h2></div>
       </div>
-    
+    </Slide>
     </div>
     </div>
+    </section> 
   );
 }
 

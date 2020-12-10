@@ -1,8 +1,12 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import rectangle from '../../assets/Rectangle.png';
-import item1 from '../../assets/image-3.jpeg';
-import item3 from '../../assets/image-1.jpeg';
+import item1 from '../../assets/image-1.jpeg';
+import item2 from '../../assets/image-2.jpeg';
+import item3 from '../../assets/image-3.jpeg';
+import item1M from '../../assets/image-1M.jpeg';
+import item2M from '../../assets/image-2M.jpeg';
+import item3M from '../../assets/image-3M.jpeg';
 import GilroyRegular from '../../assets/Gilroy-Regular.ttf';
 import background1 from '../../assets/Group-155.png';
 import background2 from '../../assets/Group-158.png';
@@ -71,13 +75,13 @@ const styles = (theme) => ({
   },
   itemText:{
     width:'30%',
-    marginRight:'5.5%',
+    marginRight:'4.5%',
     backgroundImage: 'linear-gradient(180deg,#e6007e 0%,#e94834 100%)',
     paddingTop: 40,
     paddingRight: 20,
-    paddingBottom: 40,
+    paddingBottom: 10,
     paddingLeft: 40,
-    
+    minWidth:260,
     [theme.breakpoints.down("sm")]: {
       paddingTop: 20,
       paddingRight: 10,
@@ -90,15 +94,19 @@ const styles = (theme) => ({
   },
   divItemImg:{
     width:'65%',
+    paddingTop: '1%',
+    paddingRight: '2.5%',
+    paddingBottom: '1%',
+    paddingLeft: '2.5%',
+    display:'flex',
+    justifyContent:'flex-start',
     [theme.breakpoints.down("sm")]: {
-      width:'100%'
+      width:'100%',
+      display:'block'
     }
   },
   itemImg:{
-    paddingTop: '2.5%',
-    paddingRight: '10%',
-    paddingBottom: '2.5%',
-    paddingLeft: '10%',
+    
     transition: 'transform 300ms ease 0ms',
     textAlign: 'center',
     width:'95%',
@@ -143,6 +151,7 @@ const styles = (theme) => ({
     fontWeight:'normal',
     display:'flex',
     flexDirection:'column',
+    minWidth:220,
     [theme.breakpoints.down("sm")]: {
       fontSize: 20,
       paddingTop: 5,
@@ -159,10 +168,17 @@ const styles = (theme) => ({
   divItemImg2:{
     width:'65%',
     marginRight:'5.5%',
+    paddingTop: '2%',
+    paddingRight: '2.5%',
+    paddingBottom: '2%',
+    paddingLeft: '2.5%',
+    display:'flex',
+    justifyContent:'flex-end',
     [theme.breakpoints.down("sm")]: {
       width:'100%',
       marginRight:0,
-      marginTop:30
+      marginTop:30,
+      display:'block'
     }
   },
   itemText2:{
@@ -171,8 +187,9 @@ const styles = (theme) => ({
     backgroundImage: 'linear-gradient(180deg,#e6007e 0%,#e94834 100%)',
     paddingTop: 40,
     paddingRight: 20,
-    paddingBottom: 40,
+    paddingBottom: 10,
     paddingLeft: 40,
+    minWidth:260,
     [theme.breakpoints.down("sm")]: {
       paddingTop: 20,
       paddingRight: 10,
@@ -183,6 +200,20 @@ const styles = (theme) => ({
       width:'100%',
     },
   },
+  desktop:{
+    display:'none',
+    [theme.breakpoints.up("sm")]: {
+      
+      display:'block',
+    },
+  },
+  mobile:{
+      display:'block',
+    [theme.breakpoints.up("sm")]: {
+      display:'none'
+    },
+  },
+
 });
 
 var scrollbar=Scrollbar.init(document.getElementById('scroll'), options);
@@ -233,7 +264,8 @@ function HowItWorks(props) {
           </h3>
         </div>
         <div className={classes.divItemImg}>
-          <img src={item1} alt="item1" className={classes.itemImg}/>
+          <img src={item1} alt="item1" className={`${classes.itemImg} ${classes.desktop}`}/>
+          <img src={item1M} alt="item1M" className={`${classes.itemImg} ${classes.mobile}`}/>
         </div>
       </div>
       </Grow>
@@ -243,7 +275,8 @@ function HowItWorks(props) {
       <Grow timeout={2000} id='howWorkTwo' in={checkedTwo}>
       <div className={classes.divItem}>
       <div className={classes.divItemImg2}>
-          <img src={item1} alt="item1" className={classes.itemImg}/>
+          <img src={item2} alt="item2" className={`${classes.itemImg} ${classes.desktop}`}/>
+          <img src={item2M} alt="item2M" className={`${classes.itemImg} ${classes.mobile}`}/>
         </div>
         <div className={classes.itemText2}>
           <h1 className={classes.num}>2</h1>
@@ -262,7 +295,8 @@ function HowItWorks(props) {
           </h3>
         </div>
         <div className={classes.divItemImg}>
-          <img src={item3} alt="item3" className={classes.itemImg}/>
+          <img src={item3} alt="item3" className={`${classes.itemImg} ${classes.desktop}`}/>
+          <img src={item3M} alt="item3M" className={`${classes.itemImg} ${classes.mobile}`}/>
         </div>
       </div>
       </Grow>

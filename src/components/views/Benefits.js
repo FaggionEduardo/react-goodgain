@@ -10,6 +10,7 @@ var options={
   continuousScrolling:true
 }
 var scrollbar = Scrollbar.init(document.getElementById('scroll'),options)
+
 const styles = (theme) => ({
   root: {
     backgroundColor:'#121212',

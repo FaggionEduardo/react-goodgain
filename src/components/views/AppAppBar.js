@@ -29,6 +29,11 @@ function scrollHowWork() {
 })
 
 }
+function scrollGames() {
+  scrollbar.scrollIntoView ( document.getElementById( 'games' ), {
+    
+}) 
+}
 const styles = (theme) => (
   {
   title: {
@@ -195,15 +200,9 @@ function AppAppBar(props) {
             </p>
           </MenuItem>
           <MenuItem>
-          <Link
-            variant="h6"
-            underline="none"
-            color="inherit"
-            className={classes.item}
-            href="/"
-          >
+          <p className={classes.item} onClick={scrollGames}>
             {'Jogos'}
-          </Link>
+            </p>
           </MenuItem>
           <MenuItem>
           <Link
@@ -272,15 +271,9 @@ function AppAppBar(props) {
           <p className={classes.item} onClick={scrollHowWork}>
             {'Como Funciona'}
             </p>
-          <Link
-            variant="h6"
-            underline="none"
-            color="inherit"
-            className={classes.item}
-            href="/"
-          >
+            <p className={classes.item} onClick={scrollGames}>
             {'Jogos'}
-          </Link>
+            </p>
           <Link
             variant="h6"
             underline="none"
