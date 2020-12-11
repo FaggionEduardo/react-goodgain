@@ -1,7 +1,7 @@
 body {
   margin: 0px;
   background-color: #121212!important;
-   overflow-x: hidden
+   overflow-x: hidden;
 }
 .scrollbar-thumb {
   background-color: rgba(233, 49, 76, 1)!important;
