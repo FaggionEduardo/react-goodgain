@@ -261,7 +261,7 @@ function Start(props) {
   const { classes } = props;
 
   return (
-    <section className={classes.root}>
+    <section id='home' className={classes.root}>
       <Container className={classes.container}>
         <Container className={classes.container2}>
         <Container className={classes.containerItem}>

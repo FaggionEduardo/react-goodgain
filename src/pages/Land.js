@@ -7,6 +7,7 @@ import Download from '../components/views/Download';
 import HowItWorks from '../components/views/HowItWorks';
 import Profit from '../components/views/Profit';
 import Game from '../components/views/Game';
+import Benefits from '../components/views/Benefits';
 
 function Index() {
   
@@ -20,6 +21,7 @@ function Index() {
       <Download />
       <Profit />
       <Game />
+      <Benefits />
     </React.Fragment>
   );
 }

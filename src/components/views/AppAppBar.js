@@ -21,9 +21,14 @@ var options={
 }
 var scrollbar = Scrollbar.init(document.getElementById('scroll'),options)
 
+function scrollHome() {
+  scrollbar.scrollIntoView ( document.getElementById( 'home' ), {
+    onlyScrollIfNeeded: true,
+    
+})
+}
 function scrollHowWork() {
   scrollbar.scrollIntoView ( document.getElementById( 'howWork' ), {
-    offsetTop:100,
     onlyScrollIfNeeded: true,
     
 })
@@ -31,7 +36,12 @@ function scrollHowWork() {
 }
 function scrollGames() {
   scrollbar.scrollIntoView ( document.getElementById( 'games' ), {
-    
+    onlyScrollIfNeeded: true,
+}) 
+}
+function scrollBenefits() {
+  scrollbar.scrollIntoView ( document.getElementById( 'benefits' ), {
+  onlyScrollIfNeeded: true,
 }) 
 }
 const styles = (theme) => (
@@ -183,37 +193,25 @@ function AppAppBar(props) {
             
           </Link>
           <ButtonMenu>
-          <MenuItem>
-          <Link
-            variant="h6"
-            underline="none"
-            color="inherit"
-            className={classes.item}
-            href="/"
-          >
+          <MenuItem  onClick={scrollHome}>
+          <p className={classes.item}>
             {'Inicio'}
-          </Link>
+          </p>
           </MenuItem>
-          <MenuItem>
-          <p className={classes.item} onClick={scrollHowWork}>
+          <MenuItem onClick={scrollHowWork}>
+          <p className={classes.item}>
             {'Como Funciona'}
             </p>
           </MenuItem>
-          <MenuItem>
-          <p className={classes.item} onClick={scrollGames}>
+          <MenuItem onClick={scrollGames}>
+          <p className={classes.item} >
             {'Jogos'}
             </p>
           </MenuItem>
-          <MenuItem>
-          <Link
-            variant="h6"
-            underline="none"
-            color="inherit"
-            className={classes.item}
-            href="/"
-          >
+          <MenuItem onClick={scrollBenefits}>
+          <p className={classes.item} >
             {'Vantagens'}
-          </Link>
+          </p>
           </MenuItem>
           <MenuItem>
           <Link
@@ -259,30 +257,18 @@ function AppAppBar(props) {
             </ButtonMenu>
           </div>
           <div className={classes.center}>
-          <Link
-            variant="h6"
-            underline="none"
-            color="inherit"
-            className={classes.item}
-            href="/"
-          >
+          <p className={classes.item} onClick={scrollHome}>
             {'Inicio'}
-          </Link>
+          </p>
           <p className={classes.item} onClick={scrollHowWork}>
             {'Como Funciona'}
             </p>
             <p className={classes.item} onClick={scrollGames}>
             {'Jogos'}
             </p>
-          <Link
-            variant="h6"
-            underline="none"
-            color="inherit"
-            className={classes.item}
-            href="/"
-          >
+            <p className={classes.item} onClick={scrollBenefits}>
             {'Vantagens'}
-          </Link>
+          </p>
           <Link
             variant="h6"
             underline="none"

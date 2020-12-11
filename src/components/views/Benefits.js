@@ -1,9 +1,16 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Scrollbar from 'smooth-scrollbar';
-import callofduty from '../../assets/callofduty.jpg'
-import fifa from '../../assets/fifa.jpeg'
-
+import wallet from '../../assets/wallet.png'
+import trophy from '../../assets/trophy.png'
+import shield from '../../assets/shield.png'
+import podium from '../../assets/podium.png'
+import controls from '../../assets/controls.png'
+import money from '../../assets/money.png'
+import rectangle from '../../assets/Rectangle-80.png'
+import background1 from '../../assets/background1.png'
+import background2 from '../../assets/background2.png'
+import GilroyMedium from '../../assets/Gilroy-Medium.ttf';
 var options={
   damping:0.05,
   syncCallbacks: true,
@@ -14,118 +21,210 @@ var scrollbar = Scrollbar.init(document.getElementById('scroll'),options)
 const styles = (theme) => ({
   root: {
     backgroundColor:'#121212',
+    padding: '2% 0',
+    
   },
   div:{
-    
     width: '80%',
     margin: 'auto',
     backgroundSize: 'cover',
     backgroundPosition: '50%',
     backgroundRepeat: 'no-repeat',
-    padding: '2% 0',
     position: 'relative',
     maxWidth: 1440,
     display:'flex',
+    flexDirection:'column',
+  },
+  line:{
+    display:'flex',
+    justifyContent:'space-between',
+    width:'100%',
     [theme.breakpoints.down("sm")]: {
       flexDirection:'column',
-      width: '100%',
+      justifyContent:'center',
     },
   },
-  divImg: {
-    width:'48.5%',
-    margin: 'auto',
-    position:'relative',
+  itemDiv:{
+    backgroundColor: '#212121',
+    borderRadius: 20,
+    paddingTop: 50,
+    paddingRight: 30,
+    paddingBottom: 50,
+    paddingLeft: 30,
+    marginBottom:'3%',
+    boxShadow: 'inset 0px 0px 18px 0px rgba(0,0,0,0)',
+    transition: 'transform 300ms ease 0ms,box-shadow 300ms ease 0ms',
+    width: '31.3333%',
     display:'flex',
-    justifyContent:'center',
     alignItems:'center',
-    [theme.breakpoints.down("sm")]: {
-      width: '90%',
-    },
-    
-    '&:hover > img': {
-      transition:'.4s  ease-in-out',
+    flexDirection:'column',
+    '&:hover': {
       transform:'scale(0.95)',
-      
+      boxShadow:'0px 0px 20px 0px #e6007e inset',
    },
-   '&:hover > div': {
-    transition:'.4s  ease-in-out',
-    transitionDelay:'0.4s',
-    transform:'scale(0.95,0.95)',
-    
- },
- '&:hover > div > h2': {
-  transition:'.4s  ease-in-out',
-  transitionDelay:'0.6s',
-  transform:'scale(1,1)',
-  
-},
+   [theme.breakpoints.down("sm")]: {
+    width: '100%',
+    marginBottom:'5%',
+    marginTop:'5%',
+    paddingTop: 25,
+    paddingRight: 15,
+    paddingBottom: 25,
+    paddingLeft: 15
+  },
   },
   img:{
-    position: 'relative',
-    top: 0,
-    left: 0,
-    padding: 7,
-    height:'100%',
-    width:'100%',
-    borderRadius:'5%',
+    marginBottom:'4.787%',
     [theme.breakpoints.down("sm")]: {
-      padding: 15,
-      borderRadius:'8%',
-    },
-   
-  },
-  animation:{
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: '#e94834',
-    transform: 'scale(0, 0.95)',
-    visibility: 'visible',
-    width:'100%',
-    height:'100%',
-    display:'flex',
-    justifyContent:'center',
-    alignItems:'center',
-    backgroundSize: '200%',
-    
-   
-    
-  },
-  "@keyframes animation": {
-    "20%": {
-      transform:'scale(0.9)',
-    },
-    
-    "100%": {
-      transform: 'scale(0.9, 1)'
+      marginBottom:30,
     },
   },
-  text:{
-    fontSize:22,
-    color:'#fff',
+  title:{
+    padding:0,
+    margin:0,
     fontFamily: "'Gilroy',Helvetica,Arial,Lucida,sans-serif",
-    transform: 'scale(0, 1)',
+    fontSize: 24,
+    color:'#fff',
+    fontWeight:600,
+    textAlign:'center'
+  },
+  subTitle:{
+    padding:0,
+    margin:0,
+    fontFamily: "'Gilroy-medium',Helvetica,Arial,Lucida,sans-serif",
+    fontSize: 16,
+    color:'#fff',
+    textAlign:'center'
+  },
+  '@font-face': {
+    fontFamily: 'Gilroy-medium',
+    src: `url(${GilroyMedium})`,
+  },
+  rectangle:{
+    marginTop:15,
+    marginBottom:'4.787%',
+    [theme.breakpoints.down("sm")]: {
+      marginBottom: 30
+    },
+  },
+  mainTitle:{ 
+    fontWeight: 600,
+    fontFamily: "'Gilroy',Helvetica,Arial,Lucida,sans-serif",
+    fontSize: 40,
+    color: '#ffffff',
+    textAlign: 'center',
+    margin:0,
+    paddingBottom: '4%'
+    },
+  gradiente:{
+    backgroundImage: 'linear-gradient(180deg,rgba(230,0,126,100) 0%,rgba(233,72,52,100) 100%)',
+    WebkitBackgroundClip:'text',
+    WebkitTextFillColor: 'transparent',
+  },
+  background1:{
+    backgroundSize: 'initial',
+    backgroundPosition: 'top right',
+    backgroundImage: `url(${background1})`,
+    backgroundRepeat: 'no-repeat',
+    paddingTop: 30,
+    [theme.breakpoints.down("sm")]: {
+      paddingTop: 120,
+    },
+  },
+  background2:{
+    backgroundSize: 'initial',
+    backgroundPosition: 'bottom left',
+    backgroundImage: `url(${background2})`,
+    backgroundRepeat: 'no-repeat',
+    [theme.breakpoints.down("sm")]: {
+      paddingBottom: 30,
+    },
   }
+
   
 });
 
 
-function Game(props) {
+function Benefits(props) {
   const { classes } = props;
   return (
-    <div className={classes.root}>
+    <div id='benefits' className={classes.root}>
+    <div className={classes.background1}>
     <div className={classes.div}>
-      <div className={classes.divImg}>
-        <img src={fifa} alt="fifa" className={classes.img}/>
-        <div className={classes.animation}><h2 className={classes.text}>Lucre enquanto joga</h2></div>
-      </div>
-      <div className={classes.divImg}>
-        <img src={callofduty} alt="callofduty" className={classes.img}/> 
-        <div className={classes.animation} style={{backgroundColor:'#e6007e'}}><h2 className={classes.text}>Receba em sua conta</h2></div>
-      </div>
     
+    <div className={classes.mainTitle}><span className={classes.gradiente}>Vantagens</span> que só a  <span className={classes.gradiente}>GoodGain</span> têm!
+    </div>
+      <div className={classes.line}>
+        <div className={classes.itemDiv}>
+          <img src={money} alt="money" className={classes.img}/>
+          <p className={classes.title}>Retiradas rápidas</p>
+          <img src={rectangle} alt="rectangle" className={classes.rectangle}/>
+          <p className={classes.subTitle}>
+            Você pode solicitar o saque do seu
+            <br/>
+            saldo a qualquer momento.
+          </p>
+        </div>
+        <div className={classes.itemDiv}>
+          <img src={trophy} alt="trophy" className={classes.img}/>
+          <p className={classes.title}>
+            Ranking com
+            <br/>
+            premiação mensal
+          </p>
+          <img src={rectangle} alt="rectangle" className={classes.rectangle}/>
+          <p className={classes.subTitle}>
+            Acumule pontos a cada partida realizada e concorra a prêmios.
+          </p>
+        </div>
+        <div className={classes.itemDiv}>
+          <img src={podium} alt="podium" className={classes.img}/>
+          <p className={classes.title}>
+            Torneios diários
+          </p>
+          <img src={rectangle} alt="rectangle" className={classes.rectangle}/>
+          <p className={classes.subTitle}>
+            Participe dos torneios online com ganhos de até 1.000% do capital. Garanta sua vaga e lucre alto com a sua habilidade!
+          </p>
+        </div>
+      </div>
+      </div>
+      </div>
+      <div className={classes.background2}>
+      <div className={classes.div}>
+      <div className={classes.line}>
+      <div className={classes.itemDiv}>
+          <img src={controls} alt="controls" className={classes.img}/>
+          <p className={classes.title}>
+            Partidas rápidas
+          </p>
+          <img src={rectangle} alt="rectangle" className={classes.rectangle}/>
+          <p className={classes.subTitle}>
+            Aqui sua vitória vale dinheiro! Desafie outro jogador para um amistoso online no seu jogo preferido, vença e lucre. 
+          </p>
+        </div>
+        <div className={classes.itemDiv}>
+          <img src={wallet} alt="wallet" className={classes.img}/>
+          <p className={classes.title}>
+            Valores acessíveis
+          </p>
+          <img src={rectangle} alt="rectangle" className={classes.rectangle}/>
+          <p className={classes.subTitle}>
+            Não importa o nível, nós queremos incluir todos no competitivo. Encontre salas de competição a partir de R$ 5,00. 
+          </p>
+        </div>
+        <div className={classes.itemDiv}>
+        <img src={shield} alt="shield" className={classes.img}/>
+        <p className={classes.title}>
+            Seguro e protegido
+          </p>
+          <img src={rectangle} alt="rectangle" className={classes.rectangle}/>
+          <p className={classes.subTitle}>
+            Orgulhosamente colocamos a sua segurança em primeiro lugar. E também levamos a isonomia muito a sério! Nossa área de fraude é rigorosa e vigilante. 
+          </p>
+        </div>
+      </div>
+      
+    </div>
     </div>
     </div>
   );
@@ -133,4 +232,4 @@ function Game(props) {
 
 
 
-export default withStyles(styles)(Game);
+export default withStyles(styles)(Benefits);
