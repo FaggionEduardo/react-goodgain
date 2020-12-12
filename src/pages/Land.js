@@ -10,6 +10,8 @@ import Game from '../components/views/Game';
 import Benefits from '../components/views/Benefits';
 import Transfer from '../components/views/Transfer';
 import Start from '../components/views/Start';
+import About from '../components/views/About';
+import Contact from '../components/views/Contact';
 
 function Index() {
   
@@ -26,6 +28,8 @@ function Index() {
       <Benefits />
       <Transfer />
       <Start />
+      <About />
+      <Contact />
     </React.Fragment>
   );
 }

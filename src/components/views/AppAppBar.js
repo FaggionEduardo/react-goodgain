@@ -44,6 +44,16 @@ function scrollBenefits() {
   onlyScrollIfNeeded: true,
 }) 
 }
+function scrollTransfer() {
+  scrollbar.scrollIntoView ( document.getElementById( 'transfer' ), {
+  onlyScrollIfNeeded: true,
+}) 
+}
+function scrollAbout() {
+  scrollbar.scrollIntoView ( document.getElementById( 'about' ), {
+  onlyScrollIfNeeded: true,
+}) 
+}
 const styles = (theme) => (
   {
   title: {
@@ -213,27 +223,15 @@ function AppAppBar(props) {
             {'Vantagens'}
           </p>
           </MenuItem>
-          <MenuItem>
-          <Link
-            variant="h6"
-            underline="none"
-            color="inherit"
-            className={classes.item}
-            href="/"
-          >
+          <MenuItem onClick={scrollTransfer}>
+          <p className={classes.item} >
             {'Transferências'}
-          </Link>
+          </p>
           </MenuItem>
-          <MenuItem>
-          <Link
-            variant="h6"
-            underline="none"
-            color="inherit"
-            className={classes.item}
-            href="/"
-          >
+          <MenuItem onClick={scrollAbout}>
+          <p className={classes.item} >
             {'Sobre Nós'}
-          </Link>
+            </p>
           </MenuItem>
           <MenuItem>
           <Link
@@ -269,24 +267,12 @@ function AppAppBar(props) {
             <p className={classes.item} onClick={scrollBenefits}>
             {'Vantagens'}
           </p>
-          <Link
-            variant="h6"
-            underline="none"
-            color="inherit"
-            className={classes.item}
-            href="/"
-          >
+          <p className={classes.item} onClick={scrollTransfer} >
             {'Transferências'}
-          </Link>
-          <Link
-            variant="h6"
-            underline="none"
-            color="inherit"
-            className={classes.item}
-            href="/"
-          >
+          </p>
+          <p className={classes.item} onClick={scrollAbout} >
             {'Sobre Nós'}
-          </Link>
+          </p>
           <Link
             variant="h6"
             underline="none"

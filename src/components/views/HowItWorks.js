@@ -83,7 +83,7 @@ const styles = (theme) => ({
     paddingLeft: 40,
     minWidth:260,
     [theme.breakpoints.down("sm")]: {
-      paddingTop: 20,
+      paddingTop: 0,
       paddingRight: 10,
       paddingBottom: 10,
       paddingLeft: 15,
@@ -136,10 +136,19 @@ const styles = (theme) => ({
     margin:0,
     fontWeight:'bold',
     [theme.breakpoints.down("sm")]: {
-      fontSize: 25,
+      display:'none',
       
     },
   },
+  numMobile:{
+    fontSize: 25,
+    display:'none',
+    [theme.breakpoints.down("sm")]: {
+      display:'inline'
+      
+    },
+  },
+  
   
   text:{
     fontFamily: "'Gilroy-regular',Helvetica,Arial,Lucida,sans-serif",
@@ -177,7 +186,6 @@ const styles = (theme) => ({
     [theme.breakpoints.down("sm")]: {
       width:'100%',
       marginRight:0,
-      marginTop:30,
       display:'block'
     }
   },
@@ -191,14 +199,24 @@ const styles = (theme) => ({
     paddingLeft: 40,
     minWidth:260,
     [theme.breakpoints.down("sm")]: {
-      paddingTop: 20,
+      display:'none'
+    },
+  },
+  itemText2M:{
+      paddingTop: 0,
       paddingRight: 10,
       paddingBottom: 10,
       paddingLeft: 15,
       marginRight:0,
-      
+      marginBottom:10,
+      backgroundImage: 'linear-gradient(180deg,#e6007e 0%,#e94834 100%)',
+      minWidth:260,
+      marginRight:0,
       width:'100%',
-    },
+      display:'none',
+      [theme.breakpoints.down("sm")]: {
+        display:'block'
+      },
   },
   desktop:{
     display:'none',
@@ -258,9 +276,9 @@ function HowItWorks(props) {
       <Grow timeout={2000} id='howWorkOne' in={checkedOne}>
       <div  className={classes.divItem}>
         <div className={classes.itemText}>
-          <h1 className={classes.num}>1</h1>
+        <h1 className={classes.num}>1</h1>
           <h3 className={classes.text}>
-          <strong>Crie sua conta </strong><span>e escolha </span><span>seu jogo </span><span>favorito.</span>
+          <strong><span className={classes.numMobile}>1.</span> Crie sua conta </strong><span>e escolha </span><span>seu jogo </span><span>favorito.</span>
           </h3>
         </div>
         <div className={classes.divItemImg}>
@@ -274,6 +292,12 @@ function HowItWorks(props) {
       <div className={classes.root2}>
       <Grow timeout={2000} id='howWorkTwo' in={checkedTwo}>
       <div className={classes.divItem}>
+      <div className={classes.itemText2M}>
+          
+          <h3 className={classes.text}>
+          <strong className={classes.numMobile}>2.</strong><span> Dispute  </span><span><strong>campeonatos </strong>e </span><strong>amistosos </strong><span>diários.</span>
+          </h3>
+        </div>
       <div className={classes.divItemImg2}>
           <img src={item2} alt="item2" className={`${classes.itemImg} ${classes.desktop}`}/>
           <img src={item2M} alt="item2M" className={`${classes.itemImg} ${classes.mobile}`}/>
@@ -281,7 +305,7 @@ function HowItWorks(props) {
         <div className={classes.itemText2}>
           <h1 className={classes.num}>2</h1>
           <h3 className={classes.text}>
-            <span>Dispute  </span><span><strong>campeonatos </strong>e </span><strong>amistosos </strong><span>diários.</span>
+          <span>Dispute  </span><span><strong>campeonatos </strong>e </span><strong>amistosos </strong><span>diários.</span>
           </h3>
         </div>
       </div>
@@ -291,7 +315,7 @@ function HowItWorks(props) {
         <div className={classes.itemText}>
           <h1 className={classes.num}>3</h1>
           <h3 className={classes.text}>
-          <strong>Sua vitória </strong><strong>vale dinheiro. </strong><span>Divirta-se </span><span>e lucre! </span>
+          <strong className={classes.numMobile}>3.</strong><strong> Sua vitória </strong><strong>vale dinheiro. </strong><span>Divirta-se </span><span>e lucre! </span>
           </h3>
         </div>
         <div className={classes.divItemImg}>

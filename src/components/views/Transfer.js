@@ -32,7 +32,10 @@ const styles = (theme) => ({
     maxWidth: 1440,
     display:'flex',
     flexDirection:'column',
-    padding: '2% 0'
+    padding: '2% 0',
+    [theme.breakpoints.down("sm")]: {
+    padding: '30px 0'
+    },
   },
   title:{
     padding:0,
@@ -75,21 +78,17 @@ const styles = (theme) => ({
     paddingRight: 30,
     paddingBottom: 15,
     paddingLeft: 30,
-    marginLeft: 'auto',
-    marginRight: 'auto',
     backgroundColor: '#212121',
-    borderRadius: '10px 10px 10px 10px',
     overflow: 'hidden',
     borderWidth: 2,
-    maxWidth: 1000,
     display:'flex',
     justifyContent:'space-between',
-    width:'80%',
-    border:'0 solid #e6007e',
+    width:'100%',
+    
     alignItems:'center',
     [theme.breakpoints.down("sm")]: {
       flexDirection:'column',
-      width:'95%',
+      width:'100%',
       paddingTop: 15,
       paddingRight: 10,
       paddingBottom: 15,
@@ -128,7 +127,19 @@ const styles = (theme) => ({
     [theme.breakpoints.down("sm")]: {
       marginTop:-10,
     },
-  }
+  },
+  divItem:{
+    marginTop:30,
+    display:'flex',
+    backgroundColor:'#515151',
+    borderRadius:20,
+    overflow:'hidden',
+    maxWidth:1440,
+    width:'80%',
+    margin:'auto',
+    flexDirection:'column'
+    
+  },
   
 });
 
@@ -151,11 +162,14 @@ function Transfer(props) {
       <div className={classes.subTitle2}>Abasteça sua carteira digital utilizando:</div>
       </div>
       <Grow timeout={2000} in={checkedTransfer}>
-      <div className={classes.methods}>
-        <div className={classes.methodItem}><img src={cards} alt="cards" className={classes.img}/> <strong> Cartão de Crédito*</strong></div>
-        <div className={classes.methodItem}><img src={picpay} alt="picpay" className={classes.img}/> PicPay</div>
-        <div className={classes.methodItem}><img src={bank} alt="bank" className={classes.img}/> Transferência Bancária</div>
-      </div>
+        <div className={classes.divItem}>
+          <div className={classes.methods}>
+            <div className={classes.methodItem}><img src={cards} alt="cards" className={classes.img}/> <strong> Cartão de Crédito*</strong></div>
+            <div className={classes.methodItem}><img src={picpay} alt="picpay" className={classes.img}/> PicPay</div>
+            <div className={classes.methodItem}><img src={bank} alt="bank" className={classes.img}/> Transferência Bancária</div>
+          </div>
+        </div>
+      
       </Grow>
       <div className={classes.obs}>*Para transferências via Cartão de Crédito, acessar a área do cliente.</div>
     </div>
