@@ -9,6 +9,7 @@ import c1 from '../../assets/Group-162.png';
 import c2 from '../../assets/Group-165.png';
 import {Grow} from '@material-ui/core';
 import rectangle from '../../assets/Rectangle.png';
+
 var options={
   damping:0.05,
   syncCallbacks: true,
@@ -77,8 +78,13 @@ const styles = (theme) => ({
   gradient:{
     WebkitBackgroundClip:'text',
     WebkitTextFillColor: 'transparent',
-    backgroundSize: '300%',
-    backgroundImage: "linear-gradient(180deg,rgba(230,0,126,100) 0%,rgba(233,72,52,100) 100%)"
+    backgroundImage: "linear-gradient(180deg,rgba(230,0,126,100) 0%,rgba(233,72,52,100) 100%)",
+    display:'inline',
+    backgroundSize:'300%',
+    [theme.breakpoints.down("sm")]: {
+      display:'block',
+      
+    },
   },
   text:{
     fontFamily: "'Gilroy-light',Helvetica,Arial,Lucida,sans-serif",

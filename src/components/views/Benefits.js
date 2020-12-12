@@ -123,6 +123,11 @@ const styles = (theme) => ({
     backgroundImage: 'linear-gradient(180deg,rgba(230,0,126,100) 0%,rgba(233,72,52,100) 100%)',
     WebkitBackgroundClip:'text',
     WebkitTextFillColor: 'transparent',
+    display:'inline',
+    [theme.breakpoints.down("sm")]: {
+      display:'block',
+      
+    },
   },
   background1:{
     backgroundSize: 'initial',
@@ -163,7 +168,7 @@ function Benefits(props) {
     <div className={classes.background1}>
     <div className={classes.div}>
     
-    <div className={classes.mainTitle}><span>Coisas que você <span className={classes.gradiente}>precisa saber</span></span>  <img src={rectangle2} alt="rectangle" className={classes.rectangle2}/>
+    <div className={classes.mainTitle}><span>Coisas que você <span className={classes.gradiente}>precisa saber </span></span>  <img src={rectangle2} alt="rectangle" className={classes.rectangle2}/>
     </div>
 
       <div className={classes.line}>

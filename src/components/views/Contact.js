@@ -22,6 +22,10 @@ const styles = (theme) => ({
   },
   div:{
     width:'47.25%',
+    [theme.breakpoints.down("sm")]: {
+      width:'100%',
+      
+    },
     
   },
   content:{
