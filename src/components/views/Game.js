@@ -91,7 +91,8 @@ const styles = (theme) => ({
   logo:{
     width:'45%',
     paddingTop:'5%'
-  }
+  },
+  
 
   
 });

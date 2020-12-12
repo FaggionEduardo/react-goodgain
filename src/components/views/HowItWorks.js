@@ -54,7 +54,11 @@ const styles = (theme) => ({
   margin:0
   },
   rectangle:{
-    width:300
+    width:300,
+    margin:'auto',
+    [theme.breakpoints.down("sm")]: {
+      width:200,
+    },
   },
   divTitle:{
     textAlign:'center'

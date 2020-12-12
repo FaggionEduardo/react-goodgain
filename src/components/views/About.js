@@ -8,6 +8,7 @@ import background from '../../assets/Group-166.png';
 import c1 from '../../assets/Group-162.png';
 import c2 from '../../assets/Group-165.png';
 import {Grow} from '@material-ui/core';
+import rectangle from '../../assets/Rectangle.png';
 var options={
   damping:0.05,
   syncCallbacks: true,
@@ -68,7 +69,7 @@ const styles = (theme) => ({
     fontFamily: "'Gilroy',Helvetica,Arial,Lucida,sans-serif",
     fontSize: 40,
     color: '#ffffff',
-    textAlign: 'left',
+    textAlign:'center',
     padding:0,
     margin:0,
     fontWeight:600
@@ -85,7 +86,8 @@ const styles = (theme) => ({
     paddingTop: 25,
     marginTop: 0,
     marginBottom: 0,
-    color:'#fff'
+    color:'#fff',
+    
   },
   '@font-face': {
     fontFamily: 'Gilroy-light',
@@ -134,7 +136,7 @@ const styles = (theme) => ({
     transition: '.3s',
     animationDuration: '5s',
     animationDelay: '-5s',
-    left:'15%',
+    left:'5%',
     [theme.breakpoints.down("sm")]: {
       left:'4%'
     },
@@ -179,6 +181,14 @@ const styles = (theme) => ({
       transform: 'translatex(-20%)'
     }
   },
+  rectangle:{
+    width:300,
+    margin:'auto',
+
+    [theme.breakpoints.down("sm")]: {
+      width:200,
+    },
+  },
 
 });
 
@@ -203,6 +213,7 @@ function About(props) {
       <div className={classes.div}>
         <div className={classes.containerItem} style={{marginRight: '5.5%',}}>
           <p className={classes.title}>Sobre a <span className={classes.gradient}>GoodGain</span></p>
+          <img src={rectangle} alt="rectangle" className={classes.rectangle}/>
           <div className={classes.text}>
             <p className={classes.content}>A GoodGain é, orgulhosamente, uma <strong>empresa feita por gamers.</strong></p>
             <p className={classes.content}>Nós <strong>transformamos</strong> as habilidades dos jogadores em lucro, proporcionando a diversão do jogo, a adrenalina do desafio e a <strong>satisfação do dinheiro no bolso.</strong></p>

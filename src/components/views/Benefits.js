@@ -11,6 +11,7 @@ import rectangle from '../../assets/Rectangle-80.png'
 import background1 from '../../assets/background1.png'
 import background2 from '../../assets/background2.png'
 import GilroyMedium from '../../assets/Gilroy-Medium.ttf';
+import rectangle2 from '../../assets/Rectangle.png';
 var options={
   damping:0.05,
   syncCallbacks: true,
@@ -113,7 +114,10 @@ const styles = (theme) => ({
     color: '#ffffff',
     textAlign: 'center',
     margin:0,
-    paddingBottom: '4%'
+    paddingBottom: '4%',
+    display:'flex',
+    flexDirection:'column',
+    alignItems:'center'
     },
   gradiente:{
     backgroundImage: 'linear-gradient(180deg,rgba(230,0,126,100) 0%,rgba(233,72,52,100) 100%)',
@@ -138,7 +142,15 @@ const styles = (theme) => ({
     [theme.breakpoints.down("sm")]: {
       paddingBottom: 30,
     },
-  }
+  },
+  rectangle2:{
+    width:300,
+    margin:'auto',
+    marginTop:'1%',
+    [theme.breakpoints.down("sm")]: {
+      width:200,
+    },
+  },
 
   
 });
@@ -151,8 +163,9 @@ function Benefits(props) {
     <div className={classes.background1}>
     <div className={classes.div}>
     
-    <div className={classes.mainTitle}><span className={classes.gradiente}>Vantagens</span> que só a  <span className={classes.gradiente}>GoodGain</span> têm!
+    <div className={classes.mainTitle}><span>Coisas que você <span className={classes.gradiente}>precisa saber</span></span>  <img src={rectangle2} alt="rectangle" className={classes.rectangle2}/>
     </div>
+
       <div className={classes.line}>
         <div className={classes.itemDiv}>
           <img src={money} alt="money" className={classes.img}/>

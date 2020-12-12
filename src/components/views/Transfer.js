@@ -5,7 +5,9 @@ import Scrollbar from 'smooth-scrollbar';
 import bank from '../../assets/bank.png';
 import cards from '../../assets/cards.png'
 import picpay from '../../assets/picpay.png'
+import img from '../../assets/cellMonitor.png'
 import {Grow} from '@material-ui/core';
+import rectangle from '../../assets/Rectangle.png';
 var options={
   damping:0.05,
   syncCallbacks: true,
@@ -22,6 +24,14 @@ const styles = (theme) => ({
     alignItems:'center',
     paddingBottom:150
   },
+  rectangle:{
+    width:300,
+    margin:'auto',
+    [theme.breakpoints.down("sm")]: {
+      width:200,
+    },
+
+  },
   div:{
     width: '80%',
     margin: 'auto',
@@ -32,9 +42,9 @@ const styles = (theme) => ({
     maxWidth: 1440,
     display:'flex',
     flexDirection:'column',
-    padding: '2% 0',
+    padding: '1% 0',
     [theme.breakpoints.down("sm")]: {
-    padding: '30px 0'
+    padding: '15px 0'
     },
   },
   title:{
@@ -56,25 +66,23 @@ const styles = (theme) => ({
     fontFamily: "'Gilroy-regular',Helvetica,Arial,Lucida,sans-serif",
     fontSize: 24,
     paddingTop: '40px!important',
-    paddingBottom: '40px!important',
+    paddingBottom: '0px!important',
     marginTop: '-22px!important',
     marginBottom: '0px!important',
     textAlign:'center',
-    color:'#fff'
-  },
-  subTitle2:{
-    fontFamily: "'Gilroy-regular',Helvetica,Arial,Lucida,sans-serif",
-    fontSize: 24,
-    textAlign:'center',
     color:'#fff',
-    marginTop: '-22px!important',
+    fontWeight:600,
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 20,
+      fontWeight:400,
+    },
   },
   '@font-face': {
     fontFamily: 'Gilroy-regular',
     src: `url(${GilroyRegular})`
   },
   methods:{
-    paddingTop: 15,
+    paddingTop: 0,
     paddingRight: 30,
     paddingBottom: 15,
     paddingLeft: 30,
@@ -82,34 +90,44 @@ const styles = (theme) => ({
     overflow: 'hidden',
     borderWidth: 2,
     display:'flex',
-    justifyContent:'space-between',
-    width:'100%',
-    
-    alignItems:'center',
+    alignItems:'start',
+    width:'40%',
+    flexDirection:'column',
+    alignItems:'start',
+    justifyContent:'center',
     [theme.breakpoints.down("sm")]: {
-      flexDirection:'column',
       width:'100%',
       paddingTop: 15,
       paddingRight: 10,
       paddingBottom: 15,
       paddingLeft: 10,
+
     },
   },
   img:{
-    height:40,
-    marginRight:10
+    height:60,
+    marginRight:10,
+    [theme.breakpoints.down("sm")]: {
+      display:'none'
+
+    },
   },
   methodItem:{
     padding:0,
     margin:0,
     fontFamily: "'Gilroy-Regular',Helvetica,Arial,Lucida,sans-serif",
-    fontSize: 24,
+    fontSize: 26,
     color:'#fff',
-    textAlign:'center',
+    textAlign:'left',
     display:'flex',
+    marginBottom:'5%',
+    marginTop:'5%',
     alignItems:'center',
     [theme.breakpoints.down("sm")]: {
-      marginBottom:30
+      marginBottom:10,
+      marginTop:10,
+      fontSize: 20,
+
     },
 
   },
@@ -129,7 +147,7 @@ const styles = (theme) => ({
     },
   },
   divItem:{
-    marginTop:30,
+    marginTop:20,
     display:'flex',
     backgroundColor:'#515151',
     borderRadius:20,
@@ -137,9 +155,19 @@ const styles = (theme) => ({
     maxWidth:1440,
     width:'80%',
     margin:'auto',
-    flexDirection:'column'
-    
+    position:'relative',
+    [theme.breakpoints.down("sm")]: {
+      marginTop:10,
+      flexDirection:'column',
+      width:'95%'
+    },
   },
+  cellImg:{
+    width:'60%',
+    [theme.breakpoints.down("sm")]: {
+      width:'100%',
+    },
+  }
   
 });
 
@@ -158,16 +186,18 @@ function Transfer(props) {
     <div id='transfer' className={classes.root}>
       <div className={classes.div}>
       <h2 className={classes.title}>Meios de <span className={classes.gradient}>transferência</span></h2>
-      <div className={classes.subTitle}><strong>Faça seu primeiro depósito agora e transforme sua diversão em dinheiro no bolso.</strong></div>
-      <div className={classes.subTitle2}>Abasteça sua carteira digital utilizando:</div>
+      <img src={rectangle} alt="rectangle" className={classes.rectangle}/>
+      <div className={classes.subTitle}>Faça seu primeiro depósito agora e transforme sua diversão em dinheiro no bolso.</div>
       </div>
       <Grow timeout={2000} in={checkedTransfer}>
         <div className={classes.divItem}>
           <div className={classes.methods}>
+            <h2 className={classes.methodItem} style={{fontWeight:600, display:'block'}}>Abasteça <span className={classes.gradient}>sua carteira digital</span> utilizando:</h2>
             <div className={classes.methodItem}><img src={cards} alt="cards" className={classes.img}/> <strong> Cartão de Crédito*</strong></div>
             <div className={classes.methodItem}><img src={picpay} alt="picpay" className={classes.img}/> PicPay</div>
             <div className={classes.methodItem}><img src={bank} alt="bank" className={classes.img}/> Transferência Bancária</div>
           </div>
+          <img src={img} alt="img" className={classes.cellImg}/>
         </div>
       
       </Grow>

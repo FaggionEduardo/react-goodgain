@@ -2,6 +2,7 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import background from '../../assets/arco4.svg';
 import Scrollbar from 'smooth-scrollbar';
+import img from '../../assets/Group-151.png'
 import {Grow} from '@material-ui/core';
 var options={
   damping:0.05,
@@ -15,8 +16,13 @@ const styles = (theme) => ({
     backgroundImage: 'linear-gradient(180deg,#e6007e 0%,#e94834 100%)',
     
   },
+  container:{
+    width:'80%',
+    margin:'auto'
+  },
   div:{
     width:'47.25%',
+    
   },
   content:{
     backgroundColor: '#e8e8e8',
@@ -33,7 +39,8 @@ const styles = (theme) => ({
     zIndex: 5,
     display:'flex',
     flexDirection:'column',
-    marginTop:-100
+    
+
   },
   background:{
     backgroundImage: `url(${background})`,
@@ -47,6 +54,20 @@ const styles = (theme) => ({
     alignItems:'center',
 
   },
+  divImg:{
+    marginBottom:-61
+  },
+  input:{
+    fontFamily: "'Giroy medium',Helvetica,Arial,Lucida,sans-serif",
+    fontSize: 16,
+    borderRadius: 25,
+    border:'none',
+    color: '#383838',
+    backgroundColor:'#fff',
+    padding:16,
+    width:'100%',
+    marginBottom:'6%'
+  }
 
 });
 
@@ -73,8 +94,20 @@ function Contact(props) {
       
     </div>
     <div id="start" className={classes.root}>
+    <div className={classes.container}>
     <div className={classes.div}>
-      <div className={classes.content}></div>
+      <div className={classes.divImg}>
+        <img src={img} alt='img' className={classes.img}/>
+      </div>
+      <div className={classes.content}>
+        <form >
+          <input type='text' placeholder='Nome' className={classes.input}></input>
+          <input type='text' placeholder='Email' className={classes.input}></input>
+          <input type='text' placeholder='Assunto' className={classes.input}></input>
+          <textarea type='text' placeholder='Mensagem' style={{height:150}} className={classes.input}></textarea>
+        </form>
+      </div>
+    </div>
     </div>
     </div>
     </>
