@@ -28,7 +28,7 @@ const styles = (theme) => ({
     },
   },
   text:{
-    width: '100%',
+    width: '110%',
     fontFamily: "'Gilroy',Helvetica,Arial,Lucida,sans-serif",
     fontSize: 40,
     color: '#ffffff',
