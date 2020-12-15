@@ -1,0 +1,170 @@
+import React from 'react';
+import GilroyMedium from '../../assets/Gilroy-Medium.ttf';
+import { withStyles } from '@material-ui/core/styles';
+import logo from '../../assets/GoodGain-logo.png'
+import control from '../../assets/Group-153.png'
+import Scrollbar from 'smooth-scrollbar';
+import FacebookIcon from '@material-ui/icons/Facebook';
+import InstagramIcon from '@material-ui/icons/Instagram';
+import YouTubeIcon from '@material-ui/icons/YouTube';
+import TwitterIcon from '@material-ui/icons/Twitter';
+var options={
+  damping:0.05,
+  syncCallbacks: true,
+  continuousScrolling:true
+}
+var scrollbar = Scrollbar.init(document.getElementById('scroll'),options)
+
+const styles = (theme) => ({
+  root: {
+    backgroundColor:'#121212',
+    top: 0,
+    zIndex: 1,
+    display:'flex',
+    justifyContent:'center',
+    alignItems:'center',
+    padding:'4% 0',
+    flexDirection:'column',
+    paddingBottom:2,
+    position:'relative',
+    [theme.breakpoints.down("sm")]: {
+      padding:'50px 0',
+    },
+  },
+  container:{
+    width:'80%',
+    maxWidth: 1440,
+    padding:'2% 0',
+    display:'flex',
+    
+    [theme.breakpoints.down("sm")]: {
+      flexDirection:'column',
+      padding:'30px 0',
+      width:'90%',
+    },
+    
+  },
+  divRight:{
+    width: '64.833%',
+    marginRight:'5.5%',
+    display:'flex',
+    flexDirection:'column',
+    [theme.breakpoints.down("sm")]: {
+      width: '100%',
+      marginBottom:30
+    },
+  },
+  divLeft:{
+    width: '29.6667%',
+    display:'flex',
+    alignItems:'center',
+    justifyContent:'center',
+    [theme.breakpoints.down("sm")]: {
+      width: '100%',
+    },
+  },
+  buttons:{
+    margin:0,
+    padding:0,
+    marginTop:-49,
+    [theme.breakpoints.down("xs")]: {
+      width:'110%'
+    },
+  },
+  link:{
+    color:'#fff',
+    fontFamily:"'Gilroy',Helvetica,Arial,Lucida,sans-serif",
+    fontWeight:600,
+    textDecoration:'none',
+    fontSize:14,
+    marginRight:10,
+    
+  },
+  text:{
+    fontFamily: "'Gilroy-medium',Helvetica,Arial,Lucida,sans-serif",
+    fontSize: 12,
+    color: '#666',
+    alignItems:'center',
+    justifyContent:'center'
+  },
+  '@font-face': {
+    fontFamily: 'Gilroy-medium',
+    src: `url(${GilroyMedium})`,
+  },
+  logo:{
+    height:51,
+    width:203
+  },
+
+  control:{
+    width:36,
+    height:41,
+    cursor:'pointer',
+    [theme.breakpoints.down("sm")]: {
+      margin:'8% 0'
+    },
+  },
+  icon:{
+    color:'#fff'
+  },
+  app:{
+    height: 32,
+    width: 32,
+    borderRadius:3,
+    backgroundColor:'#212121',
+    marginRight:8,
+    display:'flex',
+    justifyContent:'center',
+    alignItems:'center',
+    cursor:'pointer'
+  },
+  apps:{
+    display:'flex'
+  }
+  
+});
+function scrollTop() {
+
+  scrollbar.scrollTo(0,0,1000)
+
+}
+function Footer(props) {
+  const { classes } = props;
+
+  return (
+    <div className={classes.root}>
+      <div className={classes.container}>
+        <div className={classes.divRight}>
+        <div className={classes.buttons}>
+          <a href='/' className={classes.link}>Termos de Uso</a>
+          <a href='/' className={classes.link}>Política de Privacidade</a>
+        </div>
+        <div className={classes.text} style={{paddingTop: 50}}>
+          A GoodGain não possui vínculos, afiliações ou relações com nenhum desenvolvedor de jogos ou consoles. Todo o conteúdo, título e artes são marcas comerciais com direitos autorais assegurados aos seus respectivos proprietários
+        </div>
+        </div>
+        <div className={classes.divLeft}>
+          <img src={logo} alt="logo" className={classes.logo}/>
+        </div>
+      </div>
+      <div className={classes.container} style={{borderTop:'1px solid #666',justifyContent:'space-between',alignItems:'center'}}>
+        <div className={classes.divBottom}>
+        <div className={classes.text}>
+        © 2020 GoodGain. Todos os direitos reservados.
+        </div>
+        </div>
+        <img src={control} alt="control" onClick={scrollTop} className={classes.control}/>
+        <div className={classes.apps}>
+        <a href='/'  className={classes.app}><FacebookIcon  className={classes.icon}></FacebookIcon></a>
+        <a href='/' className={classes.app}><InstagramIcon  className={classes.icon}></InstagramIcon></a>
+        <a href='/' className={classes.app}><YouTubeIcon  className={classes.icon}></YouTubeIcon></a>
+        <a href='/' className={classes.app}><TwitterIcon  className={classes.icon}></TwitterIcon></a>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
+
+export default withStyles(styles)(Footer);

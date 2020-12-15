@@ -12,7 +12,7 @@ import Transfer from '../components/views/Transfer';
 import Start from '../components/views/Start';
 import About from '../components/views/About';
 import Contact from '../components/views/Contact';
-
+import Footer from '../components/views/Footer';
 function Index() {
   
   return (
@@ -30,6 +30,7 @@ function Index() {
       <Start />
       <About />
       <Contact />
+      <Footer />
     </React.Fragment>
   );
 }
