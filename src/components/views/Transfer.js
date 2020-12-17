@@ -201,7 +201,7 @@ function Transfer(props) {
         </div>
       
       </Grow>
-      <div className={classes.obs}>*Para transferências via Cartão de Crédito, acessar a área do cliente.</div>
+      <div className={classes.obs}>*Transferências via cartão de crédito apenas através do site.</div>
     </div>
   );
 }

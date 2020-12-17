@@ -120,7 +120,7 @@ const styles = (theme) => ({
   apps:{
     display:'flex',
     position:'absolute',
-    bottom:'8%',
+    bottom:'4%',
     alignItems:'center',
     justifyContent:'center',
     [theme.breakpoints.down("sm")]: {
@@ -157,7 +157,7 @@ const styles = (theme) => ({
     },
   },
   textAnimation:{
-    fontSize:16,
+    fontSize:20,
     WebkitBackgroundClip:'text',
     WebkitTextFillColor: 'transparent',
     backgroundSize: '300%',
@@ -165,7 +165,7 @@ const styles = (theme) => ({
     fontFamily: "'Gilroy',Helvetica,Arial,Lucida,sans-serif",
     transform: 'scale(0, 1)',
     [theme.breakpoints.down("sm")]: {
-      fontSize:14,
+      fontSize:18,
     },
   }
 
