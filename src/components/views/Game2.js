@@ -89,9 +89,6 @@ const styles = (theme) => ({
     justifyContent:'center',
     alignItems:'center',
     backgroundSize: '200%',
-    
-   
-    
   },
   "@keyframes animation": {
     "20%": {
