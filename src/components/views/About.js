@@ -222,7 +222,7 @@ function About(props) {
           <img src={rectangle} alt="rectangle" className={classes.rectangle}/>
           <div className={classes.text}>
             <p className={classes.content}>A GoodGain é, orgulhosamente, uma <strong>empresa feita por gamers.</strong></p>
-            <p className={classes.content}>Nós <strong>transformamos</strong> as habilidades dos jogadores em lucro, proporcionando a diversão do jogo, a adrenalina do desafio e a <strong>satisfação do dinheiro no bolso.</strong></p>
+            <p className={classes.content}>Nós <strong>transformamos</strong> as habilidades dos jogadores em lucro, proporcionando diversão, adrenalina e <strong> dinheiro no bolso.</strong></p>
             <p className={classes.content}>Nossa <strong>missão é facilitar o acesso de todos os jogadores ao cenário competitivo</strong>, incluindo cada vez mais pessoas, independente do nível de jogo. E com isso sermos a maior referência global em campeonatos amadores online.</p>
           </div>
         </div>

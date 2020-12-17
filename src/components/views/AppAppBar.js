@@ -54,6 +54,11 @@ function scrollAbout() {
   onlyScrollIfNeeded: true,
 }) 
 }
+function scrollContact() {
+  scrollbar.scrollIntoView ( document.getElementById( 'contact' ), {
+  onlyScrollIfNeeded: true,
+}) 
+}
 const styles = (theme) => (
   {
   title: {
@@ -122,9 +127,9 @@ const styles = (theme) => (
     fontFamily:"'Gilroy-Medium',Helvetica,Arial,Lucida,sans-serif",
     whiteSpace: 'nowrap',
     paddingTop: 8,
-    paddingRight: 50,
+    paddingRight: 20,
     paddingBottom: 8,
-    paddingLeft: 50,
+    paddingLeft: 20,
     display:'inline-block',
     transition: 'all 300ms ease 0ms',
     boxShadow:'0px 2px 18px 0px rgba(0,0,0,0.3)',
@@ -139,6 +144,33 @@ const styles = (theme) => (
     '&:hover': {
       transform:'scale(0.9)',
       boxShadow:'0px 0px 20px 0px #e6007e ',
+   },
+  
+  },
+  login:{
+    [theme.breakpoints.down("xs")]: {
+      marginTop:5,
+    },
+    marginBottom:8,
+    borderWidth:0,
+    borderRadius:25,
+    fontSize: 16,
+    fontWeight: 600,
+    fontFamily:"'Gilroy-Medium',Helvetica,Arial,Lucida,sans-serif",
+    whiteSpace: 'nowrap',
+    paddingTop: 8,
+    paddingRight: 20,
+    paddingBottom: 8,
+    paddingLeft: 20,
+    display:'inline-block',
+    lineHeight: '1.7em',
+    position:'relative',
+    WebkitBackgroundClip:'text',
+    WebkitTextFillColor: 'transparent',
+    backgroundSize: '300%',
+    backgroundImage: "linear-gradient(180deg,rgba(230,0,126,100) 0%,rgba(233,72,52,100) 100%)",
+    '&:hover': {
+      transform:'scale(0.9)',
    },
   
   },
@@ -233,16 +265,10 @@ function AppAppBar(props) {
             {'Sobre Nós'}
             </p>
           </MenuItem>
-          <MenuItem>
-          <Link
-            variant="h6"
-            underline="none"
-            color="inherit"
-            className={classes.item}
-            href="/"
-          >
+          <MenuItem onClick={scrollContact}>
+          <p className={classes.item} >
             {'Contato'}
-          </Link>
+            </p>
           </MenuItem>
           
          
@@ -273,21 +299,24 @@ function AppAppBar(props) {
           <p className={classes.item} onClick={scrollAbout} >
             {'Sobre Nós'}
           </p>
-          <Link
-            variant="h6"
-            underline="none"
-            color="inherit"
-            className={classes.item}
-            href="/"
-          >
+          <p className={classes.item} onClick={scrollContact} >
             {'Contato'}
-          </Link>
+            </p>
           </div>
           <div className={classes.right}>
             <div className={classes.divFlag} >
             <img src={kingdom} alt="kingdom" className={classes.flag}/>
             <img src={brazil} alt="brazil" className={classes.flag}/>
             </div>
+            <Link
+            variant="h6"
+            underline="none"
+            color="inherit"
+            className={classes.login}
+            href="/"
+          >
+            {'Entre'}
+          </Link>
           <Link
             variant="h6"
             underline="none"
@@ -295,7 +324,7 @@ function AppAppBar(props) {
             className={classes.button}
             href="/"
           >
-            {'Área do cliente'}
+            {'Cadastre-se'}
           </Link>
           </div>
         </Toolbar>

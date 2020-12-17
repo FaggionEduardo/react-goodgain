@@ -84,8 +84,12 @@ const styles = (theme) => ({
     fontFamily: "'Gilroy-medium',Helvetica,Arial,Lucida,sans-serif",
     fontSize: 12,
     color: '#666',
+    justifyContent:'center',
+    display:'flex',
+    flexDirection:'column',
+    [theme.breakpoints.down("sm")]: {
     alignItems:'center',
-    justifyContent:'center'
+    },
   },
   '@font-face': {
     fontFamily: 'Gilroy-medium',
@@ -100,8 +104,9 @@ const styles = (theme) => ({
     width:36,
     height:41,
     cursor:'pointer',
+    transform: 'translateY(-70px)',
     [theme.breakpoints.down("sm")]: {
-      margin:'8% 0'
+      transform: 'translateY(-40px)',
     },
   },
   icon:{
@@ -119,7 +124,10 @@ const styles = (theme) => ({
     cursor:'pointer'
   },
   apps:{
-    display:'flex'
+    display:'flex',
+    [theme.breakpoints.down("sm")]: {
+      margin:'8% 0'
+    },
   }
   
 });
@@ -150,17 +158,19 @@ function Footer(props) {
       <div className={classes.container} style={{borderTop:'1px solid #666',justifyContent:'space-between',alignItems:'center'}}>
         <div className={classes.divBottom}>
         <div className={classes.text}>
-        © 2020 GoodGain. Todos os direitos reservados.
+        <span>© 2020 Good Gain International. Todos os direitos reservados. </span>
+        <span>ABN 392 066 387 22</span>
         </div>
         </div>
-        <img src={control} alt="control" onClick={scrollTop} className={classes.control}/>
+        
         <div className={classes.apps}>
-        <a href='/'  className={classes.app}><FacebookIcon  className={classes.icon}></FacebookIcon></a>
-        <a href='/' className={classes.app}><InstagramIcon  className={classes.icon}></InstagramIcon></a>
+        <a href='https://www.facebook.com/goodgain.gg'  className={classes.app}><FacebookIcon  className={classes.icon}></FacebookIcon></a>
+        <a href='https://www.instagram.com/goodgain.gg/' className={classes.app}><InstagramIcon  className={classes.icon}></InstagramIcon></a>
         <a href='/' className={classes.app}><YouTubeIcon  className={classes.icon}></YouTubeIcon></a>
         <a href='/' className={classes.app}><TwitterIcon  className={classes.icon}></TwitterIcon></a>
         </div>
       </div>
+      <img src={control} alt="control" onClick={scrollTop} className={classes.control}/>
     </div>
   );
 }

@@ -23,7 +23,7 @@ const styles = (theme) => ({
     position: 'relative',
     padding:0,
     paddingTop:150,
-    paddingBottom:250,
+    paddingBottom:150,
     margin:0,
     maxWidth:'none',
     [theme.breakpoints.down("xs")]: {

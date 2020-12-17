@@ -30,7 +30,7 @@ const styles = (theme) => ({
 });
 function scrollBottom() {
 
-  scrollbar.scrollTo(100,10000,1000)
+  scrollbar.scrollTo(100,100000,1000)
 
 }
 function Down(props) {

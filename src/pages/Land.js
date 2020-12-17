@@ -13,13 +13,16 @@ import Start from '../components/views/Start';
 import About from '../components/views/About';
 import Contact from '../components/views/Contact';
 import Footer from '../components/views/Footer';
+import ScrollTop from '../components/views/ScrollTop';
+import Promotion from '../components/views/Promotion';
+import Carousel from '../components/views/Carousel';
 function Index() {
   
   return (
     <React.Fragment>
-      
       <AppAppBar />
-      <Home />
+      <Promotion />
+      <Carousel />
       <Down />
       <HowItWorks />
       <Download />
@@ -31,6 +34,7 @@ function Index() {
       <About />
       <Contact />
       <Footer />
+      <ScrollTop />
     </React.Fragment>
   );
 }

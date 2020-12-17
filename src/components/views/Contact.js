@@ -242,7 +242,7 @@ function Contact(props) {
     <div className={classes.background}>
       
     </div>
-    <div id="start" className={classes.root}>
+    <div id="contact" className={classes.root}>
     <div className={classes.container}>
     <div className={classes.div} style={{marginRight:'5.5%',marginTop:75,height:600,margin:'auto'}}>
         <h3 className={classes.title1}>Ficou com alguma dúvida?</h3>
