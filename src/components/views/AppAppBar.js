@@ -4,7 +4,7 @@ import logo from '../../assets/GoodGain-logo.png'
 import kingdom from '../../assets/united-kingdom.png'
 import brazil from '../../assets/brazil.png'
 import { withStyles } from '@material-ui/core/styles';
-import Link from '@material-ui/core/Link';
+import {Link} from 'react-router-dom';
 import AppBar from '../components/AppBar';
 import Toolbar from '../components/Toolbar';
 import ButtonMenu from '../components/ButtonMenu';
@@ -71,6 +71,7 @@ const styles = (theme) => (
     lineHeight:'1em',
     fontWeight: 500,
     color:'#ffffff',
+    textDecoration:'none',
     '&:hover': {
       color: "#e82d50",
    },
@@ -118,6 +119,7 @@ const styles = (theme) => (
     [theme.breakpoints.down("xs")]: {
       marginTop:5,
     },
+    textDecoration:'none',
     marginBottom:8,
     borderWidth:0,
     borderRadius:25,
@@ -151,6 +153,7 @@ const styles = (theme) => (
     [theme.breakpoints.down("xs")]: {
       marginTop:5,
     },
+    textDecoration:'none',
     marginBottom:8,
     borderWidth:0,
     borderRadius:25,
@@ -228,47 +231,83 @@ function AppAppBar(props) {
         <Toolbar className={classes.toolbar}>
           <div className={classes.left}>
           <Link
-           
-            href="/"
+            to={{
+              pathname: "/",
+            }}
           >
             <img src={logo} alt="logo" className={classes.logo}/>
             
           </Link>
           <ButtonMenu>
           <MenuItem  onClick={scrollHome}>
-          <p className={classes.item}>
+          <Link
+            to={{
+              pathname: "/",
+            }}
+            className={classes.item}
+          >
             {'Inicio'}
-          </p>
+          </Link>
           </MenuItem>
           <MenuItem onClick={scrollHowWork}>
-          <p className={classes.item}>
+          <Link
+            to={{
+              pathname: "/",
+            }}
+            className={classes.item}
+          >
             {'Como Funciona'}
-            </p>
+            </Link>
           </MenuItem>
           <MenuItem onClick={scrollGames}>
-          <p className={classes.item} >
+          <Link
+            to={{
+              pathname: "/",
+            }}
+            className={classes.item}
+          >
             {'Jogos'}
-            </p>
+            </Link>
           </MenuItem>
           <MenuItem onClick={scrollBenefits}>
-          <p className={classes.item} >
+          <Link
+            to={{
+              pathname: "/",
+            }}
+            className={classes.item}
+          >
             {'Vantagens'}
-          </p>
+          </Link>
           </MenuItem>
           <MenuItem onClick={scrollTransfer}>
-          <p className={classes.item} >
+          <Link
+            to={{
+              pathname: "/",
+            }}
+            className={classes.item}
+          >
             {'Transferências'}
-          </p>
+          </Link>
           </MenuItem>
           <MenuItem onClick={scrollAbout}>
-          <p className={classes.item} >
+          <Link
+            to={{
+              pathname: "/",
+            }}
+            className={classes.item}
+          >
             {'Sobre Nós'}
-            </p>
+            </Link>
           </MenuItem>
           <MenuItem onClick={scrollContact}>
-          <p className={classes.item} >
+          <Link
+            to={{
+              pathname: "/",
+            }}
+            className={classes.item}
+          >
             {'Contato'}
-            </p>
+            </Link>
           </MenuItem>
           
          
@@ -281,27 +320,70 @@ function AppAppBar(props) {
             </ButtonMenu>
           </div>
           <div className={classes.center}>
-          <p className={classes.item} onClick={scrollHome}>
+          
+          <Link
+            to={{
+              pathname: "/",
+            }}
+            className={classes.item}
+            onClick={scrollHome}
+          >
             {'Inicio'}
-          </p>
-          <p className={classes.item} onClick={scrollHowWork}>
+          </Link>
+          <Link
+            to={{
+              pathname: "/",
+            }}
+            className={classes.item}
+            onClick={scrollHowWork}
+          >
             {'Como Funciona'}
-            </p>
-            <p className={classes.item} onClick={scrollGames}>
+            </Link>
+            <Link
+            to={{
+              pathname: "/",
+            }}
+            className={classes.item}
+            onClick={scrollGames}
+          >
             {'Jogos'}
-            </p>
-            <p className={classes.item} onClick={scrollBenefits}>
+            </Link>
+            <Link
+            to={{
+              pathname: "/",
+            }}
+            className={classes.item}
+            onClick={scrollBenefits}
+          >
             {'Vantagens'}
-          </p>
-          <p className={classes.item} onClick={scrollTransfer} >
+          </Link>
+          <Link
+            to={{
+              pathname: "/",
+            }}
+            className={classes.item}
+            onClick={scrollTransfer}
+          >
             {'Transferências'}
-          </p>
-          <p className={classes.item} onClick={scrollAbout} >
+          </Link>
+          <Link
+            to={{
+              pathname: "/",
+            }}
+            className={classes.item}
+            onClick={scrollAbout}
+          >
             {'Sobre Nós'}
-          </p>
-          <p className={classes.item} onClick={scrollContact} >
+          </Link>
+          <Link
+            to={{
+              pathname: "/",
+            }}
+            className={classes.item}
+            onClick={scrollContact}
+          >
             {'Contato'}
-            </p>
+            </Link>
           </div>
           <div className={classes.right}>
             <div className={classes.divFlag} >
@@ -309,20 +391,18 @@ function AppAppBar(props) {
             <img src={brazil} alt="brazil" className={classes.flag}/>
             </div>
             <Link
-            variant="h6"
             underline="none"
             color="inherit"
             className={classes.login}
-            href="/"
+            to="/"
           >
             {'Entre'}
           </Link>
           <Link
-            variant="h6"
             underline="none"
             color="inherit"
             className={classes.button}
-            href="/"
+            to="/"
           >
             {'Cadastre-se'}
           </Link>
