@@ -5,7 +5,7 @@ import Scrollbar from 'smooth-scrollbar';
 import bank from '../../assets/bank.png';
 import cards from '../../assets/cards.png'
 import picpay from '../../assets/picpay.png'
-import img from '../../assets/cellMonitor.png'
+import img from '../../assets/cellMonitor.jpg'
 import {Grow} from '@material-ui/core';
 import rectangle from '../../assets/Rectangle.png';
 var options={
