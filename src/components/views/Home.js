@@ -26,6 +26,7 @@ const styles = (theme) => ({
     paddingBottom:150,
     margin:0,
     maxWidth:'none',
+    
     [theme.breakpoints.down("xs")]: {
       paddingBottom:0,
     },

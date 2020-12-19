@@ -63,7 +63,7 @@ const styles = (theme) => ({
     [theme.breakpoints.down("sm")]: {
       margin: 'auto',
       width:'100%',
-      paddingTop:20
+      marginTop:'-8%'
     },
   },
   divCupom:{
@@ -104,7 +104,7 @@ const styles = (theme) => ({
    '&:hover > div': {
     transition:'.4s  ease-in-out',
     transitionDelay:'0.4s',
-    transform:'scale(0.95,0.95)',
+    transform:'scale(0.95,0.90)',
     
  },
  '&:hover > div > h2': {
@@ -137,8 +137,9 @@ const styles = (theme) => ({
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: '#fff',
-    transform: 'scale(0, 0.95)',
+    backgroundColor: 'rgba(255,255,255,0.8)',
+    borderRadius:'10%',
+    transform: 'scale(0, 0.9)',
     visibility: 'visible',
     width:'100%',
     height:'100%',
@@ -165,7 +166,7 @@ const styles = (theme) => ({
     fontFamily: "'Gilroy',Helvetica,Arial,Lucida,sans-serif",
     transform: 'scale(0, 1)',
     [theme.breakpoints.down("sm")]: {
-      fontSize:18,
+      fontSize:14,
     },
   }
 

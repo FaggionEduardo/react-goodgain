@@ -7,6 +7,9 @@ const styles = (theme) => ({
     color: theme.palette.common.white,
     boxShadow:'6px 1px 14px 0px #000000',
     
+    [theme.breakpoints.down("xs")]: {
+      boxShadow:'0px 0px 0px 0px #000000',
+    },
   },
 });
 

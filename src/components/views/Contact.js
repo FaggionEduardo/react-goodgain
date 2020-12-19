@@ -108,17 +108,29 @@ const styles = (theme) => ({
     fontFamily: "'Gilroy',Helvetica,Arial,Lucida,sans-serif",
     fontSize: 40,
     color: '#fff',
-    margin:0
+    margin:0,
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 34,
+      
+    },
   },
   '@font-face': {
     fontFamily: 'Gilroy-regular',
     src: `url(${GilroyRegular})`
   },
   img1:{
-    width:'60%'
+    width:'60%',
+    [theme.breakpoints.down("xs")]: {
+      width:'80%',
+      
+    },
   },
   img2:{
-    width:'60%'
+    width:'60%',
+    [theme.breakpoints.down("xs")]: {
+      width:'80%',
+      
+    },
   },
   img3:{
     width:'12%'

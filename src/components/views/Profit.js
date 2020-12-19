@@ -91,9 +91,8 @@ const styles = (theme) => ({
   },
   load:{
       position:'absolute',
-      transform: 'translatex(-41px) translatey(18px)',
-      height:20,
-      width:45
+      transform: 'translatex(-50px) translatey(12px)',
+      width:60
     
   }
 });
@@ -113,7 +112,7 @@ function Profit(props) {
 
       <div className={classes.game}>
           <div className={classes.textGame}>Jogos disponíveis para:</div>
-          <div className={classes.xPlay}><img className={classes.img} src={play} alt="play"/><img className={classes.img} src={xbox} alt="xbox"/><img className={classes.img} src={desk} alt="desk"/><img className={classes.img} src={mobile} style={{opacity:0.3}} alt="mobile"/><span className={classes.loadText}>Loading...</span><img className={classes.load} src={load} alt="load"/> </div>
+          <div className={classes.xPlay}><img className={classes.img} src={play} alt="play"/><img className={classes.img} src={xbox} alt="xbox"/><img className={classes.img} src={desk} alt="desk"/><img className={classes.img} src={mobile} style={{opacity:0.3}} alt="mobile"/><img className={classes.load} src={load} alt="load"/> </div>
       </div>
     </div>
   );

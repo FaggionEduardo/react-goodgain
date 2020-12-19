@@ -86,7 +86,7 @@ const styles = (theme) => ({
     
   },
     divApps:{
-      width: '30%',
+      width: '35%',
       display:'flex',
       justifyContent:'center',
       alignItems:'start',
@@ -121,7 +121,7 @@ const styles = (theme) => ({
   },
   titleApps:{
     ontFamily: "'Montserrat'",
-    fontSize: 26,
+    fontSize: 20,
     color: 'yellow',
     textAlign: 'left',
     fontWeight:600,
@@ -149,7 +149,7 @@ const styles = (theme) => ({
     width:150,
     position:'relative',
     [theme.breakpoints.down("sm")]: {
-      width:120,
+      width:110,
       
     },
     '&:hover > img': {
@@ -209,8 +209,9 @@ const styles = (theme) => ({
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: '#fff',
-    transform: 'scale(0, 0.95)',
+    backgroundColor: 'rgba(255,255,255,0.8)',
+    borderRadius:'10%',
+    transform: 'scale(0, 0.90)',
     visibility: 'visible',
     width:'100%',
     height:'100%',
@@ -229,7 +230,7 @@ const styles = (theme) => ({
     },
   },
   textAnimation:{
-    fontSize:22,
+    fontSize:20,
     WebkitBackgroundClip:'text',
     WebkitTextFillColor: 'transparent',
     backgroundSize: '300%',
@@ -237,7 +238,7 @@ const styles = (theme) => ({
     fontFamily: "'Gilroy',Helvetica,Arial,Lucida,sans-serif",
     transform: 'scale(0, 1)',
     [theme.breakpoints.down("sm")]: {
-      fontSize:16,
+      fontSize:14,
     },
   }
 });

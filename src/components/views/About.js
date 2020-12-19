@@ -61,7 +61,7 @@ const styles = (theme) => ({
     width: '47.25%',
     position:'relative',
     [theme.breakpoints.down("sm")]: {
-      height:360,
+      height:250,
       width: '100%',
       
     },
@@ -117,7 +117,8 @@ const styles = (theme) => ({
     animationDelay: '-5s',
     left:'10%',
     [theme.breakpoints.down("sm")]: {
-      left:'4%'
+      left:'4%',
+      maxHeight:250,
     },
   },
   "@keyframes leftRightImage": {
@@ -144,7 +145,8 @@ const styles = (theme) => ({
     animationDelay: '-5s',
     left:'5%',
     [theme.breakpoints.down("sm")]: {
-      left:'4%'
+      left:'4%',
+      maxHeight:250,
     },
   },
   "@keyframes leftRightImage2": {
