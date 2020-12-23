@@ -35,6 +35,7 @@ function Index() {
       <Contact />
       <Footer />
       <ScrollTop />
+     
     </React.Fragment>
   );
 }

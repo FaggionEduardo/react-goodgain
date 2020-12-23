@@ -187,7 +187,7 @@ class Game extends React.Component {
             indicators: true,
             timeout: 500,
             navButtonsAlwaysVisible: buttons,
-            navButtonsAlwaysInvisible: false
+            navButtonsAlwaysInvisible: !buttons
         }
 
         autoBind(this);

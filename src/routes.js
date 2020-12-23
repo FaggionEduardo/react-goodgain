@@ -4,6 +4,7 @@ import Land from './pages/Land';
 import Terms from './pages/Terms';
 import Policy from './pages/Policy';
 import Login from "./pages/Login";
+import SingIn from "./pages/Singin";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
 
@@ -27,6 +28,7 @@ const Routes = () => (
       <Route exact path="/terms" component={Terms} />
       <Route exact path="/policy" component={Policy} />
       <Route exact path="/login" component={Login} />
+      <Route exact path="/singin" component={SingIn} />
       <PrivateRoute path="/app" component={() => <h1>Você está logado</h1>} />
     </Switch>
   </BrowserRouter>

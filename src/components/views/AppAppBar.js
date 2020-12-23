@@ -390,22 +390,20 @@ function AppAppBar(props) {
             <img src={kingdom} alt="kingdom" className={classes.flag}/>
             <img src={brazil} alt="brazil" className={classes.flag}/>
             </div>
-            <Link
-            underline="none"
-            color="inherit"
+            <a
+            
             className={classes.login}
-            to="/"
+            href="/login"
           >
             {'Entre'}
-          </Link>
-          <Link
-            underline="none"
-            color="inherit"
+          </a>
+          <a
+            
             className={classes.button}
-            to="/"
+            href="/singin"
           >
             {'Cadastre-se'}
-          </Link>
+          </a>
           </div>
         </Toolbar>
       </AppBar>

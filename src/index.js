@@ -3,17 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import Scrollbar from 'smooth-scrollbar'
-
-var options={
-  damping:0.01,
-  speed:0.1,
-  syncCallbacks: true,
-  continuousScrolling:true
-}
 
 
-var scrollbar=Scrollbar.init(document.getElementById('scroll'), options);
 
 // eslint-disable-next-line 
 if ('scrollRestoration' in history) {

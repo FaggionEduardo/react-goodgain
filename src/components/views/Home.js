@@ -26,10 +26,6 @@ const styles = (theme) => ({
     paddingBottom:150,
     margin:0,
     maxWidth:'none',
-    
-    [theme.breakpoints.down("xs")]: {
-      paddingBottom:0,
-    },
   },
   container2: {
     maxWidth: 1440,
@@ -51,18 +47,20 @@ const styles = (theme) => ({
     [theme.breakpoints.down("sm")]: {
       marginRight: 0,
       width: '100%',
-      marginBottom:'60px'
+   
     },
     
     position:'relative',
     padding:0
   },
   text: {
-    fontSize: 56,
+    fontSize: '3vw',
     [theme.breakpoints.down("sm")]: {
-      fontSize: 45,
+      fontSize: '5vw',
     },
+    paddingTop:40,
     paddingBottom:10,
+    margin:0,
     lineHeight:'1em',
     fontWeight: 600,
     color:'#ffffff',
@@ -70,11 +68,9 @@ const styles = (theme) => ({
   },
   animationGradient:{
     background: 'linear-gradient(-45deg,#e94834,#e6007e,#e94834,#ffffff)',
-    fontSize: 56,
-    marginTop: '-111px',
+    fontSize: '3vw',
     [theme.breakpoints.down("sm")]: {
-      fontSize: 45,
-      marginTop: '-91px',
+      fontSize: '5vw',
     },
     lineHeight:'1em',
     fontWeight: 600,
@@ -104,10 +100,12 @@ const styles = (theme) => ({
     color: '#666',
     fontWeight: 200,
     fontFamily: "Gilroy-regular,Helvetica,Arial,Lucida,sans-serif",
-    fontSize: 24,
-    paddingTop: 40,
-    paddingBottom: 40,
-    marginTop: '-22px',
+    fontSize: '2vw',
+    [theme.breakpoints.down("sm")]: {
+      fontSize: '4vw',
+    },
+    paddingTop: '2%',
+    paddingBottom: '2%',
     marginBottom: 0,
     verticalAlign: 'baseline',
     display:'flex',
@@ -127,11 +125,12 @@ const styles = (theme) => ({
   
   app:{
     marginRight:10,
+    cursor:'pointer',
+    height:'3vw',
     [theme.breakpoints.down("sm")]: {
       marginRight:2,
+      height:'5vw'
     },
-    cursor:'pointer',
-    height:50
   },
   phone:{
     maxWidth:'100%',
@@ -271,11 +270,11 @@ function Start(props) {
          <br/> 
          sua habilidade
          <br/> 
-         <span className={classes.span}>em lucro</span>.
-         </h1>
-         <h2  className={classes.animationGradient}>
+         <span  className={classes.animationGradient}>
           em lucro
-         </h2>
+         </span>.
+         </h1>
+         
          <span  className={classes.text2}>
            <span className={classes.responsiveText}>
               <span>Desafie outros jogadores ou </span>
