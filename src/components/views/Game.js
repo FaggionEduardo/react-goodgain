@@ -14,6 +14,7 @@ import callofdutyLogo from '../../assets/warzonelogo.png'
 import fifaLogo from '../../assets/fifa21logo.png'
 import r6Logo from '../../assets/rainbowlogo.png'
 import { makeStyles } from '@material-ui/core/styles';
+import { Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 const useStyles = makeStyles(theme =>({
     root: {
       backgroundColor:'#121212',
@@ -171,23 +172,19 @@ const items = [
     },
 
 ]
-var buttons=true
-// eslint-disable-next-line
-if(screen.width<600){
-    buttons=false
-}
+
 class Game extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            autoPlay: true,
+            autoPlay: false,
             timer: 500,
             animation: "slide",
             indicators: true,
             timeout: 500,
-            navButtonsAlwaysVisible: buttons,
-            navButtonsAlwaysInvisible: !buttons
+            navButtonsAlwaysVisible: true,
+            navButtonsAlwaysInvisible: false
         }
 
         autoBind(this);
@@ -196,6 +193,7 @@ class Game extends React.Component {
 
     render() {
         return (
+            <Element name="game" >
                 <Carousel
                     autoPlay={this.state.autoPlay}
                     timer={this.state.timer}
@@ -211,7 +209,7 @@ class Game extends React.Component {
                         })
                     }
                 </Carousel>
-
+            </Element>
         )
     }
 }

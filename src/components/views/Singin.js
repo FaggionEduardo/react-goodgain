@@ -1,6 +1,5 @@
 import React, {useState, useRef} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Scrollbar from 'smooth-scrollbar';
 import GilroyRegular from '../../assets/Gilroy-Regular.ttf';
 import background from '../../assets/backgroundControls.jpg';
 import logo from '../../assets/whiteLogo.png';

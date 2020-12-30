@@ -46,7 +46,17 @@ const styles = (theme) => ({
     [theme.breakpoints.down("sm")]: {
       width:'100%',
     },
-  }
+  },
+  imgRight:{
+    [theme.breakpoints.down("sm")]: {
+      transform:'translateY(-10%)',
+    },
+  },
+  imgLeft:{
+    [theme.breakpoints.down("sm")]: {
+      transform:'translateY(10%)',
+    },
+  },
  
   
 
@@ -64,8 +74,8 @@ function Start(props) {
     <section id='home' className={classes.root}>
       <Container className={classes.container}>
         <Container className={classes.container2}>
-          <img src={esquerda}  alt="esquerda" className={classes.img}/>
-          <img src={direita}  alt="direita" className={classes.img}/>
+          <img src={esquerda}  alt="esquerda" className={`${classes.img} ${classes.imgLeft}`}/>
+          <img src={direita}  alt="direita" className={`${classes.img} ${classes.imgRight}`}/>
          
         </Container>
       </Container>

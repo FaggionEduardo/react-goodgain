@@ -1,6 +1,5 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import Scrollbar from 'smooth-scrollbar';
 import wallet from '../../assets/wallet.png'
 import trophy from '../../assets/trophy.png'
 import shield from '../../assets/shield.png'
@@ -12,12 +11,7 @@ import background1 from '../../assets/background1.png'
 import background2 from '../../assets/background2.png'
 import GilroyMedium from '../../assets/Gilroy-Medium.ttf';
 import rectangle2 from '../../assets/Rectangle.png';
-var options={
-  damping:0.05,
-  syncCallbacks: true,
-  continuousScrolling:true
-}
-var scrollbar = Scrollbar.init(document.getElementById('scroll'),options)
+import { Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 
 const styles = (theme) => ({
   root: {
@@ -164,7 +158,8 @@ const styles = (theme) => ({
 function Benefits(props) {
   const { classes } = props;
   return (
-    <div id='benefits' className={classes.root}>
+    <Element name="benefits" >
+    <div className={classes.root}>
     <div className={classes.background1}>
     <div className={classes.div}>
     
@@ -245,6 +240,7 @@ function Benefits(props) {
     </div>
     </div>
     </div>
+    </Element>
   );
 }
 

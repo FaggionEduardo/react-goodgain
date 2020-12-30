@@ -1,13 +1,7 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import Scrollbar from 'smooth-scrollbar';
 import GilroyMedium from '../../assets/Gilroy-Medium.ttf';
-var options={
-  damping:0.05,
-  syncCallbacks: true,
-  continuousScrolling:true
-}
-var scrollbar = Scrollbar.init(document.getElementById('scroll'),options)
+
 
 const styles = (theme) => ({
   root: {

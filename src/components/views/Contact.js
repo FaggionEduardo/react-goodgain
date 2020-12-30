@@ -1,20 +1,14 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import background from '../../assets/arco4.svg';
-import Scrollbar from 'smooth-scrollbar';
 import img from '../../assets/Group-151.png'
 import img1 from '../../assets/img1.png'
 import img2 from '../../assets/img2.png'
 import img3 from '../../assets/Group-165.png'
 import img4 from '../../assets/Group-162.png'
-import {Grow} from '@material-ui/core';
 import GilroyRegular from '../../assets/Gilroy-Regular.ttf';
-var options={
-  damping:0.05,
-  syncCallbacks: true,
-  continuousScrolling:true
-}
-var scrollbar = Scrollbar.init(document.getElementById('scroll'),options)
+import { Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
+
 
 const styles = (theme) => ({
   root: {
@@ -235,26 +229,13 @@ const styles = (theme) => ({
 
 function Contact(props) {
   const { classes } = props;
-  const [checkedStart, setCheckedStart] = React.useState(false);
-  scrollbar.addListener(function(status) { 
-    if(scrollbar.isVisible(document.getElementById('start'))){
-     
-      setCheckedStart(true)
-      
-    }
-    
-    
-  
- })
- if(checkedStart){
-  scrollbar.removeListener();
- }
+
   return (
-    <>
+    <Element name="contact" >
     <div className={classes.background}>
       
     </div>
-    <div id="contact" className={classes.root}>
+    <div className={classes.root}>
     <div className={classes.container}>
     <div className={classes.div} style={{marginRight:'5.5%',marginTop:75,height:600,margin:'auto'}}>
         <h3 className={classes.title1}>Ficou com alguma dúvida?</h3>
@@ -290,7 +271,7 @@ function Contact(props) {
     </div>
     </div>
     </div>
-    </>
+    </Element>
   );
 }
 

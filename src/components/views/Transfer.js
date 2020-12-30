@@ -1,20 +1,13 @@
 import React from 'react';
 import GilroyRegular from '../../assets/Gilroy-Regular.ttf';
 import { withStyles } from '@material-ui/core/styles';
-import Scrollbar from 'smooth-scrollbar';
 import bank from '../../assets/bank.png';
 import cards from '../../assets/cards.png'
 import picpay from '../../assets/picpay.png'
 import img from '../../assets/cellMonitor.jpg'
-import {Grow} from '@material-ui/core';
 import rectangle from '../../assets/Rectangle.png';
-var options={
-  damping:0.05,
-  syncCallbacks: true,
-  continuousScrolling:true
-}
-var scrollbar = Scrollbar.init(document.getElementById('scroll'),options)
-
+import Fade from 'react-reveal/Fade';
+import { Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 const styles = (theme) => ({
   root: {
     backgroundColor:'#121212',
@@ -173,24 +166,19 @@ const styles = (theme) => ({
 
 function Transfer(props) {
   const { classes } = props;
-  const [checkedTransfer, setCheckedTransfer] = React.useState(false);
-  scrollbar.addListener(function(status) { 
-    if(scrollbar.isVisible(document.getElementById('transfer'))){
-      setCheckedTransfer(true) 
-    }
- })
- if(checkedTransfer){
-  scrollbar.removeListener();
- }
+ 
+
   return (
-    <div id='transfer' className={classes.root}>
+    <Element name="transfer" >
+    <div className={classes.root}>
       <div className={classes.div}>
       <h2 className={classes.title}>Meios de <span className={classes.gradient}>transferência</span></h2>
       <img src={rectangle} alt="rectangle" className={classes.rectangle}/>
       <div className={classes.subTitle}>Faça seu primeiro depósito agora e transforme sua diversão em dinheiro no bolso.</div>
       </div>
-      <Grow timeout={2000} in={checkedTransfer}>
+      <Fade>
         <div className={classes.divItem}>
+        
           <div className={classes.methods}>
             <h2 className={classes.methodItem} style={{fontWeight:600, display:'block'}}>Abasteça <span className={classes.gradient}>sua carteira digital</span> utilizando:</h2>
             <div className={classes.methodItem}><img src={cards} alt="cards" className={classes.img}/> <strong> Cartão de Crédito*</strong></div>
@@ -198,11 +186,12 @@ function Transfer(props) {
             <div className={classes.methodItem}><img src={bank} alt="bank" className={classes.img}/> Transferência Bancária</div>
           </div>
           <img src={img} alt="img" className={classes.cellImg}/>
+        
         </div>
-      
-      </Grow>
+      </Fade>
       <div className={classes.obs}>*Transferências via cartão de crédito apenas através do site.</div>
     </div>
+    </Element>
   );
 }
 

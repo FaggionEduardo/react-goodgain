@@ -10,54 +10,63 @@ import Toolbar from '../components/Toolbar';
 import ButtonMenu from '../components/ButtonMenu';
 import { MenuItem } from '@material-ui/core';
 import GilroyMedium from '../../assets/Gilroy-Medium.ttf';
-import Scrollbar from 'smooth-scrollbar';
-
-
-
-var options={
-  damping:0.05,
-  syncCallbacks: true,
-  continuousScrolling:true
-}
-var scrollbar = Scrollbar.init(document.getElementById('scroll'),options)
+import { Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 
 function scrollHome() {
-  scrollbar.scrollIntoView ( document.getElementById( 'home' ), {
-    onlyScrollIfNeeded: true,
-    
-})
+  scroller.scrollTo('home', {
+    duration: 1500,
+    delay: 100,
+    smooth: true,
+  })
 }
 function scrollHowWork() {
-  scrollbar.scrollIntoView ( document.getElementById( 'howWork' ), {
-    onlyScrollIfNeeded: true,
-    
-})
+  scroller.scrollTo('HowWork', {
+    duration: 1500,
+    delay: 100,
+    smooth: true,
+
+  })
 
 }
 function scrollGames() {
-  scrollbar.scrollIntoView ( document.getElementById( 'games' ), {
-    onlyScrollIfNeeded: true,
-}) 
+  scroller.scrollTo('game', {
+    duration: 1500,
+    delay: 100,
+    smooth: true,
+
+  })
 }
 function scrollBenefits() {
-  scrollbar.scrollIntoView ( document.getElementById( 'benefits' ), {
-  onlyScrollIfNeeded: true,
-}) 
+  scroller.scrollTo('benefits', {
+    duration: 1500,
+    delay: 100,
+    smooth: true,
+
+  })
 }
 function scrollTransfer() {
-  scrollbar.scrollIntoView ( document.getElementById( 'transfer' ), {
-  onlyScrollIfNeeded: true,
-}) 
+  scroller.scrollTo('transfer', {
+    duration: 1500,
+    delay: 100,
+    smooth: true,
+
+  })
 }
 function scrollAbout() {
-  scrollbar.scrollIntoView ( document.getElementById( 'about' ), {
-  onlyScrollIfNeeded: true,
-}) 
+  scroller.scrollTo('about', {
+  duration: 1500,
+  delay: 100,
+  smooth: true,
+
+})
 }
 function scrollContact() {
-  scrollbar.scrollIntoView ( document.getElementById( 'contact' ), {
-  onlyScrollIfNeeded: true,
-}) 
+  scroller.scrollTo('contact', {
+    duration: 1500,
+    delay: 100,
+    smooth: true,
+  
+  })
 }
 const styles = (theme) => (
   {
@@ -215,16 +224,7 @@ appBar:{
 function AppAppBar(props) {
   const { classes } = props;
  
-  scrollbar.addListener(function(status) { 
-    var fixed=document.getElementById('fixed')
-    // eslint-disable-next-line 
-      if(screen.width>600){
-         // eslint-disable-next-line 
-        var offset = status.offset; 
-        fixed.style.top = offset.y + 'px';
-        fixed.style.left = offset.x + 'px';
-      }
-  });
+  
   return (
     <div>
       <AppBar id="fixed"  className={classes.appBar}>

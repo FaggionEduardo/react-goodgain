@@ -3,17 +3,11 @@ import GilroyMedium from '../../assets/Gilroy-Medium.ttf';
 import { withStyles } from '@material-ui/core/styles';
 import logo from '../../assets/GoodGain-logo.png'
 import control from '../../assets/Group-153.png'
-import Scrollbar from 'smooth-scrollbar';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import YouTubeIcon from '@material-ui/icons/YouTube';
 import TwitterIcon from '@material-ui/icons/Twitter';
-var options={
-  damping:0.05,
-  syncCallbacks: true,
-  continuousScrolling:true
-}
-var scrollbar = Scrollbar.init(document.getElementById('scroll'),options)
+import { Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 
 const styles = (theme) => ({
   root: {
@@ -133,7 +127,7 @@ const styles = (theme) => ({
 });
 function scrollTop() {
 
-  scrollbar.scrollTo(0,0,1000)
+  scroll.scrollToTop()
 
 }
 function Footer(props) {

@@ -1,15 +1,9 @@
 import React from 'react';
-
+import { Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 import { withStyles } from '@material-ui/core/styles';
 import control from '../../assets/Group-152.png';
 import background from '../../assets/arco.svg';
-import Scrollbar from 'smooth-scrollbar';
-var options={
-  damping:0.05,
-  syncCallbacks: true,
-  continuousScrolling:true
-}
-var scrollbar = Scrollbar.init(document.getElementById('scroll'),options)
+
 
 const styles = (theme) => ({
   root: {
@@ -29,9 +23,7 @@ const styles = (theme) => ({
   }
 });
 function scrollBottom() {
-
-  scrollbar.scrollTo(100,100000,1000)
-
+  scroll.scrollToBottom();
 }
 function Down(props) {
   const { classes } = props;

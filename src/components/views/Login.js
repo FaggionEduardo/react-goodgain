@@ -1,16 +1,10 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import Scrollbar from 'smooth-scrollbar';
 import GilroyRegular from '../../assets/Gilroy-Regular.ttf';
 import background from '../../assets/backgroundControls.jpg';
 import logo from '../../assets/whiteLogo.png';
 import brand from '../../assets/marcaLogo.png';
-var options={
-  damping:0.05,
-  syncCallbacks: true,
-  continuousScrolling:true
-}
-var scrollbar = Scrollbar.init(document.getElementById('scroll'),options)
+
 
 const styles = (theme) => ({
   root: {
@@ -48,7 +42,6 @@ const styles = (theme) => ({
     zIndex: 5,
     display:'flex',
     flexDirection:'column',
-    
 
   },
   input:{

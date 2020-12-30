@@ -1,22 +1,14 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import Scrollbar from 'smooth-scrollbar';
 import GilroyLight from '../../assets/Gilroy-Light.ttf';
 import floatControl from '../../assets/floatControl.jpg';
 import bros from '../../assets/bros.jpg';
 import background from '../../assets/Group-166.png';
 import c1 from '../../assets/Group-162.png';
 import c2 from '../../assets/Group-165.png';
-import {Grow} from '@material-ui/core';
+import Fade from 'react-reveal/Fade';
 import rectangle from '../../assets/Rectangle.png';
-
-var options={
-  damping:0.05,
-  syncCallbacks: true,
-  continuousScrolling:true
-}
-var scrollbar = Scrollbar.init(document.getElementById('scroll'),options)
-
+import { Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 const styles = (theme) => ({
   root: {
     top: 0,
@@ -93,6 +85,10 @@ const styles = (theme) => ({
     marginTop: 0,
     marginBottom: 0,
     color:'#fff',
+    [theme.breakpoints.down("xs")]: {
+      fontSize: 18,
+      
+    },
     
   },
   '@font-face': {
@@ -202,22 +198,9 @@ const styles = (theme) => ({
 
 function About(props) {
   const { classes } = props;
-  const [checkedAbout, setCheckedAbout] = React.useState(false);
-  scrollbar.addListener(function(status) { 
-    if(scrollbar.isVisible(document.getElementById('about'))){
-     
-      setCheckedAbout(true)
-      
-    }
-    
-    
-  
- })
- if(checkedAbout){
-  scrollbar.removeListener();
- }
   return (
-    <div id="about" style={{backgroundImage: `url(${background})`, backgroundPosition:'center left', backgroundSize:'initial', backgroundRepeat:'no-repeat'}} className={classes.root}>
+    <Element name="about" >
+    <div style={{backgroundImage: `url(${background})`, backgroundPosition:'center left', backgroundSize:'initial', backgroundRepeat:'no-repeat'}} className={classes.root}>
       <div className={classes.div}>
         <div className={classes.containerItem} style={{marginRight: '5.5%',}}>
           <p className={classes.title}>Sobre a <span className={classes.gradient}>GoodGain</span></p>
@@ -228,7 +211,7 @@ function About(props) {
             <p className={classes.content}>Nossa <strong>missão é facilitar o acesso de todos os jogadores ao cenário competitivo</strong>, incluindo cada vez mais pessoas, independente do nível de jogo. E com isso sermos a maior referência global em campeonatos amadores online.</p>
           </div>
         </div>
-        <Grow timeout={3000} in={checkedAbout}>
+        <Fade>
         <div className={classes.containerImg}>
           <div className={classes.divImg}>
           <img src={floatControl} alt="floatControl" className={classes.img}/>
@@ -240,16 +223,16 @@ function About(props) {
           <img src={c2} alt="c2" className={classes.img3} />
           </div>
         </div>
-        </Grow>
+        </Fade>
       </div>
       <div className={classes.div}>
-      <Grow timeout={3000} in={checkedAbout}>
+      <Fade>
         <div style={{marginRight: '5.5%',}} className={classes.containerImg}>
           <div className={classes.divImg2}>
           <img src={bros} alt="bros" className={classes.img}/>
           </div>
         </div>
-        </Grow>
+        </Fade>
         <div className={classes.containerItem} >
           <div className={classes.text}>
             <p className={classes.content}>Ética, transparência nas ações, isonomia, respeito ao usuário e tecnologia atualizada são valores inegociáveis para entregarmos a <strong>melhor e mais lucrativa experiência aos jogadores.</strong></p>
@@ -260,6 +243,7 @@ function About(props) {
       </div>
 
     </div>
+    </Element>
   );
 }
 

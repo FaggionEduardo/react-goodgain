@@ -6,13 +6,6 @@ import reportWebVitals from './reportWebVitals';
 
 
 
-// eslint-disable-next-line 
-if ('scrollRestoration' in history) {
-// eslint-disable-next-line 
-  history.scrollRestoration = 'manual';
-}
-
-
 
 ReactDOM.render(
  

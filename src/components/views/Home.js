@@ -53,10 +53,16 @@ const styles = (theme) => ({
     position:'relative',
     padding:0
   },
+  containerImg:{
+    height:360,
+    [theme.breakpoints.down("sm")]: {
+      height: '70vw',
+    },
+  },
   text: {
     fontSize: '3vw',
     [theme.breakpoints.down("sm")]: {
-      fontSize: '5vw',
+      fontSize: '7vw',
     },
     paddingTop:40,
     paddingBottom:10,
@@ -70,7 +76,7 @@ const styles = (theme) => ({
     background: 'linear-gradient(-45deg,#e94834,#e6007e,#e94834,#ffffff)',
     fontSize: '3vw',
     [theme.breakpoints.down("sm")]: {
-      fontSize: '5vw',
+      fontSize: '7vw',
     },
     lineHeight:'1em',
     fontWeight: 600,
@@ -97,7 +103,7 @@ const styles = (theme) => ({
     color:'#000000',
   },
   text2: {
-    color: '#666',
+    color: '#fff',
     fontWeight: 200,
     fontFamily: "Gilroy-regular,Helvetica,Arial,Lucida,sans-serif",
     fontSize: '2vw',
@@ -135,6 +141,13 @@ const styles = (theme) => ({
   phone:{
     maxWidth:'100%',
     height:'auto'
+  },
+  gradient:{
+    fontFamily: "'Gilroy',Helvetica,Arial,Lucida,sans-serif!important",
+    WebkitBackgroundClip:'text',
+    WebkitTextFillColor: 'transparent',
+    backgroundSize: '300%',
+    backgroundImage: "linear-gradient(180deg,rgba(230,0,126,100) 0%,rgba(233,72,52,100) 100%)",
   },
   divPhone:{
     willChange: 'transform',
@@ -265,8 +278,7 @@ function Start(props) {
       <Container className={classes.container}>
         <Container className={classes.container2}>
         <Container className={classes.containerItem}>
-         <h1  className={classes.text}>
-         Transforme
+         <h1  className={classes.text}>Transforme
          <br/> 
          sua habilidade
          <br/> 
@@ -281,8 +293,8 @@ function Start(props) {
               <span>participe de torneios online. </span>
            </span>
          
-          <span  style={{color: "#ffffff"}}>
-          Sua vitória vale dinheiro!
+          <span style={{color:'#fff'}}>
+          Sua vitória vale <span className={classes.gradient}>dinheiro</span>!
           </span>
           </span>
           <Grow timeout={2000} in={checked}>
@@ -292,7 +304,7 @@ function Start(props) {
           </div>
           </Grow>
          </Container>
-         <Container style={{height: 360}} className={classes.containerItem}>
+         <Container className={`${classes.containerItem} ${classes.containerImg}`}>
          <div   className={classes.divC1}>
         <img src={c1} alt="c1" className={classes.c1}/>
         </div>

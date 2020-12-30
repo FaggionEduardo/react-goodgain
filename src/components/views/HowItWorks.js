@@ -10,14 +10,8 @@ import item3M from '../../assets/image-3M.jpg';
 import GilroyRegular from '../../assets/Gilroy-Regular.ttf';
 import background1 from '../../assets/Group-155.png';
 import background2 from '../../assets/Group-158.png';
-import Scrollbar from 'smooth-scrollbar'
-import {Grow} from '@material-ui/core';
-var options={
-  damping:0.01,
-  speed:0.1,
-  syncCallbacks: true,
-  continuousScrolling:true
-}
+import Fade from 'react-reveal/Fade';
+import { Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 const styles = (theme) => ({
   root: {
     backgroundColor:'#212121',
@@ -238,46 +232,22 @@ const styles = (theme) => ({
 
 });
 
-var scrollbar=Scrollbar.init(document.getElementById('scroll'), options);
 
 function HowItWorks(props) {
-  const [checkedOne, setCheckedOne] = React.useState(false);
-  const [checkedTwo, setCheckedTwo] = React.useState(false);
-  const [checkedThree, setCheckedThree] = React.useState(false);
   const { classes } = props;
  
-  scrollbar.addListener(function(status) { 
-    if(scrollbar.isVisible(document.getElementById('howWorkOne'))){
-     
-      setCheckedOne(true)
-      
-    }
-    if(scrollbar.isVisible(document.getElementById('howWorkTwo'))){
-     
-      setCheckedTwo(true)
-      
-    }
-    if(scrollbar.isVisible(document.getElementById('howWorkThree'))){
-     
-      setCheckedThree(true)
-      
-    }
-  
- })
- if(checkedOne){
-  scrollbar.removeListener();
- }
+
 
 
   return (
     
-    <section id="howWork" >
+    <Element name="HowWork" >
     <div className={classes.root}>
       <div className={classes.divTitle}>
       <h2 className={classes.how}>Como Funciona?</h2>
       <img src={rectangle} alt="rectangle" className={classes.rectangle}/>
       </div>
-      <Grow timeout={2000} id='howWorkOne' in={checkedOne}>
+      <Fade >
       <div  className={classes.divItem}>
         <div className={classes.itemText}>
         <h1 className={classes.num}>1</h1>
@@ -290,11 +260,11 @@ function HowItWorks(props) {
           <img src={item1M} alt="item1M" className={`${classes.itemImg} ${classes.mobile}`}/>
         </div>
       </div>
-      </Grow>
+      </Fade>
       </div>
       
       <div className={classes.root2}>
-      <Grow timeout={2000} id='howWorkTwo' in={checkedTwo}>
+      <Fade >
       <div className={classes.divItem}>
       <div className={classes.itemText2M}>
           
@@ -313,8 +283,8 @@ function HowItWorks(props) {
           </h3>
         </div>
       </div>
-      </Grow>
-      <Grow timeout={2000} id='howWorkThree' in={checkedThree}>
+      </Fade>
+      <Fade >
       <div className={classes.divItem}>
         <div className={classes.itemText}>
           <h1 className={classes.num}>3</h1>
@@ -327,9 +297,9 @@ function HowItWorks(props) {
           <img src={item3M} alt="item3M" className={`${classes.itemImg} ${classes.mobile}`}/>
         </div>
       </div>
-      </Grow>
+      </Fade>
       </div>
-    </section>
+    </Element>
     
   );
 }

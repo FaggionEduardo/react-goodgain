@@ -1,20 +1,13 @@
 import React from 'react';
-
 import { withStyles } from '@material-ui/core/styles';
 import Montserrat from "../../assets/Montserrat-Medium.ttf"
 import background from '../../assets/arco2.svg';
-import Scrollbar from 'smooth-scrollbar';
 import phone from '../../assets/phone.png';
 import appstore from '../../assets/appstore2.png';
 import playstore from '../../assets/playstore2.png';
 import c1 from '../../assets/Group-159.png';
-import {Fade, Slide} from '@material-ui/core';
-var options={
-  damping:0.05,
-  syncCallbacks: true,
-  continuousScrolling:true
-}
-var scrollbar = Scrollbar.init(document.getElementById('scroll'),options)
+import Fade from 'react-reveal/Fade';
+
 
 const styles = (theme) => ({
   root: {
@@ -171,7 +164,6 @@ const styles = (theme) => ({
 },
   },
   imgApp:{
-    height:'100%',
     width:'100%'
   },
   c1:{
@@ -246,32 +238,23 @@ const styles = (theme) => ({
 
 function Download(props) {
   const { classes } = props;
-  const [checkedDownload, setCheckedDownload] = React.useState(false);
-  scrollbar.addListener(function(status) { 
-    if(scrollbar.isVisible(document.getElementById('download'))){
-     
-      setCheckedDownload(true)
-      
-    }
-    
-    
-  
- })
- if(checkedDownload){
-  scrollbar.removeListener();
- }
+
+
   return (
     <div id="download" className={classes.root}>
     <div className={classes.background}>
       
     </div>
-    <Fade timeout={3000} id='download' in={checkedDownload}>
+    
     <div className={classes.div}>
-    <Slide timeout={2000} in={checkedDownload}>
+    <Fade>
+    
       <div className={classes.phone}>
+      <Fade left>
       <img src={phone} alt="phone" className={classes.imgPhone}/>
+      </Fade>
       </div>
-      </Slide>
+      
       <div className={classes.c1}>
         <img src={c1} alt="c1" className={classes.c1}/>
       </div>
@@ -292,8 +275,8 @@ function Download(props) {
         </div>   
       </div>
       </div>
+      </Fade>
     </div>
-    </Fade>
     </div>
   );
 }

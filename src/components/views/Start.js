@@ -1,19 +1,13 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import background from '../../assets/arco3.svg';
-import Scrollbar from 'smooth-scrollbar';
 import appstore from '../../assets/appstore2.png';
 import playstore from '../../assets/playstore2.png';
 import cupom from '../../assets/cupom.png';
 import direita from '../../assets/ladodireito.png';
 import esquerda from '../../assets/ladoesquerdo.png';
-import {Grow} from '@material-ui/core';
-var options={
-  damping:0.05,
-  syncCallbacks: true,
-  continuousScrolling:true
-}
-var scrollbar = Scrollbar.init(document.getElementById('scroll'),options)
+import Fade from 'react-reveal/Fade';
+
 
 const styles = (theme) => ({
   root: {
@@ -175,26 +169,14 @@ const styles = (theme) => ({
 
 function Start(props) {
   const { classes } = props;
-  const [checkedStart, setCheckedStart] = React.useState(false);
-  scrollbar.addListener(function(status) { 
-    if(scrollbar.isVisible(document.getElementById('start'))){
-     
-      setCheckedStart(true)
-      
-    }
-    
-    
-  
- })
- if(checkedStart){
-  scrollbar.removeListener();
- }
+
+
   return (
     <div id="start" className={classes.root}>
     <div className={classes.background}>
       
     </div>
-    <Grow timeout={2000} in={checkedStart}>
+    <Fade>
     <div className={classes.div}>
           <div className={classes.text}>
                 <img src={esquerda}  alt="esquerda" className={classes.imgTexts}/>
@@ -217,7 +199,7 @@ function Start(props) {
           </div>
       
     </div>
-    </Grow>
+    </Fade>
     </div>
   );
 }

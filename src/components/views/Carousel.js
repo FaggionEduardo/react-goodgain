@@ -5,18 +5,15 @@ import Home from './Home';
 import Home2 from './Home2';
 import Home3 from './Home3';
 import { makeStyles } from '@material-ui/core/styles';
+import { Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 const useStyles = makeStyles(theme =>({
     carousel: {
       
       '& > .CarouselItem ': {
-        height:900,
+        height:'50vw',
         
         [theme.breakpoints.down("sm")]: {
-            height:1100,
-          },
-          [theme.breakpoints.down("xs")]: {
             height:'200vw',
-
           },
         
       },
@@ -55,7 +52,7 @@ function HomeCarousel() {
         return (
             
                 
-
+            <Element name="home" >
                 <Carousel
                 className={classes.carousel}
                     autoPlay={true}
@@ -73,7 +70,7 @@ function HomeCarousel() {
                         })
                     }
                 </Carousel>
-
+            </Element>
 
 
 

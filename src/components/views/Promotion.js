@@ -1,6 +1,5 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import Scrollbar from 'smooth-scrollbar';
 import win from '../../assets/win.png';
 import esquerda from '../../assets/esquerda.png';
 import direita from '../../assets/direita.png';
@@ -8,12 +7,7 @@ import {Fade} from '@material-ui/core';
 import appstore from '../../assets/appstore2.png';
 import playstore from '../../assets/playstore2.png';
 import Clear from '@material-ui/icons/Clear';
-var options={
-  damping:0.05,
-  syncCallbacks: true,
-  continuousScrolling:true
-}
-var scrollbar = Scrollbar.init(document.getElementById('scroll'),options)
+
 
 const styles = (theme) => ({
   background:{
@@ -21,20 +15,29 @@ const styles = (theme) => ({
     height:'100%',
     width:'100%',
     position:'absolute',
-    zIndex:2000
+    zIndex:2000,
+    display:'flex',
+    justifyContent:'center'
   },
   win:{
     width:'100%',
+    [theme.breakpoints.down("xs")]: {
+      height: '100%',
+      width:'auto'
+    },
   },
   imgTexts:{
     width:'100%',
-    paddingBottom:'10%'
+    paddingBottom:'10%',
+    [theme.breakpoints.down("xs")]: {
+      height: '100%',
+      width:'auto'
+    },
   },
   div:{
     zIndex:2001,
     marginTop:'8%',
     width: '75%',
-    margin: 'auto',
     backgroundImage: 'linear-gradient(180deg,#e6007e 0%,#e94834 100%)',
     padding: '0 1%',
     position: 'relative',
@@ -45,9 +48,12 @@ const styles = (theme) => ({
     paddingBottom:0,
     justifyContent:'space-between',
     alignItems:'space-between',
+    position:'fixed',
     [theme.breakpoints.down("xs")]: {
       flexDirection:'column',
-      width: '80%',
+      width: 'auto',
+      margin:'2% 0',
+      padding:'0 5%'
     },
   },
   text:{
@@ -59,8 +65,10 @@ const styles = (theme) => ({
     flexDirection:'column',
     [theme.breakpoints.down("xs")]: {
       margin: 'auto',
-      width:'100%',
-      paddingTop:20
+      width:'auto',
+      height:'40vh',
+      paddingTop:20,
+      position:'relative'
     },
   },
   divWin:{
@@ -71,7 +79,8 @@ const styles = (theme) => ({
     flexDirection:'column',
     [theme.breakpoints.down("xs")]: {
       margin: 'auto',
-      width:'70%',
+      width:'auto',
+      height:'18vh',
     },
 
 },
@@ -82,7 +91,8 @@ const styles = (theme) => ({
       flexDirection:'column',
       [theme.breakpoints.down("xs")]: {
         margin: 'auto',
-        width:'100%',
+        width:'auto',
+        height:'40vh',
       },
 
   },
