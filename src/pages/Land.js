@@ -16,6 +16,7 @@ import Footer from '../components/views/Footer';
 import ScrollTop from '../components/views/ScrollTop';
 import Promotion from '../components/views/Promotion';
 import Carousel from '../components/views/Carousel';
+import Email from '../components/views/Email';
 function Index() {
   
   return (
@@ -28,6 +29,7 @@ function Index() {
       <Download />
       <Profit />
       <Game />
+      <Email />
       <Benefits />
       <Transfer />
       <Start />

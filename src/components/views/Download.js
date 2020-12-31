@@ -124,7 +124,7 @@ const styles = (theme) => ({
 
   },
   titleBe:{
-    ontFamily: "'Montserrat'",
+    fontFamily: "'Montserrat'",
     fontSize: 22,
     color: '#ffffff',
     textAlign: 'left',
