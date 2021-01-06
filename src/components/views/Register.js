@@ -402,6 +402,9 @@ function Register(props) {
 
   const handleSubmit = async (data) => {
     var confirmOk=true
+    if(stage==1){
+      data.cpf=data.cpf.replace(/\.|\-/g, '');
+    }
     if(stage==2){
       
       let i=0

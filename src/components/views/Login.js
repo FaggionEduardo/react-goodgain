@@ -121,6 +121,22 @@ const styles = (theme) => ({
     fontSize:14,
     textDecoration:'none'
   },
+  errorDiv:{
+    width:'100%',
+    textAlign:'left',
+    transform:'translatey(-100%)',
+    margin:0,
+    position:'absolute',
+    width:'100%'
+  },
+  error:{
+    fontFamily: "'Gilroy-regular',Helvetica,Arial,Lucida,sans-serif!important",
+    color:'#D84141',
+    fontSize:14,
+    textDecoration:'none',
+    margin:0,
+    fontWeight:600
+  },
   singIn:{
     fontFamily: "'Gilroy-regular',Helvetica,Arial,Lucida,sans-serif!important",
     color:'#121212',
@@ -144,14 +160,16 @@ const styles = (theme) => ({
 function Login(props) {
   const { classes } = props;
   const formRef =useRef(null)
+  const [error, setError] = React.useState(false);
   async function handleSubmit (data) {
     try{
+      console.log(data)
       let response=await api.post(`/login`, data)
       localStorage.setItem('token', response.data.token)
       localStorage.setItem('personaldata',  JSON.stringify(response.data.personaldata))
       window.location.assign('/dashboard')
     }catch(err){
-      
+      setError(true)
     }
   }
   return (
@@ -168,6 +186,7 @@ function Login(props) {
           <label className={classes.label}>Senha</label>
           <Input required name="pass" type="password"  placeholder='Informe sua senha' className={classes.input}/>
           <div className={classes.forgotDiv}><a  className={classes.forgot} href='/forgot'>Esqueceu sua senha?</a></div>
+          {error? <div className={classes.errorDiv}><p  className={classes.error}>Usuário ou Senha incorretos.</p></div>:''}
           <button className={classes.btn} type="submit">Entrar</button>
         </Form>
         <div className={classes.singIn}>Ainda não possui conta? <a href='/register' className={classes.singInLink}>Crie agora mesmo.</a></div>
