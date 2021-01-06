@@ -1,13 +1,11 @@
-import React,{ useEffect, useRef } from 'react';
+import React,{ useEffect, useRef }from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import GilroyRegular from '../../assets/Gilroy-Regular.ttf';
 import background from '../../assets/backgroundControls.jpg';
 import logo from '../../assets/whiteLogo.png';
-import brand from '../../assets/marcaLogo.png';
 import { Form } from '@unform/web';
 import Input from '../Form/input';
 import api from '../../services/api'
-
 const styles = (theme) => ({
   root: {
     backgroundImage: `url(${background})`,
@@ -32,10 +30,7 @@ const styles = (theme) => ({
   },
   content:{
     backgroundColor: '#e8e8e8',
-    paddingTop: '1%',
-    paddingRight: '5%',
-    paddingBottom: '5%',
-    paddingLeft: '5%',
+    padding: '5%',
     margin: 'auto',
     backgroundSize: 'cover',
     backgroundPosition: '50%',
@@ -55,8 +50,8 @@ const styles = (theme) => ({
     backgroundColor:'#fff',
     padding:16,
     width:'100%',
-    marginTop:'1%',
-    marginBottom:'4%'
+    marginTop:'2%',
+    marginBottom:'2%'
   },
   btn:{
     color: '#fff',
@@ -69,7 +64,9 @@ const styles = (theme) => ({
     lineHeight: '1.7em',
     width:'100%',
     fontWeight:600,
-    margin:'5% 0'
+    margin:'2% 0',
+    textAlign:'center',
+    textDecoration:'none'
 
   },
   '@font-face': {
@@ -84,19 +81,9 @@ const styles = (theme) => ({
       
     },
   },
-  brand:{
-    width:'15%',
-    padding:'3%'
-  },
-  titleBrand:{
-   
-    padding:'1% 0',
-    display:'flex',
-    alignItems:'center',
-    marginLeft:'-3%'
-
-  },
+  
   title:{
+    padding:'2% 0',
     fontSize:20,
     fontWeight:600,
     fontFamily: "'Gilroy',Helvetica,Arial,Lucida,sans-serif!important",
@@ -104,73 +91,49 @@ const styles = (theme) => ({
     WebkitTextFillColor: 'transparent',
     backgroundSize: '300%',
     backgroundImage: "linear-gradient(180deg,rgba(230,0,126,100) 0%,rgba(233,72,52,100) 100%)",
+    textAlign:'center'
   },
-  label:{
+  subtitle:{
     fontFamily: "'Gilroy-regular',Helvetica,Arial,Lucida,sans-serif!important",
     color:'#121212',
     fontSize:16,
-    paddingLeft:'2%'
+    padding:'2% 0',
+    textAlign:'center'
   },
-  forgotDiv:{
-    width:'100%',
-    textAlign:'right',
-  },
-  forgot:{
-    fontFamily: "'Gilroy-regular',Helvetica,Arial,Lucida,sans-serif!important",
-    color:'#121212',
-    fontSize:14,
-    textDecoration:'none'
-  },
-  singIn:{
-    fontFamily: "'Gilroy-regular',Helvetica,Arial,Lucida,sans-serif!important",
-    color:'#121212',
-    fontSize:14,
-    width:'100%',
-    textAlign:'center',
-    
-  },
-  singInLink:{
+  quit:{
     fontFamily: "'Gilroy-regular',Helvetica,Arial,Lucida,sans-serif!important",
     color:'#121212',
     fontSize:14,
     width:'100%',
     textAlign:'center',
     textDecoration:'none',
-    fontWeight:600
-  }
+    cursor:'pointer'
+    
+  },
 });
 
 
-function Login(props) {
+function Dashboard(props) {
   const { classes } = props;
-  const formRef =useRef(null)
-  async function handleSubmit (data) {
-    try{
-      let response=await api.post(`/login`, data)
-      localStorage.setItem('token', response.data.token)
-      localStorage.setItem('personaldata',  JSON.stringify(response.data.personaldata))
-      window.location.assign('/dashboard')
-    }catch(err){
-      
-    }
-  }
+  const personaldata=JSON.parse(localStorage.getItem('personaldata'))
+  console.log(personaldata)
   return (
     <div className={classes.root}>
       <img src={logo}  alt="logo" className={classes.logo}/> 
     <div className={classes.div}>
     
       <div className={classes.content}>
-        <div className={classes.titleBrand}><img src={brand}  alt="brand" className={classes.brand}/><span className={classes.title}> Bem-vindo a GG</span> </div>
-        <Form style={{position:'relative'}} ref={formRef} onSubmit={handleSubmit}>
-          
-          <label className={classes.label}>E-mail</label>
-          <Input required name="email" type="email"  placeholder='Informe seu e-mail cadastrado' className={classes.input}/>
-          <label className={classes.label}>Senha</label>
-          <Input required name="pass" type="password"  placeholder='Informe sua senha' className={classes.input}/>
-          <div className={classes.forgotDiv}><a  className={classes.forgot} href='/forgot'>Esqueceu sua senha?</a></div>
-          <button className={classes.btn} type="submit">Entrar</button>
-        </Form>
-        <div className={classes.singIn}>Ainda não possui conta? <a href='/register' className={classes.singInLink}>Crie agora mesmo.</a></div>
+        <div className={classes.title}>Bem vindo, {personaldata.name}</div>
+        <div className={classes.subtitle}>Não se preocupe, vamos ajudar você.</div>
+        
+        <a className={classes.btn} href="/credit">Credito</a>
+          <a className={classes.btn} href="/credit">Sacar</a>
+        
+        <p className={classes.quit} onClick={()=>{
+          localStorage.removeItem('personaldata')
+          localStorage.removeItem('token')
+          window.location.assign('/login')
+        }} >Sair</p>
       </div>
     </div>
     </div>
@@ -179,4 +142,4 @@ function Login(props) {
 
 
 
-export default withStyles(styles)(Login);
+export default withStyles(styles)(Dashboard);

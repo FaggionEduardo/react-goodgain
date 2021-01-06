@@ -400,7 +400,7 @@ function AppAppBar(props) {
           <a
             
             className={classes.button}
-            href="/singin"
+            href="/register"
           >
             {'Cadastre-se'}
           </a>

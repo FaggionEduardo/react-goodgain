@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{ useEffect, useRef } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import background from '../../assets/arco4.svg';
 import img from '../../assets/Group-151.png'
@@ -8,7 +8,10 @@ import img3 from '../../assets/Group-165.png'
 import img4 from '../../assets/Group-162.png'
 import GilroyRegular from '../../assets/Gilroy-Regular.ttf';
 import { Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
-
+import { Form } from '@unform/web';
+import Input from '../Form/input';
+import Textarea from '../Form/textarea';
+import api from '../../services/api'
 
 const styles = (theme) => ({
   root: {
@@ -28,7 +31,7 @@ const styles = (theme) => ({
   },
   div:{
     width:'47.25%',
-    
+    position:'relative',
     [theme.breakpoints.down("sm")]: {
       width:'100%',
       
@@ -223,13 +226,31 @@ const styles = (theme) => ({
       transform: 'translatex(-2%)'
     }
   },
+  msg:{
+    position:'absolute',
+    transform: 'translatey(-120%)',
+    width:'100%',
+    textAlign:'center',
+    fontSize:20,
+    color:'green'
+  }
 
 });
 
 
 function Contact(props) {
   const { classes } = props;
-
+  const formRef =useRef(null)
+  const [send, setSend] = React.useState(false);
+  async function handleSubmit (data,{ reset }) {
+    try{
+      await api.post(`/contact`, data)
+      setSend(true)  
+      reset()
+    }catch(err){
+      console.log(err.message)
+    }
+  }
   return (
     <Element name="contact" >
     <div className={classes.background}>
@@ -260,13 +281,14 @@ function Contact(props) {
         <img src={img} alt='img' className={classes.img}/>
       </div>
       <div className={classes.content}>
-        <form >
-          <input type='text' placeholder='Nome' className={classes.input}></input>
-          <input type='text' placeholder='Email' className={classes.input}></input>
-          <input type='text' placeholder='Assunto' className={classes.input}></input>
-          <textarea type='text' placeholder='Mensagem' style={{height:150}} className={classes.input}></textarea>
-          <button className={classes.btn} type="submit">Enviar</button>
-        </form>
+        <Form style={{position:'relative'}} ref={formRef} onSubmit={handleSubmit}>
+        <Input required name="name" type="text"  placeholder='Nome' className={classes.input}/>
+        <Input required name="email" type="email"  placeholder='E-mail' className={classes.input}/>
+        <Input required name="subject" type="text"  placeholder='Assunto' className={classes.input}/>
+        <Textarea required name="message" type="text" style={{height:150}}  placeholder='Mensagem' className={classes.input}/>
+        {send ? <p className={classes.msg}>Mensagem enviada!</p>:''}
+        <button className={classes.btn} type="submit">Enviar</button>
+        </Form>
       </div>
     </div>
     </div>

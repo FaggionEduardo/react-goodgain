@@ -3,9 +3,12 @@ import { isAuthenticated } from "./auth";
 import Land from './pages/Land';
 import Terms from './pages/Terms';
 import Policy from './pages/Policy';
+import Forgot from "./pages/Forgot";
 import Login from "./pages/Login";
-import SingIn from "./pages/Singin";
+import Register from "./pages/Register";
+import Dashboard from "./pages/Dashboard";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+
 
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
@@ -15,7 +18,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
       isAuthenticated() ? (
         <Component {...props} />
       ) : (
-        <Redirect to={{ pathname: "/", state: { from: props.location } }} />
+        <Redirect to={{ pathname: "/login", state: { from: props.location } }} />
       )
     }
   />
@@ -28,8 +31,9 @@ const Routes = () => (
       <Route exact path="/terms" component={Terms} />
       <Route exact path="/policy" component={Policy} />
       <Route exact path="/login" component={Login} />
-      <Route exact path="/singin" component={SingIn} />
-      <PrivateRoute path="/app" component={() => <h1>Você está logado</h1>} />
+      <Route exact path="/forgot" component={Forgot} />
+      <Route exact path="/register" component={Register} />
+      <PrivateRoute path="/dashboard" component={Dashboard}/>
     </Switch>
   </BrowserRouter>
 );

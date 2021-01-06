@@ -3,6 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Fade from 'react-reveal/Fade';
 import { Form } from '@unform/web';
 import Input from '../Form/input';
+import Mailchimp from 'react-mailchimp-form'
 
 const styles = (theme) => ({
   root: {
@@ -59,64 +60,100 @@ const styles = (theme) => ({
       color:'#fff',
     },
   },
-  input:{
-    fontFamily: "'Gilroy',Helvetica,Arial,Lucida,sans-serif",
-    fontSize: 16,
-    borderRadius: 25,
-    border:'none',
-    color: '#383838',
-    backgroundColor:'#fff',
-    padding:16,
-    width:'80%',
-    margin:'2% 10%',
-    marginBottom:'1%',
-    [theme.breakpoints.down("xs")]: {
-      width:'90%',
-      margin:'2% 5%',
+  form:{
+    '& > input ':{
+      fontFamily: "'Gilroy',Helvetica,Arial,Lucida,sans-serif",
+      fontSize: 16,
+      borderRadius: 25,
+      border:'none',
+      color: '#383838',
+      backgroundColor:'#fff',
+      padding:16,
+      width:'80%',
+      margin:'2% 10%',
+      marginBottom:'1%',
+      [theme.breakpoints.down("xs")]: {
+        width:'90%',
+        margin:'2% 5%',
+      },
     },
-  
-  },
-  btn:{
-    background: 'none',
-    border: '1px solid #fff',
-    borderRadius: 18,
-    padding: '.3em 1em',
-    lineHeight: '2em',
-    fontFamily: "'Gilroy',Helvetica,Arial,Lucida,sans-serif!important",
-    width:'40%',
-    margin:'0 30%',
-    [theme.breakpoints.down("xs")]: {
-      width:'45%',
-      margin:'0 27.5%',
+    '& > button ':{
+      background: 'none',
+      border: '1px solid #fff',
+      borderRadius: 18,
+      padding: '.3em 1em',
+      lineHeight: '2em',
+      fontFamily: "'Gilroy',Helvetica,Arial,Lucida,sans-serif!important",
+      width:'40%',
+      margin:'0 30%',
+      fontSize: 16,
+      fontWeight:600,
+      color:'#fff',
+      [theme.breakpoints.down("xs")]: {
+        width:'45%',
+        margin:'0 27.5%',
+      },
     },
-    
-  },
-  gradient:{
-    fontSize: 16,
-    fontWeight:600,
-    color:'#fff'
-  },
+    '& > .msg-alert ':{
+      fontSize: 16,
+      fontWeight:600,
+      textAlign:'center'
+    }
+  }
 
 });
 
 
-function Start(props) {
+function Email(props) {
   const { classes } = props;
-  const formRef =useRef(null)
-  const handleSubmit = async (data) => {
-    console.log(data)
-  }
   return (
     <div className={classes.root}>
     <Fade>
-    <Form ref={formRef} onSubmit={handleSubmit}> 
+    
     <div className={classes.div}>
           <span className={classes.title}><span>Quer saber sobre </span><span><span className={classes.yellow}>novos jogos na plataforma</span>,</span><span> <span className={classes.yellow}>campeonatos</span> e</span><span> <span className={classes.yellow}>premiações</span>?</span> </span>
           <span className={classes.subtitle}>Deixe seu <strong>e-mail</strong> abaixo que a gente te conta <strong>tudo</strong>. </span>
-          <Input required name="email" type="email"  placeholder='Informe seu melhor e-mail' className={classes.input}/>
-          <button className={classes.btn}><span className={classes.gradient}>Enviar</span></button>
+          {/* <Input required name="email" type="email"  placeholder='Informe seu melhor e-mail' className={classes.input}/> */}
+          <Mailchimp
+        action='https://goodgain.us7.list-manage.com/subscribe/post?u=5410fef6a892946131f45074d&amp;id=594b12c10a'
+        fields={[
+          {
+            name: 'EMAIL',
+            placeholder: 'Informe seu melhor e-mail',
+            type: 'email',
+            required: true
+          }
+        ]}
+        messages = {
+          {
+            sending: "Enviando...",
+            success: "Obrigado por se increver!",
+            error: "Houve um erro interno inesperado",
+            empty: "Você precisa digitar um e-mail.",
+            duplicate: "Este e-mail já está cadastrado",
+            button: "Enviar"
+          }
+        }
+        styles={
+          {
+            sendingMsg: {
+              color: "#0652DD"
+            },
+            successMsg: {
+              color: "#009432"
+            },
+            duplicateMsg: {
+              color: "white"
+            },
+            errorMsg: {
+              color: "white"
+            }
+          }
+        }
+        className={classes.form}
+        />
     </div>
-    </Form>
+    
     </Fade>
     </div>
   );
@@ -124,4 +161,4 @@ function Start(props) {
 
 
 
-export default withStyles(styles)(Start);
+export default withStyles(styles)(Email);

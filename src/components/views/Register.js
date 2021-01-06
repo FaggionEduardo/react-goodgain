@@ -3,16 +3,13 @@ import { makeStyles } from '@material-ui/core/styles';
 import GilroyRegular from '../../assets/Gilroy-Regular.ttf';
 import background from '../../assets/backgroundControls.jpg';
 import logo from '../../assets/whiteLogo.png';
-import img from '../../assets/idImage.svg';
-import cam from '../../assets/cam.svg';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { CountryDropdown, RegionDropdown, CountryRegionData } from 'react-country-region-selector';
 import PasswordStrengthBar from 'react-password-strength-bar';
 import { Form } from '@unform/web';
 import Input from '../Form/input';
 import Select from '../Form/select';
-import { each } from 'jquery';
-
+import api from '../../services/api'
 
 
 const useStyles = makeStyles(theme =>({
@@ -67,6 +64,8 @@ const useStyles = makeStyles(theme =>({
     fontWeight:600,
     margin:'20px 0',
     marginBottom:'4%',
+    textDecoration:'none',
+    textAlign:'center',
     '&:disabled': {
       opacity: '0.5'
     }
@@ -322,29 +321,6 @@ const useStyles = makeStyles(theme =>({
    
   }
 }));
-function FormConsole(props){
-  
-  const classes = useStyles();
-  return(
-    
-  <div style={props.style} className={classes.consoles}>
-    <label className={classes.label}>Qual o modelo do seu console?</label>
-    <div className={classes.divSelect}>
-    <Select required defaultValue='' name={'videogame['+props.index+']'} style={{paddingRight:50}} className={classes.input}>
-      <option value='' disabled>Selecione</option>
-      <option value='M'>Masculino</option>
-      <option value='F'>Feminino</option>
-      <option value='O'>Outro</option>
-    </Select>
-    </div>
-    <label className={classes.label}>Qual seu ID no console (idêntico ao console)</label>
-    <Input required name={'idvideogame['+props.index+']'} type="text"  placeholder='Informe seu ID exatamente conforme console' className={classes.input}/>
-    <label className={classes.label}>Confirme seu ID no console</label>
-    <Input required name={'confirmidvideogame['+props.index+']'} type="text"  placeholder='Confirme seu ID' className={classes.input}/>
-    
-    </div>
-  )
-}
 
 function useForceUpdate(){
   const [value, setValue] = React.useState(0); 
@@ -352,20 +328,78 @@ function useForceUpdate(){
 
 }
 
-function SingIn(props) {
+function Register(props) {
   const classes  = useStyles();
   const [stage, setStage] = React.useState(0);
   const [item, setItem] = React.useState(0);
   const [region, setRegion] = React.useState('');
   const [country, setCountry] = React.useState('');
-  const [rows, setRows] = React.useState([]);
+  const [rows, setRows] = React.useState([<div key={0} ><FormConsole index={0} style={{paddingTop:0}}/></div>]);
   const [password, setPassword] = React.useState('');
   const [confirm, setConfirm] = React.useState('disabled');
   const [strength, setStrength] = React.useState(0);
   const [jsonForm, setJsonForm] = React.useState({});
+  const [consoles, setConsoles] = React.useState(
+    {
+      PSN:'',
+      XBOX_LIVE:'',
+      PC:'',
+      CROSS:''
+    }
+    ); 
+  const [lastMsg, setLastMsg] = React.useState('Processando...');
+  const [cpf, setCpf] = React.useState('');
   const forceUpdate = useForceUpdate();
   const formRef =useRef(null)
+  var now=new Date()
+  var d= now.getDate()
+  var m= now.getMonth()
+  var y= now.getFullYear()
+  var limit=(y-18+'-'+("0" + (m+1)).slice(-2)+'-'+("0" + d).slice(-2))
   
+  function FormConsole(props){
+    
+    return(
+      
+    <div style={props.style} className={classes.consoles}>
+      <label className={classes.label}>Qual o modelo do seu console?</label>
+      <div className={classes.divSelect}>
+      <Select onChange={changeConsole} onFocus={changeConsole} required defaultValue='' name={'videogame['+props.index+']'} style={{paddingRight:50}} className={classes.input}>
+        <option value='' disabled>Selecione</option>
+        <option value='PSN'>PSN</option>
+        <option value='XBOX_LIVE'>Xbox Live</option>
+        <option value='PC'>PC</option>
+      </Select>
+      </div>
+      <label className={classes.label}>Qual seu ID no console (idêntico ao console)</label>
+      <Input onChange={changeConsole} required name={'idvideogame['+props.index+']'} type="text"  placeholder='Informe seu ID exatamente conforme console' className={classes.input}/>
+      <label className={classes.label}>Confirme seu ID no console</label>
+      <Input required name={'confirmidvideogame['+props.index+']'} type="text"  placeholder='Confirme seu ID' className={classes.input}/>
+      
+      </div>
+    )
+  }
+
+  function changeConsole(){
+    let ref=formRef.current.getData()
+    for(let c=0; c<ref.videogame.length; c++){
+      let array=consoles
+      if(ref.videogame[c]!=='' && ref.videogame[c]!==undefined){
+        array[ref.videogame[c]]=formRef.current.getFieldValue('idvideogame['+c+']');
+      }
+      if(formRef.current.getFieldRef('videogame['+c+']')!==false){
+      for(let i=0; i<formRef.current.getFieldRef('videogame['+c+']').children.length; i++){
+      if(ref.videogame.indexOf(formRef.current.getFieldRef('videogame['+c+']').children[i].value)!==-1 || formRef.current.getFieldRef('videogame['+c+']').children[i].value==''){
+        formRef.current.getFieldRef('videogame['+c+']').children[i].setAttribute("disabled", "disabled")
+      }else{
+        formRef.current.getFieldRef('videogame['+c+']').children[i].removeAttribute("disabled")
+      }
+      }
+      setConsoles(array)
+    }
+    }
+  }
+
   const handleSubmit = async (data) => {
     var confirmOk=true
     if(stage==2){
@@ -385,17 +419,13 @@ function SingIn(props) {
           }
         }
       }
-      var array=[]
-      data.idvideogame.map((item) =>{
-        array.push(item)
-      })
-      data.idvideogame=array
-      array=[]
-      data.videogame.map((item) =>{
-        array.push(item)
-      })
-      data.videogame=array
-      delete data.confirmidvideogame
+      data={idonline:consoles}
+      if(data.idonline.XBOX_LIVE==''){
+        delete data.idonline.XBOX_LIVE 
+      }
+      if(data.idonline.PSN==''){
+        delete data.idonline.PSN 
+      }
     }
     if(stage==3){
       delete data.confirmpass
@@ -404,17 +434,29 @@ function SingIn(props) {
       
     console.log(data)
     let json=jsonForm
-    let obj=Object.assign({}, json, data)
+    var obj=Object.assign({}, json, data)
     let countryState={country:country,state:region}
     obj=Object.assign({}, obj, countryState)
     setJsonForm(obj)
-    console.log(obj)
     setStage(stage+1)
     }
+    console.log(obj)
+    if(stage==3){
+      try{
+        let response=await api.post(`/register`, obj)
+        setLastMsg(response.data)
+      }catch(err){
+        setLastMsg(err.response.data)
+      }
     }
+    }
+
+
   function changePassword(e){
     setPassword(e.target.value)
   }
+
+
   function confirmPassword(e){
     const confirmpass = formRef.current.getFieldRef('confirmpass');
     if(e.target.value==password){
@@ -425,18 +467,37 @@ function SingIn(props) {
       confirmpass.style.border='1px solid red'
     }
   }
+
+
   function addConsole(){
     let array=rows
-    array.push(<div key={item}><FormConsole index={item+1} /><div className={classes.remove} onClick={()=>deleteConsole(item)}></div></div>);
+    array.push(<div key={item+1}><FormConsole index={item+1} /><div className={classes.remove} onClick={()=>deleteConsole(item+1)}></div></div>);
     setRows(array)
     setItem(item+1)
+    changeConsole()
   }
+
+
  function deleteConsole(a){
     let array=rows
     array[a]=''
     setRows(array)
     forceUpdate()
   }
+
+  function cpfMask(value){
+    return value
+      .replace(/\D/g, '') // substitui qualquer caracter que nao seja numero por nada
+      .replace(/(\d{3})(\d)/, '$1.$2') // captura 2 grupos de numero o primeiro de 3 e o segundo de 1, apos capturar o primeiro grupo ele adiciona um ponto antes do segundo grupo de numero
+      .replace(/(\d{3})(\d)/, '$1.$2')
+      .replace(/(\d{3})(\d{1,2})/, '$1-$2')
+      .replace(/(-\d{2})\d+?$/, '$1') // captura 2 numeros seguidos de um traço e não deixa ser digitado mais nada
+  }
+  function handleChangeCpf () {
+    let cpf=formRef.current.getFieldValue('cpf')
+    setCpf(cpfMask(cpf))
+  }
+
   return (
     <div className={classes.root}>
       <img src={logo}  alt="logo" className={classes.logo}/>
@@ -454,6 +515,8 @@ function SingIn(props) {
     </div>
     :''
   }
+
+
   {stage==1?
     <>
     <div className={classes.stage}><span style={{paddingLeft:15}}>Informações pessoais</span><div className={classes.circles}><CircularProgress thickness={4} className={classes.circleBottom} size={40} value={100} variant="determinate"/><CircularProgress  className={classes.circle} thickness={5} size={40} value={stage*(100/3)} variant="determinate"/><span className={classes.stageNumber}>{stage}</span></div></div>
@@ -463,9 +526,9 @@ function SingIn(props) {
           <label className={classes.label}>Nome completo</label>
           <Input required name="name" type="text"  placeholder='Informe seu nome' className={classes.input}/>
           <label className={classes.label} style={{display:'flex', justifyContent:'space-between'}}><span>Usuário</span><span className={classes.limit}>Até 10 caractéres</span></label>
-          <Input required name="nickname" max="10" type="text"  placeholder='Informe um usuário' className={classes.input}/>
+          <Input required name="nicknamegg" maxLength="10" type="text"  placeholder='Informe um usuário' className={classes.input}/>
           <label className={classes.label}>Nascimento</label>
-          <Input required name="birthday" type="date"  placeholder='Selecione a data de nascimento' className={classes.input}/>
+          <Input required name="birthday" type="date" max={limit} placeholder='Selecione a data de nascimento' className={classes.input}/>
           <label className={classes.label}>Sexo</label>
           <div className={classes.divSelect}>
           <Select required defaultValue='' name='sex' style={{paddingRight:50}} className={classes.input}>
@@ -476,7 +539,7 @@ function SingIn(props) {
           </Select>
           </div>
           <label className={classes.label}>CPF</label>
-          <Input required name="cpf" type="text"  placeholder='Informe seu CPF' className={classes.input}/>
+          <Input required onChange={handleChangeCpf} name="cpf" type="text" maxLength='14' value={cpf} placeholder='Informe seu CPF' className={classes.input}/>
           <label className={classes.label}>Pais</label>
           <div className={classes.divSelect}>
           <CountryDropdown
@@ -490,8 +553,10 @@ function SingIn(props) {
           <RegionDropdown
           className={classes.input}
           blankOptionLabel='Selecione'
+          defaultOptionLabel='Selecione'
           country={country}
           value={region}
+          valueType='short'
           onChange={(val) => setRegion(val)} required/>
           </div>
           <button type='submit' className={classes.btn}>Próximo passo</button>
@@ -504,6 +569,8 @@ function SingIn(props) {
     </>
     :''
   }
+
+
   {stage==2?
     <>
     <div className={classes.stage}><span style={{paddingLeft:15}}>Informações do console</span><div className={classes.circles}><CircularProgress thickness={4} className={classes.circleBottom} size={40} value={100} variant="determinate"/><CircularProgress  className={classes.circle} thickness={5} size={40} value={stage*(100/3)} variant="determinate"/><span className={classes.stageNumber}>{stage}</span></div></div>
@@ -512,7 +579,6 @@ function SingIn(props) {
       <div className={classes.content}>
           <div id="consoles">
           
-          <div><FormConsole index={0} style={{paddingTop:0}}/></div>
          
           {
             rows.map((row) => {
@@ -531,6 +597,8 @@ function SingIn(props) {
     </>
     :''
   }
+
+
   {stage==3?
     <>
     <div className={classes.stage}><span style={{paddingLeft:15}}>Dados de login</span><div className={classes.circles}><CircularProgress thickness={4} className={classes.circleBottom} size={40} value={100} variant="determinate"/><CircularProgress  className={classes.circle} thickness={5} size={40} value={stage*(100/3)} variant="determinate"/><span className={classes.stageNumber}>{stage}</span></div></div>
@@ -553,6 +621,19 @@ function SingIn(props) {
     </>
     :''
   }
+  {stage==4?
+    <>
+    
+    <div className={classes.div}>
+      <div className={classes.content}>
+      <span className={classes.lastTitle} style={{textAlign:'center'}}>{lastMsg}</span>
+      <a href="/login" className={classes.btn}>Ir para Login</a> 
+          
+          </div>
+      </div>
+    </>
+    :''
+  }
   
   
   </div>
@@ -561,4 +642,4 @@ function SingIn(props) {
 
 
 
-export default (SingIn);
+export default (Register);

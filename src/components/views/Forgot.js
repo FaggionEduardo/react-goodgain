@@ -1,13 +1,11 @@
-import React,{ useEffect, useRef } from 'react';
+import React,{ useEffect, useRef }from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import GilroyRegular from '../../assets/Gilroy-Regular.ttf';
 import background from '../../assets/backgroundControls.jpg';
 import logo from '../../assets/whiteLogo.png';
-import brand from '../../assets/marcaLogo.png';
 import { Form } from '@unform/web';
 import Input from '../Form/input';
 import api from '../../services/api'
-
 const styles = (theme) => ({
   root: {
     backgroundImage: `url(${background})`,
@@ -32,10 +30,7 @@ const styles = (theme) => ({
   },
   content:{
     backgroundColor: '#e8e8e8',
-    paddingTop: '1%',
-    paddingRight: '5%',
-    paddingBottom: '5%',
-    paddingLeft: '5%',
+    padding: '5%',
     margin: 'auto',
     backgroundSize: 'cover',
     backgroundPosition: '50%',
@@ -55,8 +50,8 @@ const styles = (theme) => ({
     backgroundColor:'#fff',
     padding:16,
     width:'100%',
-    marginTop:'1%',
-    marginBottom:'4%'
+    marginTop:'2%',
+    marginBottom:'2%'
   },
   btn:{
     color: '#fff',
@@ -84,19 +79,9 @@ const styles = (theme) => ({
       
     },
   },
-  brand:{
-    width:'15%',
-    padding:'3%'
-  },
-  titleBrand:{
-   
-    padding:'1% 0',
-    display:'flex',
-    alignItems:'center',
-    marginLeft:'-3%'
-
-  },
+  
   title:{
+    padding:'2% 0',
     fontSize:20,
     fontWeight:600,
     fontFamily: "'Gilroy',Helvetica,Arial,Lucida,sans-serif!important",
@@ -104,54 +89,57 @@ const styles = (theme) => ({
     WebkitTextFillColor: 'transparent',
     backgroundSize: '300%',
     backgroundImage: "linear-gradient(180deg,rgba(230,0,126,100) 0%,rgba(233,72,52,100) 100%)",
+    textAlign:'center'
   },
-  label:{
+  subtitle:{
     fontFamily: "'Gilroy-regular',Helvetica,Arial,Lucida,sans-serif!important",
     color:'#121212',
     fontSize:16,
-    paddingLeft:'2%'
+    padding:'2% 0',
+    textAlign:'center'
   },
-  forgotDiv:{
-    width:'100%',
-    textAlign:'right',
-  },
-  forgot:{
-    fontFamily: "'Gilroy-regular',Helvetica,Arial,Lucida,sans-serif!important",
-    color:'#121212',
-    fontSize:14,
-    textDecoration:'none'
-  },
-  singIn:{
-    fontFamily: "'Gilroy-regular',Helvetica,Arial,Lucida,sans-serif!important",
-    color:'#121212',
-    fontSize:14,
-    width:'100%',
-    textAlign:'center',
-    
-  },
-  singInLink:{
+  back:{
     fontFamily: "'Gilroy-regular',Helvetica,Arial,Lucida,sans-serif!important",
     color:'#121212',
     fontSize:14,
     width:'100%',
     textAlign:'center',
     textDecoration:'none',
-    fontWeight:600
+    
+  },
+  finishTitle:{
+    fontSize: 16,
+    fontFamily: "'Gilroy',Helvetica,Arial,Lucida,sans-serif!important",
+    fontWeight:600,
+    color: '#fff',
+  },
+  finishDiv:{
+    display:'flex',
+    justifyContent:'center',
+    alignItems:'center',
+    borderRadius: 30,
+    transform:'translatey(-100%)',
+    height:'40%'
   }
 });
 
 
-function Login(props) {
+function Forgot(props) {
   const { classes } = props;
   const formRef =useRef(null)
+  const [send, setSend] = React.useState('none');
+  const [msgColor, setMsgColor] = React.useState('#41D886');
+  const [msg, setMsg] = React.useState('Recuperação enviada!');
   async function handleSubmit (data) {
     try{
-      let response=await api.post(`/login`, data)
-      localStorage.setItem('token', response.data.token)
-      localStorage.setItem('personaldata',  JSON.stringify(response.data.personaldata))
-      window.location.assign('/dashboard')
+      await api.post(`/changelogin`, data)
+      setSend('flex')
+      setMsgColor('#41D886')
+      setMsg('Recuperação enviada!')
     }catch(err){
-      
+      setSend('flex')
+      setMsgColor('#D84141')
+      setMsg('E-mail não cadastrado!')
     }
   }
   return (
@@ -160,18 +148,17 @@ function Login(props) {
     <div className={classes.div}>
     
       <div className={classes.content}>
-        <div className={classes.titleBrand}><img src={brand}  alt="brand" className={classes.brand}/><span className={classes.title}> Bem-vindo a GG</span> </div>
+        <div className={classes.title}>Esqueceu sua senha?</div>
+        <div className={classes.subtitle}>Não se preocupe, vamos ajudar você.</div>
         <Form style={{position:'relative'}} ref={formRef} onSubmit={handleSubmit}>
+          <Input required name="email" type="email"  placeholder='Informe seu e-mail cadastrado na GG' className={classes.input}/>
           
-          <label className={classes.label}>E-mail</label>
-          <Input required name="email" type="email"  placeholder='Informe seu e-mail cadastrado' className={classes.input}/>
-          <label className={classes.label}>Senha</label>
-          <Input required name="pass" type="password"  placeholder='Informe sua senha' className={classes.input}/>
-          <div className={classes.forgotDiv}><a  className={classes.forgot} href='/forgot'>Esqueceu sua senha?</a></div>
-          <button className={classes.btn} type="submit">Entrar</button>
+          <button className={classes.btn} type="submit">Enviar</button>
         </Form>
-        <div className={classes.singIn}>Ainda não possui conta? <a href='/register' className={classes.singInLink}>Crie agora mesmo.</a></div>
+        
+        <a className={classes.back} href='/login'>Voltar</a>
       </div>
+      <div style={{backgroundColor:msgColor, display:send}} onClick={()=>setSend('none')} className={classes.finishDiv}><span className={classes.finishTitle}>{msg}</span></div>
     </div>
     </div>
   );
@@ -179,4 +166,4 @@ function Login(props) {
 
 
 
-export default withStyles(styles)(Login);
+export default withStyles(styles)(Forgot);

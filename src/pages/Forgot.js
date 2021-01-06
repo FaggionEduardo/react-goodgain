@@ -1,12 +1,12 @@
 import React from 'react';
-import SingIn from '../components/views/Singin';
+import Forgot from '../components/views/Forgot';
 import withRoot from '../components/withRoot';
 
 function Index() {
   
   return (
     <React.Fragment>
-      <SingIn/>
+      <Forgot/>
     </React.Fragment>
   );
 }

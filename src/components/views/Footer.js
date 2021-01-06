@@ -160,8 +160,8 @@ function Footer(props) {
         <div className={classes.apps}>
         <a href='https://www.facebook.com/goodgain.gg'  className={classes.app}><FacebookIcon  className={classes.icon}></FacebookIcon></a>
         <a href='https://www.instagram.com/goodgain.gg/' className={classes.app}><InstagramIcon  className={classes.icon}></InstagramIcon></a>
-        <a href='/' className={classes.app}><YouTubeIcon  className={classes.icon}></YouTubeIcon></a>
-        <a href='/' className={classes.app}><TwitterIcon  className={classes.icon}></TwitterIcon></a>
+        <a href='https://www.youtube.com/channel/UCCOgt9WzKg13Onm6EJ3rbGA' className={classes.app}><YouTubeIcon  className={classes.icon}></YouTubeIcon></a>
+        <a href='http://www.twitter.com/goodgaingg' className={classes.app}><TwitterIcon  className={classes.icon}></TwitterIcon></a>
         </div>
       </div>
       <img src={control} alt="control" onClick={scrollTop} className={classes.control}/>
