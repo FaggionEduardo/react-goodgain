@@ -6,6 +6,7 @@ import Policy from './pages/Policy';
 import Forgot from "./pages/Forgot";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Credit from "./pages/Credit";
 import Dashboard from "./pages/Dashboard";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
@@ -23,6 +24,19 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
     }
   />
 );
+const NoPrivateRoute = ({ component: Component, ...rest }) => (
+  <Route
+    {...rest}
+    render={props =>
+      isAuthenticated() ? (
+        <Redirect to={{ pathname: "/dashboard", state: { from: props.location } }} />
+      ) : (
+        
+        <Component {...props} />
+      )
+    }
+  />
+);
 
 const Routes = () => (
   <BrowserRouter>
@@ -30,10 +44,11 @@ const Routes = () => (
       <Route exact path="/" component={Land} />
       <Route exact path="/terms" component={Terms} />
       <Route exact path="/policy" component={Policy} />
-      <Route exact path="/login" component={Login} />
-      <Route exact path="/forgot" component={Forgot} />
-      <Route exact path="/register" component={Register} />
+      <NoPrivateRoute exact path="/login" component={Login} />
+      <NoPrivateRoute exact path="/forgot" component={Forgot} />
+      <NoPrivateRoute exact path="/register" component={Register} />
       <PrivateRoute exact path="/dashboard" component={Dashboard}/>
+      <PrivateRoute exact path="/credit" component={Credit}/>
     </Switch>
   </BrowserRouter>
 );

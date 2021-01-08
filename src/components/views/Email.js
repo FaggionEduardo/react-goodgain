@@ -113,7 +113,6 @@ function Email(props) {
     <div className={classes.div}>
           <span className={classes.title}><span>Quer saber sobre </span><span><span className={classes.yellow}>novos jogos na plataforma</span>,</span><span> <span className={classes.yellow}>campeonatos</span> e</span><span> <span className={classes.yellow}>premiações</span>?</span> </span>
           <span className={classes.subtitle}>Deixe seu <strong>e-mail</strong> abaixo que a gente te conta <strong>tudo</strong>. </span>
-          {/* <Input required name="email" type="email"  placeholder='Informe seu melhor e-mail' className={classes.input}/> */}
           <Mailchimp
         action='https://goodgain.us7.list-manage.com/subscribe/post?u=5410fef6a892946131f45074d&amp;id=594b12c10a'
         fields={[
@@ -121,6 +120,12 @@ function Email(props) {
             name: 'EMAIL',
             placeholder: 'Informe seu melhor e-mail',
             type: 'email',
+            required: true
+          },
+          {
+            name: 'group[79326][1]',
+            value:1,
+            type: 'hidden',
             required: true
           }
         ]}

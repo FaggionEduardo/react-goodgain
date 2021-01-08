@@ -1,7 +1,7 @@
 // arquvo de input tipo texto retirado da documentação do unform 
 import React, { useEffect, useRef } from 'react';
 import { useField } from '@unform/core';
-export default function Input({ name,id, ...rest }) {
+export default function Input({ name, ...rest }) {
   const inputRef = useRef(null);
   const { fieldName, defaultValue, registerField, error } = useField(name);
 
@@ -16,7 +16,7 @@ export default function Input({ name,id, ...rest }) {
   return (
       <div>
   <input ref={inputRef} defaultValue={defaultValue} {...rest} /><br/>
-  {error && <span className={id+"Error"}>{error}</span> }
+  {error && <span className={"Error"}>{error}</span> }
   </div>
 
   );

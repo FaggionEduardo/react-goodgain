@@ -144,7 +144,7 @@ const styles = (theme) => ({
     
   },
   money2:{
-    transform:'translate(-200%, 0) rotate(180deg)',
+    transform:'translate(-200%, 15%) rotate(180deg)',
     position:'absolute',
     
   }
@@ -165,7 +165,7 @@ function Dashboard(props) {
         <div className={classes.subtitle2}><span>*Para acessar as demais funções baixe o <strong><a style={{color:'black'}} href="/">App da GG</a></strong>.</span></div>
         <div className={classes.title} >Saldo</div>
         <div className={classes.balance}>{personaldata.money.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</div>
-        <a className={classes.btn} style={{backgroundColor:'#41D886', backgroundImage:'none'}} href="/credit"><img src={money}  alt="money" className={classes.money1}/><span>Credito</span></a>
+        <a className={classes.btn} style={{backgroundColor:'#41D886', backgroundImage:'none'}} href="/credit"><img src={money}  alt="money" className={classes.money1}/><span>Crédito</span></a>
           <a className={classes.btn} href="/withdraw"><img src={money}  alt="money" className={classes.money2}/><span>Sacar</span></a>
         
         <p className={classes.quit} onClick={()=>{

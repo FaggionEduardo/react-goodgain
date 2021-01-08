@@ -10,6 +10,7 @@ import { Form } from '@unform/web';
 import Input from '../Form/input';
 import Select from '../Form/select';
 import api from '../../services/api'
+import Mailchimp from 'react-mailchimp-form'
 
 
 const useStyles = makeStyles(theme =>({
@@ -314,11 +315,31 @@ const useStyles = makeStyles(theme =>({
     [theme.breakpoints.down("sm")]: {
       fontSize:'3vw',
       
+    }
+  },
+  mailchimp:{
+    '&> input':{
+      fontFamily: "'Gilroy',Helvetica,Arial,Lucida,sans-serif",
+      fontSize: 14,
+      borderRadius: 25,
+      border:'none',
+      color: '#383838',
+      backgroundColor:'#fff',
+      padding:16,
+      width:'100%',
+      marginTop:'1%',
+      WebkitAppearance: 'none',
+      MozAppearance: 'none',
+      appearance: 'none',
     },
-    checkDiv:{
-      display:'flex'
+    '&> button':{
+      visibility:'hidden',
+      height:0,
+      padding:0
     },
-   
+    '&> div':{
+      display:'none'
+    }
   }
 }));
 
@@ -441,17 +462,19 @@ function Register(props) {
     let countryState={country:country,state:region}
     obj=Object.assign({}, obj, countryState)
     setJsonForm(obj)
-    setStage(stage+1)
+    
     }
     console.log(obj)
-    if(stage==3){
+    if(stage==3){ 
       try{
         let response=await api.post(`/register`, obj)
+        document.getElementsByClassName("mailChimpForm")[0][2].click()
         setLastMsg(response.data)
       }catch(err){
         setLastMsg(err.response.data)
       }
     }
+    setStage(stage+1)
     }
 
 
@@ -603,25 +626,48 @@ function Register(props) {
 
 
   {stage==3?
-    <>
+    <div>
     <div className={classes.stage}><span style={{paddingLeft:15}}>Dados de login</span><div className={classes.circles}><CircularProgress thickness={4} className={classes.circleBottom} size={40} value={100} variant="determinate"/><CircularProgress  className={classes.circle} thickness={5} size={40} value={stage*(100/3)} variant="determinate"/><span className={classes.stageNumber}>{stage}</span></div></div>
     <div className={classes.div}>
-    <Form ref={formRef} onSubmit={handleSubmit}>
+
+    
       <div className={classes.content}>
       <span className={classes.lastTitle}>Este é o ultimo passo.</span>
           <label className={classes.label}>E-mail</label>
-          <Input required name="email" type="email"  placeholder='Informe um e-mail para cadastro' className={classes.input}/>
+          <Mailchimp
+        action='https://goodgain.us7.list-manage.com/subscribe/post?u=5410fef6a892946131f45074d&amp;id=594b12c10a'
+        fields={[
+          {
+            name: 'EMAIL',
+            type: 'email',
+            required: true,
+            placeholder:'Informe um e-mail para cadastro'
+          },
+          {
+            name: 'group[79326][2]',
+            value:2,
+            type: 'hidden',
+            required: true,
+          }
+        ]}
+        className={`${classes.mailchimp} mailChimpForm`}
+        />
+        <Form ref={formRef} onSubmit={handleSubmit}>
+          <Input required style={{visibility:'none',height:0, margin:0,padding:0, border:'none'}} name="email" type="email" />
+          
           <label className={classes.label}>Senha</label>
           <Input required name="pass" type="password"  placeholder='Informe uma senha' onChange={changePassword} className={classes.input}/>
           <PasswordStrengthBar onChangeScore={score=>{setStrength(score)}} shortScoreWord='Muito curta' scoreWords={['Fraca', 'Fraca', 'OK', 'Boa', 'Forte']} className={classes.password} password={password} />
           <label className={classes.label}>Confirme a senha</label>
           <Input required name="confirmpass" type="password"  placeholder='Confirme a senha' onChange={confirmPassword} className={classes.input}/>
-          <button disabled={strength>1?confirm:'disabled'} className={classes.btn}>Criar conta</button>
+          <button onClick={()=>formRef.current.setFieldValue('email',document.getElementsByClassName("mailChimpForm")[0][0].value)} disabled={strength>1?confirm:'disabled'} className={classes.btn}>Criar conta</button>
+          </Form>
           <span className={classes.back} onClick={()=>setStage(2)}>Voltar</span>
           </div>
-          </Form>
+          
+          
       </div>
-    </>
+    </div>
     :''
   }
   {stage==4?
