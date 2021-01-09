@@ -139,13 +139,13 @@ const styles = (theme) => ({
     
   },
   money1:{
-    transform:'translate(-200%,-15%)',
-    position:'absolute',
+    transform:'translate(-30%,-15%)',
+    // position:'absolute',
     
   },
   money2:{
-    transform:'translate(-200%, 15%) rotate(180deg)',
-    position:'absolute',
+    transform:'translate(-30%, 15%) rotate(180deg)',
+    // position:'absolute',
     
   }
 });
@@ -161,12 +161,12 @@ function Dashboard(props) {
     
       <div className={classes.content}>
         <div className={classes.title}>Bem vindo, {personaldata.name}</div>
-        <div className={classes.subtitle}><span>Aqui você poderá gerenciar sua carteira virtual da <strong>GG</strong>, </span><span>adicionando crédito através do seu <strong>Cartão de Credito</strong> ou solicitando <strong>Saque</strong></span></div>
-        <div className={classes.subtitle2}><span>*Para acessar as demais funções baixe o <strong><a style={{color:'black'}} href="/">App da GG</a></strong>.</span></div>
+        <div className={classes.subtitle}><span>Aqui você pode recarregar sua carteira digital na GG </span><span>utilizando seu <strong>cartão de crédito</strong>, além de poder solicitar o saque </span><span>disponível na sua conta digital.</span></div>
+        <div className={classes.subtitle2}><span>*Consulte <strong><a style={{color:'black'}} href="/">nosso app</a></strong> para outras formas de pagamento</span></div>
         <div className={classes.title} >Saldo</div>
         <div className={classes.balance}>{personaldata.money.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</div>
-        <a className={classes.btn} style={{backgroundColor:'#41D886', backgroundImage:'none'}} href="/credit"><img src={money}  alt="money" className={classes.money1}/><span>Crédito</span></a>
-          <a className={classes.btn} href="/withdraw"><img src={money}  alt="money" className={classes.money2}/><span>Sacar</span></a>
+        <a className={classes.btn} style={{backgroundColor:'#41D886', backgroundImage:'none'}} href="/credit"><img src={money}  alt="money" className={classes.money1}/><span>Recarregar carteira</span></a>
+          <a className={classes.btn} href="/withdraw"><img src={money}  alt="money" className={classes.money2}/><span>Solicitar saque</span></a>
         
         <p className={classes.quit} onClick={()=>{
           localStorage.removeItem('personaldata')

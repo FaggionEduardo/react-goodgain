@@ -82,8 +82,8 @@ const styles = (theme) => ({
     display:'flex',
     flexDirection:'column',
     [theme.breakpoints.down("sm")]: {
-    alignItems:'center',
-    },
+      width:'100%'
+    }
   },
   '@font-face': {
     fontFamily: 'Gilroy-medium',
@@ -150,11 +150,9 @@ function Footer(props) {
         </div>
       </div>
       <div className={classes.container} style={{borderTop:'1px solid #666',justifyContent:'space-between',alignItems:'center'}}>
-        <div className={classes.divBottom}>
         <div className={classes.text}>
-        <span>© 2020 Good Gain International. Todos os direitos reservados. </span>
+        <span>© 2021 Good Gain International - Feita por gamers para gamers! Todos os direitos reservados. </span>
         <span>ABN 392 066 387 22</span>
-        </div>
         </div>
         
         <div className={classes.apps}>

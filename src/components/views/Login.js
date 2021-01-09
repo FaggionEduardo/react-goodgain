@@ -123,8 +123,7 @@ const styles = (theme) => ({
   },
   errorDiv:{
     width:'100%',
-    textAlign:'left',
-    transform:'translatey(-100%)',
+    textAlign:'right',
     margin:0,
     position:'absolute',
     width:'100%'
@@ -180,13 +179,13 @@ function Login(props) {
       <div className={classes.content}>
         <div className={classes.titleBrand}><img src={brand}  alt="brand" className={classes.brand}/><span className={classes.title}> Bem-vindo a GG</span> </div>
         <Form style={{position:'relative'}} ref={formRef} onSubmit={handleSubmit}>
-          
+        {error? <div className={classes.errorDiv}><p  className={classes.error}>Usuário ou Senha incorretos.</p></div>:''}
           <label className={classes.label}>E-mail</label>
           <Input required name="email" type="email"  placeholder='Informe seu e-mail cadastrado' className={classes.input}/>
           <label className={classes.label}>Senha</label>
           <Input required name="pass" type="password"  placeholder='Informe sua senha' className={classes.input}/>
           <div className={classes.forgotDiv}><a  className={classes.forgot} href='/forgot'>Esqueceu sua senha?</a></div>
-          {error? <div className={classes.errorDiv}><p  className={classes.error}>Usuário ou Senha incorretos.</p></div>:''}
+          
           <button className={classes.btn} type="submit">Entrar</button>
         </Form>
         <div className={classes.singIn}>Ainda não possui conta? <a href='/register' className={classes.singInLink}>Crie agora mesmo.</a></div>

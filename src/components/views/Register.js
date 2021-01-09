@@ -79,6 +79,7 @@ const useStyles = makeStyles(theme =>({
   logo:{
     width:'30%',
     paddingBottom:'3%',
+    transform:'translatex(-7%)',
     [theme.breakpoints.down("sm")]: {
       width:'70%',
       
@@ -385,18 +386,19 @@ function Register(props) {
     <div style={props.style} className={classes.consoles}>
       <label className={classes.label}>Qual o modelo do seu console?</label>
       <div className={classes.divSelect}>
-      <Select onChange={changeConsole} onFocus={changeConsole} required defaultValue='' name={'videogame['+props.index+']'} style={{paddingRight:50}} className={classes.input}>
+      <Select onChange={changeConsole} onClick={changeConsole} required defaultValue='' name={'videogame['+props.index+']'} style={{paddingRight:50}} className={classes.input}>
         <option value='' disabled>Selecione</option>
-        <option value='PSN'>PSN</option>
-        <option value='XBOX_LIVE'>Xbox Live</option>
+        <option value='PSN'>PS4</option>
+        <option value='XBOX_LIVE'>Xbox One</option>
         <option value='PC'>PC</option>
       </Select>
       </div>
+      <div id={'console'+props.index}>
       <label className={classes.label}>Qual seu ID no console (idêntico ao console)</label>
       <Input onChange={changeConsole} required name={'idvideogame['+props.index+']'} type="text"  placeholder='Informe seu ID exatamente conforme console' className={classes.input}/>
       <label className={classes.label}>Confirme seu ID no console</label>
       <Input required name={'confirmidvideogame['+props.index+']'} type="text"  placeholder='Confirme seu ID' className={classes.input}/>
-      
+      </div>
       </div>
     )
   }
@@ -408,6 +410,15 @@ function Register(props) {
       if(ref.videogame[c]!=='' && ref.videogame[c]!==undefined){
         array[ref.videogame[c]]=formRef.current.getFieldValue('idvideogame['+c+']');
       }
+      if(formRef.current.getFieldValue('videogame['+c+']')=='PC'){
+        document.getElementById('console'+c).style.display='none'
+        document.getElementById('console'+c).querySelectorAll("input")[0].removeAttribute('required')
+        document.getElementById('console'+c).querySelectorAll("input")[1].removeAttribute('required')
+      }else{
+        document.getElementById('console'+c).style.display='block'
+        document.getElementById('console'+c).querySelectorAll("input")[0].setAttribute('required','required')
+        document.getElementById('console'+c).querySelectorAll("input")[1].setAttribute('required','required')
+      }
       if(formRef.current.getFieldRef('videogame['+c+']')!==false){
       for(let i=0; i<formRef.current.getFieldRef('videogame['+c+']').children.length; i++){
       if(ref.videogame.indexOf(formRef.current.getFieldRef('videogame['+c+']').children[i].value)!==-1 || formRef.current.getFieldRef('videogame['+c+']').children[i].value==''){
@@ -415,6 +426,7 @@ function Register(props) {
       }else{
         formRef.current.getFieldRef('videogame['+c+']').children[i].removeAttribute("disabled")
       }
+      
       }
       setConsoles(array)
     }
@@ -500,7 +512,6 @@ function Register(props) {
     array.push(<div key={item+1}><FormConsole index={item+1} /><div className={classes.remove} onClick={()=>deleteConsole(item+1)}></div></div>);
     setRows(array)
     setItem(item+1)
-    changeConsole()
   }
 
 
@@ -561,7 +572,6 @@ function Register(props) {
             <option value='' disabled>Selecione</option>
             <option value='M'>Masculino</option>
             <option value='F'>Feminino</option>
-            <option value='O'>Outro</option>
           </Select>
           </div>
           <label className={classes.label}>CPF</label>
@@ -626,7 +636,7 @@ function Register(props) {
 
 
   {stage==3?
-    <div>
+    <>
     <div className={classes.stage}><span style={{paddingLeft:15}}>Dados de login</span><div className={classes.circles}><CircularProgress thickness={4} className={classes.circleBottom} size={40} value={100} variant="determinate"/><CircularProgress  className={classes.circle} thickness={5} size={40} value={stage*(100/3)} variant="determinate"/><span className={classes.stageNumber}>{stage}</span></div></div>
     <div className={classes.div}>
 
@@ -667,7 +677,7 @@ function Register(props) {
           
           
       </div>
-    </div>
+      </>
     :''
   }
   {stage==4?

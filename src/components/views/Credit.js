@@ -7,14 +7,14 @@ import brand from '../../assets/marcaLogo.png';
 import { Form } from '@unform/web';
 import Input from '../Form/input';
 import MoneyMask from '../Form/moneyMask';
-import api from '../../services/api'
+import pagseguro from '../../services/pagseguro'
 
 const styles = (theme) => ({
   root: {
     backgroundImage: `url(${background})`,
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
-    height:'100vh',
+    minHeight:'100vh',
     width:'100%',
     display:'flex',
     flexDirection:'column',
@@ -24,7 +24,7 @@ const styles = (theme) => ({
   },
   div:{
     width:'35%',
-    
+    marginBottom:'10%',
     [theme.breakpoints.down("sm")]: {
       width:'90%',
       
@@ -65,9 +65,12 @@ const styles = (theme) => ({
     width:'100%',
     marginTop:'1%',
     marginBottom:'4%',
+    fontSize: 14,
     display:'flex',
+    alignItems:'center',
     '& > div > input':{
-      width:27,
+      width:38,
+      textAlign:'center',
       fontSize: 14,
       color: '#383838',
       border:'none'
@@ -79,12 +82,12 @@ const styles = (theme) => ({
     borderRadius: 40,
     fontSize: 16,
     fontFamily: "'Gilroy',Helvetica,Arial,Lucida,sans-serif!important",
-    backgroundImage: "linear-gradient(180deg,#e6007e 0%,#e94834 100%)",
     padding: '0.8em 1em',
     lineHeight: '1.7em',
     width:'100%',
     fontWeight:600,
-    margin:'5% 0'
+    margin:'5% 0',
+    backgroundColor:'#41D886'
 
   },
   '@font-face': {
@@ -120,6 +123,22 @@ const styles = (theme) => ({
     textDecoration:'none',
     
   },
+  title:{
+    display:'flex',
+    fontSize:22,
+    fontFamily: "'Gilroy',Helvetica,Arial,Lucida,sans-serif!important",
+    color:'#fff',
+    width:'35%',
+    justifyContent:'space-between',
+    alignItems:'center',
+    margin:'1% 0',
+    paddingLeft:15,
+    [theme.breakpoints.down("sm")]: {
+      width:'90%',
+      
+    },
+
+  },
   
 });
 
@@ -147,15 +166,26 @@ function Login(props) {
       stringAmount=parseInt(stringAmount)
       let objAmount={amount:{value:stringAmount,currency: "BRL"}}
       var obj=Object.assign({}, data, objAmount)
+      obj.payment_method.card.exp_year='20'+obj.payment_method.card.exp_year
+      obj=Object.assign({}, obj, {reference_id: Math.trunc(Date.now()*Math.floor(Math.random() * 100)/Math.floor(Math.random() * 100)),description: "Compra de créditos",})
+      obj.payment_method=Object.assign({}, obj.payment_method, {type: "CREDIT_CARD",installments: 1,capture: true,})
+      let response=await pagseguro.post(`/charges`, obj,{headers: {
+        'Authorization': 'A80686CDF29E4532B983BB0ABB30CD70',
+        'x-api-version':'4.0',
+        'Access-Control-Allow-Origin':'*'
+      }})
       console.log(obj)
+      console.log(response)
       
     }catch(err){
+      console.log(err)
       setError(true)
     }
   }
   return (
     <div className={classes.root}>
       <img src={logo}  alt="logo" className={classes.logo}/> 
+    <div className={classes.title}>Adicionar Crédito</div>
     <div className={classes.div}>
     
       <div className={classes.content}>
@@ -163,15 +193,37 @@ function Login(props) {
         <Form style={{position:'relative'}} ref={formRef} onSubmit={handleSubmit}>
           
           <label className={classes.label}>Valor</label>
-          <MoneyMask required onChange={(val)=>setAmount(val.target.value)} type="text"  placeholder='Informe o valor que deseja adicionar.' className={classes.input}/>
+          <MoneyMask required onChange={(val)=>setAmount(val.target.value)} type="text"  placeholder='Informe o valor que deseja adicionar' className={classes.input}/>
+          <label className={classes.label}>Nome do titular</label>
+          <Input required name="payment_method.card.holder.name" type="text"  placeholder='Informe o nome do titular' className={classes.input}/>
           <label className={classes.label}>Número do cartão</label>
-          <Input required name="card.number" onChange={(val)=>formRef.current.setFieldValue('card.number',val.target.value.replace(/\D/g, ''))} type="text" maxLength="16" placeholder='Informe o número do seu cartão de crédito' className={classes.input}/>
+          <Input required name="payment_method.card.number" onChange={(val)=>formRef.current.setFieldValue('payment_method.card.number',val.target.value.replace(/\D/g, ''))} type="text" maxLength="16" placeholder='Informe o número do seu cartão de crédito' className={classes.input}/>
           <label className={classes.label}>Data de vencimento</label>
-          <label htmlFor='month'  className={classes.inputValidate}><Input required name="card.exp_month" onChange={(val)=>formRef.current.setFieldValue('card.exp_month',val.target.value.replace(/\D/g, ''))} id='month' minLength="2" maxLength="2" type="text"  placeholder='MM' /><span>/</span><Input required name="card.exp_year" onChange={(val)=>formRef.current.setFieldValue('card.exp_year',val.target.value.replace(/\D/g, ''))} maxLength="2" type="text"  placeholder='YY' /></label>
+          <label htmlFor='month'  className={classes.inputValidate}><Input required name="payment_method.card.exp_month" onChange={(val)=>{
+             if (val.target.value.slice().length==1){
+              formRef.current.setFieldValue('payment_method.card.exp_month', "0" +val.target.value.replace(/\D/g, ''))
+            }else if(val.target.value.slice().length==3){
+              formRef.current.setFieldValue('payment_method.card.exp_month', val.target.value.replace(/\D/g, '').substr(1))
+            }else{
+              formRef.current.setFieldValue('payment_method.card.exp_month', val.target.value.replace(/\D/g, ''))
+            }
+             }
+          } id='month' type="text"  placeholder='MM' /><span>/</span><Input required name="payment_method.card.exp_year" onChange={(val)=>{
+            if (val.target.value.slice().length==1){
+             formRef.current.setFieldValue('payment_method.card.exp_year', "0" +val.target.value.replace(/\D/g, ''))
+           }else if(val.target.value.slice().length==3){
+             formRef.current.setFieldValue('payment_method.card.exp_year', val.target.value.replace(/\D/g, '').substr(1))
+           }else{
+             formRef.current.setFieldValue('payment_method.card.exp_year', val.target.value.replace(/\D/g, ''))
+           }
+            }
+           } type="text"  placeholder='YY' /></label>
+           <label className={classes.label}>Código de segurança</label>
+          <Input required name="payment_method.card.security_code" onChange={(val)=>formRef.current.setFieldValue('payment_method.card.security_code',val.target.value.replace(/\D/g, ''))} type="text" maxLength="3" placeholder='Informe o CVV' className={classes.input}/>
           
           
           
-          <button className={classes.btn} type="submit">Próximo passo</button>
+          <button className={classes.btn} type="submit">Finalizar pagamento</button>
         </Form>
         <a className={classes.back} href='/dashboard'>Voltar</a>
       </div>
