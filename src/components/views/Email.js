@@ -99,7 +99,20 @@ const styles = (theme) => ({
       fontWeight:600,
       textAlign:'center'
     }
-  }
+  },
+  desk:{
+    display:'none',
+    [theme.breakpoints.up("sm")]: {
+      
+      display:'block',
+    },
+  },
+  mobile:{
+      display:'block',
+    [theme.breakpoints.up("sm")]: {
+      display:'none'
+    },
+  },
 
 });
 
@@ -111,8 +124,10 @@ function Email(props) {
     <Fade>
     
     <div className={classes.div}>
-          <span className={classes.title}><span>Quer saber sobre </span><span><span className={classes.yellow}>novos jogos na plataforma</span>,</span><span> <span className={classes.yellow}>campeonatos</span> e</span><span> <span className={classes.yellow}>premiações</span>?</span> </span>
-          <span className={classes.subtitle}>Deixe seu <strong>e-mail</strong> abaixo que a gente te conta <strong>tudo</strong>. </span>
+          <span className={`${classes.title} ${classes.desk}`}><span>Quer saber sobre </span><span><span className={classes.yellow}>novos jogos na plataforma</span>,</span><span> <span className={classes.yellow}>campeonatos</span> e</span><span> <span className={classes.yellow}>premiações</span>?</span> </span>
+          <span className={`${classes.title} ${classes.mobile}`}>Quer saber sobre novos jogos
+          , campeonatos e premiações? </span>
+          <span className={classes.subtitle}>Deixe seu <strong>e-mail</strong> abaixo que a gente te conta. </span>
           <Mailchimp
         action='https://goodgain.us7.list-manage.com/subscribe/post?u=5410fef6a892946131f45074d&amp;id=594b12c10a'
         fields={[
@@ -142,10 +157,10 @@ function Email(props) {
         styles={
           {
             sendingMsg: {
-              color: "#0652DD"
+              color: "black"
             },
             successMsg: {
-              color: "#009432"
+              color: "yellow"
             },
             duplicateMsg: {
               color: "white"

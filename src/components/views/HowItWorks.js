@@ -244,7 +244,7 @@ function HowItWorks(props) {
     <Element name="HowWork" >
     <div className={classes.root}>
       <div className={classes.divTitle}>
-      <h2 className={classes.how}>Como Funciona?</h2>
+      <h2 className={classes.how}>Como funciona?</h2>
       <img src={rectangle} alt="rectangle" className={classes.rectangle}/>
       </div>
       <Fade >

@@ -3,11 +3,10 @@ import { withStyles } from '@material-ui/core/styles';
 import GilroyRegular from '../../assets/Gilroy-Regular.ttf';
 import background from '../../assets/backgroundControls.jpg';
 import logo from '../../assets/whiteLogo.png';
-import brand from '../../assets/marcaLogo.png';
 import { Form } from '@unform/web';
 import Input from '../Form/input';
 import MoneyMask from '../Form/moneyMask';
-import pagseguro from '../../services/pagseguro'
+import api from '../../services/api2'
 
 const styles = (theme) => ({
   root: {
@@ -139,16 +138,52 @@ const styles = (theme) => ({
     },
 
   },
+  approved:{
+    fontFamily: "'Gilroy-regular',Helvetica,Arial,Lucida,sans-serif!important",
+    color:'#121212',
+    fontSize:24,
+    width:'100%',
+  
+  },
+  response:{
+    display:'flex',
+    flexDirection:'column',
+    width:'100%'
+  },
+  finishTitle:{
+    display:'flex',
+    justifyContent:'center',
+    alignItems:'center',
+    fontSize: 16,
+    fontFamily: "'Gilroy',Helvetica,Arial,Lucida,sans-serif!important",
+    fontWeight:600,
+    color: '#fff',
+    flexDirection:'column'
+    
+  },
+  finishDiv:{
+    display:'flex',
+    justifyContent:'center',
+    alignItems:'center',
+    borderRadius: 30,
+    transform:'translatey(-100%)',
+    height:180,
+    backgroundColor:'#D84141'
+  }
   
 });
 
 
-function Login(props) {
+function Credit(props) {
   const { classes } = props;
   const formRef =useRef(null)
-  const [error, setError] = React.useState(false);
+  const [error, setError] = React.useState('none');
   const [amount, setAmount] = React.useState('');
   const [stage, setStage] = React.useState(0);
+  const [approved, setApproved] = React.useState(<span>Processando...</span>);
+  const [response, setResponse] = React.useState('');
+  const token=localStorage.getItem('token')
+  const date=new Date()
   async function handleSubmit (data) {
     try{
       let stringAmount=amount
@@ -159,7 +194,10 @@ function Login(props) {
         for(let i=0;i<3-(amountLength-commaPosition);i++){
           stringAmount=stringAmount+'0'
         }
+      }else{
+        stringAmount=stringAmount+',00'
       }
+      var stringReal=stringAmount
       stringAmount=stringAmount.replace("R$", "")
       stringAmount=stringAmount.replace(".", "")
       stringAmount=stringAmount.replace(",", "")
@@ -169,17 +207,31 @@ function Login(props) {
       obj.payment_method.card.exp_year='20'+obj.payment_method.card.exp_year
       obj=Object.assign({}, obj, {reference_id: Math.trunc(Date.now()*Math.floor(Math.random() * 100)/Math.floor(Math.random() * 100)),description: "Compra de créditos",})
       obj.payment_method=Object.assign({}, obj.payment_method, {type: "CREDIT_CARD",installments: 1,capture: true,})
-      let response=await pagseguro.post(`/charges`, obj,{headers: {
-        'Authorization': 'A80686CDF29E4532B983BB0ABB30CD70',
-        'x-api-version':'4.0',
-        'Access-Control-Allow-Origin':'*'
-      }})
+      setStage(1)
+      let response=await api.post(`/pagseguro`, {pagseguro:obj, token:token})
       console.log(obj)
       console.log(response)
+      if(response.data.status==false){
+        setStage(0)
+        setError('flex')
+      }else{
+        setApproved(<span style={{color:'#41D886', fontWeight:600}}>Pagamento aprovado!</span>)
+        setResponse(
+        <div className={classes.response}>
+          <span className={classes.label}><strong>Cod. PagSeguro:</strong> {response.data.data.id}</span>
+          <span className={classes.label}><strong>Ref:</strong> {response.data.data.reference_id}</span>
+          <span className={classes.label}><strong>Descrição:</strong> {response.data.data.description}</span>
+          <span className={classes.label}><strong>Titular:</strong> {response.data.data.payment_method.card.holder.name}</span>
+          <span className={classes.label}><strong>Valor:</strong> {stringReal}</span>
+          <span className={classes.label}><strong>Data:</strong> {((date.getDate() )) + "/" + ((date.getMonth() + 1)) + "/" + date.getFullYear()}</span>
+        </div>
+        )
+      }
       
     }catch(err){
       console.log(err)
-      setError(true)
+      
+      
     }
   }
   return (
@@ -189,9 +241,10 @@ function Login(props) {
     <div className={classes.div}>
     
       <div className={classes.content}>
-
-        <Form style={{position:'relative'}} ref={formRef} onSubmit={handleSubmit}>
-          
+      {
+          stage==0?
+          <>
+          <Form style={{position:'relative'}} ref={formRef} onSubmit={handleSubmit}>
           <label className={classes.label}>Valor</label>
           <MoneyMask required onChange={(val)=>setAmount(val.target.value)} type="text"  placeholder='Informe o valor que deseja adicionar' className={classes.input}/>
           <label className={classes.label}>Nome do titular</label>
@@ -226,7 +279,23 @@ function Login(props) {
           <button className={classes.btn} type="submit">Finalizar pagamento</button>
         </Form>
         <a className={classes.back} href='/dashboard'>Voltar</a>
+        </>
+        :
+        ''
+      }
+      {
+        stage==1?
+        <>
+        <p className={classes.approved}>{approved}</p>
+        {response}
+        <a className={classes.back} href='/dashboard'>Voltar</a>
+        </>
+        :
+        ''
+      }
+        
       </div>
+      <div style={{display:error}} onClick={()=>setError('none')} className={classes.finishDiv}><div className={classes.finishTitle}><span>Algo está errado! </span> <span> Pagamento não autorizado.</span> </div></div>
     </div>
     </div>
   );
@@ -234,4 +303,4 @@ function Login(props) {
 
 
 
-export default withStyles(styles)(Login);
+export default withStyles(styles)(Credit);

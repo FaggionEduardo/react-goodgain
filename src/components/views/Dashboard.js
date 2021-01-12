@@ -3,7 +3,8 @@ import { withStyles } from '@material-ui/core/styles';
 import GilroyRegular from '../../assets/Gilroy-Regular.ttf';
 import background from '../../assets/backgroundControls.jpg';
 import logo from '../../assets/whiteLogo.png';
-import money from '../../assets/money.svg';
+import moneyIcon from '../../assets/money.svg';
+import api from '../../services/api'
 const styles = (theme) => ({
   root: {
     backgroundImage: `url(${background})`,
@@ -140,12 +141,12 @@ const styles = (theme) => ({
   },
   money1:{
     transform:'translate(-30%,-15%)',
-    // position:'absolute',
+
     
   },
   money2:{
     transform:'translate(-30%, 15%) rotate(180deg)',
-    // position:'absolute',
+    
     
   }
 });
@@ -154,6 +155,13 @@ const styles = (theme) => ({
 function Dashboard(props) {
   const { classes } = props;
   const personaldata=JSON.parse(localStorage.getItem('personaldata'))
+  const [money,setMoney] = React.useState(personaldata.money);
+  console.log(personaldata)
+  useEffect(async () => {
+    let response=await api.post(`/checkmoneyxp`, {token:localStorage.getItem('token')})
+    setMoney(response.data.money)
+  });
+  
   return (
     <div className={classes.root}>
       <img src={logo}  alt="logo" className={classes.logo}/> 
@@ -164,9 +172,9 @@ function Dashboard(props) {
         <div className={classes.subtitle}><span>Aqui você pode recarregar sua carteira digital na GG </span><span>utilizando seu <strong>cartão de crédito</strong>, além de poder solicitar o saque </span><span>disponível na sua conta digital.</span></div>
         <div className={classes.subtitle2}><span>*Consulte <strong><a style={{color:'black'}} href="/">nosso app</a></strong> para outras formas de pagamento</span></div>
         <div className={classes.title} >Saldo</div>
-        <div className={classes.balance}>{personaldata.money.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</div>
-        <a className={classes.btn} style={{backgroundColor:'#41D886', backgroundImage:'none'}} href="/credit"><img src={money}  alt="money" className={classes.money1}/><span>Recarregar carteira</span></a>
-          <a className={classes.btn} href="/withdraw"><img src={money}  alt="money" className={classes.money2}/><span>Solicitar saque</span></a>
+        <div className={classes.balance}>{money.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</div>
+        <a className={classes.btn} style={{backgroundColor:'#41D886', backgroundImage:'none'}} href="/credit"><img src={moneyIcon}  alt="money" className={classes.money1}/><span>Recarregar carteira</span></a>
+          <a className={classes.btn} href="/withdraw"><img src={moneyIcon}  alt="money" className={classes.money2}/><span>Solicitar saque</span></a>
         
         <p className={classes.quit} onClick={()=>{
           localStorage.removeItem('personaldata')

@@ -468,7 +468,7 @@ function Register(props) {
     }
     if(confirmOk){
       
-    console.log(data)
+    
     let json=jsonForm
     var obj=Object.assign({}, json, data)
     let countryState={country:country,state:region}
@@ -476,7 +476,7 @@ function Register(props) {
     setJsonForm(obj)
     
     }
-    console.log(obj)
+  
     if(stage==3){ 
       try{
         let response=await api.post(`/register`, obj)
@@ -663,7 +663,7 @@ function Register(props) {
         className={`${classes.mailchimp} mailChimpForm`}
         />
         <Form ref={formRef} onSubmit={handleSubmit}>
-          <Input required style={{visibility:'none',height:0, margin:0,padding:0, border:'none'}} name="email" type="email" />
+          <Input required style={{visibility:'none',height:0, margin:0,padding:0, border:'none'}} tabIndex="-1" name="email" type="email" />
           
           <label className={classes.label}>Senha</label>
           <Input required name="pass" type="password"  placeholder='Informe uma senha' onChange={changePassword} className={classes.input}/>

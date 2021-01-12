@@ -162,7 +162,6 @@ function Login(props) {
   const [error, setError] = React.useState(false);
   async function handleSubmit (data) {
     try{
-      console.log(data)
       let response=await api.post(`/login`, data)
       localStorage.setItem('token', response.data.token)
       localStorage.setItem('personaldata',  JSON.stringify(response.data.personaldata))
