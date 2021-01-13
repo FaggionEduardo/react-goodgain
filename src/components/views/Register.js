@@ -645,7 +645,7 @@ function Register(props) {
       <span className={classes.lastTitle}>Este é o ultimo passo.</span>
           <label className={classes.label}>E-mail</label>
           <Mailchimp
-        action='https://goodgain.us7.list-manage.com/subscribe/post?u=5410fef6a892946131f45074d&amp;id=594b12c10a'
+        action='https://goodgain.us7.list-manage.com/subscribe/post?u=bd4e98710f0ff6729e682cd79&amp;id=09fe9c3e2e'
         fields={[
           {
             name: 'EMAIL',
@@ -654,7 +654,7 @@ function Register(props) {
             placeholder:'Informe um e-mail para cadastro'
           },
           {
-            name: 'group[79326][2]',
+            name: 'group[79439][2]',
             value:2,
             type: 'hidden',
             required: true,

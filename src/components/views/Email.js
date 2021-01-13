@@ -129,7 +129,7 @@ function Email(props) {
           , campeonatos e premiações? </span>
           <span className={classes.subtitle}>Deixe seu <strong>e-mail</strong> abaixo que a gente te conta. </span>
           <Mailchimp
-        action='https://goodgain.us7.list-manage.com/subscribe/post?u=5410fef6a892946131f45074d&amp;id=594b12c10a'
+        action='https://goodgain.us7.list-manage.com/subscribe/post?u=bd4e98710f0ff6729e682cd79&amp;id=09fe9c3e2e'
         fields={[
           {
             name: 'EMAIL',
@@ -138,7 +138,7 @@ function Email(props) {
             required: true
           },
           {
-            name: 'group[79326][1]',
+            name: 'group[79439][1]',
             value:1,
             type: 'hidden',
             required: true
