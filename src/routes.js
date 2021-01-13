@@ -1,6 +1,7 @@
 import React from "react";
 import { isAuthenticated } from "./auth";
 import Land from './pages/Land';
+import LandEn from './pages/LandEn';
 import Terms from './pages/Terms';
 import Policy from './pages/Policy';
 import Forgot from "./pages/Forgot";
@@ -42,6 +43,7 @@ const Routes = () => (
   <BrowserRouter>
     <Switch>
       <Route exact path="/" component={Land} />
+      <Route exact path="/en" component={LandEn} />
       <Route exact path="/terms" component={Terms} />
       <Route exact path="/policy" component={Policy} />
       <NoPrivateRoute exact path="/login" component={Login} />

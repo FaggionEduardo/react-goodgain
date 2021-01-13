@@ -56,7 +56,7 @@ const styles = (theme) => ({
     [theme.breakpoints.down("sm")]: {
       width: '100%',
       alignItems:'center',
-    justifyContent:'center',
+      justifyContent:'center',
     },
   },
   buttons:{
@@ -140,11 +140,11 @@ function Footer(props) {
       <div className={classes.container}>
         <div className={classes.divRight}>
         <div className={classes.buttons}>
-          <a href='/terms' className={classes.link}>Termos de Uso</a>
-          <a href='/policy' className={classes.link}>Política de Privacidade</a>
+          <a href='/termsEn' className={classes.link}>Terms of Use</a>
+          <a href='/policyEn' className={classes.link}>Privacy Policy</a>
         </div>
         <div className={classes.text} style={{paddingTop: 50}}>
-          A GoodGain não possui vínculos, afiliações ou relações com nenhum desenvolvedor de jogos ou consoles. Todo o conteúdo, título e artes são marcas comerciais com direitos autorais assegurados aos seus respectivos proprietários
+          The GoodGain company doesn’t have any association, relation, or affiliation with the games or consoles developers. All content, titles, and artwork are trademarks, and their rights belong to their respective owners.
         </div>
         </div>
         <div className={classes.divLeft}>
@@ -153,7 +153,7 @@ function Footer(props) {
       </div>
       <div className={classes.container} style={{borderTop:'1px solid #666',justifyContent:'space-between',alignItems:'center'}}>
         <div className={classes.text}>
-        <span>© 2021 Good Gain International - Feita por gamers para gamers! Todos os direitos reservados. </span>
+        <span>© 2021 Good Gain International – Made by gamers to gamers! All rights reserved. </span>
         <span>ABN 392 066 387 22</span>
         </div>
         

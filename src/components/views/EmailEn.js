@@ -4,7 +4,7 @@ import Fade from 'react-reveal/Fade';
 import { Form } from '@unform/web';
 import Input from '../Form/input';
 import Mailchimp from 'react-mailchimp-form'
-
+import Montserrat from "../../assets/Montserrat-Medium.ttf"
 const styles = (theme) => ({
   root: {
     backgroundColor:'#121212',
@@ -113,6 +113,10 @@ const styles = (theme) => ({
       display:'none'
     },
   },
+  '@font-face': {
+    fontFamily: 'Montserrat',
+    src: `url(${Montserrat})`,
+  },
 
 });
 
@@ -124,33 +128,33 @@ function Email(props) {
     <Fade>
     
     <div className={classes.div}>
-          <span className={`${classes.title} ${classes.desk}`}><span>Quer saber sobre </span><span><span className={classes.yellow}>novos jogos na plataforma</span>,</span><span> <span className={classes.yellow}>campeonatos</span> e</span><span> <span className={classes.yellow}>premiações</span>?</span> </span>
-          <span className={`${classes.title} ${classes.mobile}`}>Quer saber sobre novos jogos, campeonatos e premiações? </span>
-          <span className={classes.subtitle}>Deixe seu <strong>e-mail</strong> abaixo que a gente te conta. </span>
+          <span className={`${classes.title} ${classes.desk}`}><span>Be the first to know about</span><span><span className={classes.yellow}> new games in the app</span>,</span><span> <span className={classes.yellow}>championships</span> and</span><span> <span className={classes.yellow}>awards</span>.</span> </span>
+          <span className={`${classes.title} ${classes.mobile}`}>Be the first to know about new games in the app, championships and awards. </span>
+          <span className={classes.subtitle}>Subscribe below and let us tell you everything.</span>
           <Mailchimp
         action='https://goodgain.us7.list-manage.com/subscribe/post?u=bd4e98710f0ff6729e682cd79&amp;id=09fe9c3e2e'
         fields={[
           {
             name: 'EMAIL',
-            placeholder: 'Informe seu melhor e-mail',
+            placeholder: 'Type your email',
             type: 'email',
             required: true
           },
           {
-            name: 'group[79439][2]',
-            value:2,
+            name: 'group[79455][4]',
+            value:4,
             type: 'hidden',
             required: true
           }
         ]}
         messages = {
           {
-            sending: "Enviando...",
-            success: "Obrigado por se inscrever!",
-            error: "Houve um erro interno inesperado.",
-            empty: "Você precisa digitar um e-mail.",
-            duplicate: "Este e-mail já está cadastrado.",
-            button: "Enviar"
+            sending: "Sending...",
+            success: "Thanks for signing up!",
+            error: "There was an unexpected internal error.",
+            empty: "You need to type an email.",
+            duplicate: "This email is already registered.",
+            button: "Subscribe"
           }
         }
         styles={
