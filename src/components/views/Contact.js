@@ -11,7 +11,7 @@ import { Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'r
 import { Form } from '@unform/web';
 import Input from '../Form/input';
 import Textarea from '../Form/textarea';
-import api from '../../services/api'
+import api from '../../services/api2'
 
 const styles = (theme) => ({
   root: {
@@ -232,7 +232,6 @@ const styles = (theme) => ({
     width:'100%',
     textAlign:'center',
     fontSize:20,
-    color:'green'
   }
 
 });
@@ -242,13 +241,19 @@ function Contact(props) {
   const { classes } = props;
   const formRef =useRef(null)
   const [send, setSend] = React.useState(false);
+  const [msg, setMsg] = React.useState('Enviando...');
+  const [color, setColor] = React.useState('#121212');
   async function handleSubmit (data,{ reset }) {
     try{
-      await api.post(`/contact`, data)
-      setSend(true)  
+    setSend(true)
+     let response= await api.post(`/contact`, data)
+     console.log(response)
+      setMsg('Mensagem enviada!')
+      setColor('#41D886')  
       reset()
     }catch(err){
-      console.log(err.message)
+      setMsg('Erro ao enviar e-mail.')
+      setColor('red')  
     }
   }
   return (
@@ -286,7 +291,7 @@ function Contact(props) {
         <Input required name="email" type="email"  placeholder='E-mail' className={classes.input}/>
         <Input required name="subject" type="text"  placeholder='Assunto' className={classes.input}/>
         <Textarea required name="message" type="text" style={{height:150}}  placeholder='Mensagem' className={classes.input}/>
-        {send ? <p className={classes.msg}>Mensagem enviada!</p>:''}
+        {send ? <p style={{color:color}} className={classes.msg}>{msg}</p>:''}
         <button className={classes.btn} type="submit">Enviar</button>
         </Form>
       </div>

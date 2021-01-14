@@ -3,7 +3,9 @@ import { isAuthenticated } from "./auth";
 import Land from './pages/Land';
 import LandEn from './pages/LandEn';
 import Terms from './pages/Terms';
+import TermsEn from './pages/TermsEn';
 import Policy from './pages/Policy';
+import PolicyEn from './pages/PolicyEn';
 import Forgot from "./pages/Forgot";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -45,7 +47,9 @@ const Routes = () => (
       <Route exact path="/" component={Land} />
       <Route exact path="/en" component={LandEn} />
       <Route exact path="/terms" component={Terms} />
+      <Route exact path="/termsEn" component={TermsEn} />
       <Route exact path="/policy" component={Policy} />
+      <Route exact path="/policyEn" component={PolicyEn} />
       <NoPrivateRoute exact path="/login" component={Login} />
       <NoPrivateRoute exact path="/forgot" component={Forgot} />
       <NoPrivateRoute exact path="/register" component={Register} />
