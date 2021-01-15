@@ -7,6 +7,7 @@ import promoMobile from '../../assets/promoMobile.png';
 import {Fade} from '@material-ui/core';
 import appstore from '../../assets/appstore2.png';
 import playstore from '../../assets/playstore2.png';
+import loading from '../../assets/load.png';
 import Clear from '@material-ui/icons/Clear';
 
 
@@ -104,7 +105,7 @@ const styles = (theme) => ({
     cursor:'pointer',
     width:'27%',
     height:'27%',
-
+    opacity:0.4,
     marginRight:'2%',
     [theme.breakpoints.down("xs")]: {
       width:'45%',
@@ -119,6 +120,31 @@ const styles = (theme) => ({
     paddingLeft:'3%',
     [theme.breakpoints.down("xs")]: {
       bottom:'1%',
+      justifyContent:'space-between',
+      width:'70%',
+      padding:0,
+    },
+  },
+  load:{
+    
+    cursor:'pointer',
+    width:'27%',
+    height:'27%',
+
+    marginRight:'2%',
+    [theme.breakpoints.down("xs")]: {
+      width:'45%',
+      height:'45%',
+      margin:0,
+    },
+  },
+  loads:{
+    display:'flex',
+    position:'absolute',
+    bottom:'9%',
+    paddingLeft:'3%',
+    [theme.breakpoints.down("xs")]: {
+      bottom:'1.5%',
       justifyContent:'space-between',
       width:'70%',
       padding:0,
@@ -158,6 +184,10 @@ function Promo(props) {
                   <img src={appstore}  alt="appstore" className={classes.app}/>   
                   <img src={playstore}  alt="playstore" className={classes.app}/> 
           </div>
+          <div className={classes.loads}>
+                  <img src={loading}  alt="loading" className={classes.load}/>   
+                  <img src={loading}  alt="loading" className={classes.load}/> 
+                </div>
           </>
           :
           <>
@@ -172,6 +202,10 @@ function Promo(props) {
                 <div className={classes.apps}>
                   <img src={appstore}  alt="appstore" className={classes.app}/>   
                   <img src={playstore}  alt="playstore" className={classes.app}/> 
+                </div>
+                <div className={classes.loads}>
+                  <img src={loading}  alt="loading" className={classes.load}/>   
+                  <img src={loading}  alt="loading" className={classes.load}/> 
                 </div>
           </div>
           </>

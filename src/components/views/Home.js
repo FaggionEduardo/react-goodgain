@@ -5,6 +5,7 @@ import Container from '@material-ui/core/Container';
 import GilroyRegular from '../../assets/Gilroy-Regular.ttf';
 import appstore from '../../assets/appstore.png';
 import playstore from '../../assets/playstore.png';
+import loading from '../../assets/load.png';
 import phone from '../../assets/phone.png';
 import c1 from '../../assets/Group-156.png';
 import c2 from '../../assets/Group-151.png';
@@ -44,6 +45,7 @@ const styles = (theme) => ({
     flexDirection:'column',
     marginRight: '5.5%',
     width: '47.25%',
+    position:'relative',
     [theme.breakpoints.down("sm")]: {
       marginRight: 0,
       width: '100%',
@@ -130,12 +132,44 @@ const styles = (theme) => ({
   },
   
   app:{
-    marginRight:10,
+    
     cursor:'pointer',
-    height:'3vw',
-    [theme.breakpoints.down("sm")]: {
-      marginRight:2,
-      height:'5vw'
+    width:'27%',
+    opacity:0.4,
+    marginRight:'2%',
+    [theme.breakpoints.down("xs")]: {
+      width:'49%',
+      height:'49%',
+      margin:0,
+    },
+  },
+  apps:{
+    display:'flex',
+    width:'100%',
+    [theme.breakpoints.down("xs")]: {
+      justifyContent:'space-between',
+      width:'60%',
+      padding:0,
+    },
+  },
+  load:{
+    cursor:'pointer',
+    width:'27%',
+    marginRight:'2%',
+    [theme.breakpoints.down("xs")]: {
+      width:'49%',
+      height:'49%',
+      margin:0,
+    },
+  },
+  loads:{
+    display:'flex',
+    width:'100%',
+    transform:'translatey(-115%)',
+    [theme.breakpoints.down("xs")]: {
+      justifyContent:'space-between',
+      width:'60%',
+      padding:0,
     },
   },
   phone:{
@@ -277,7 +311,7 @@ function Start(props) {
     <section id='home' className={classes.root}>
       <Container className={classes.container}>
         <Container className={classes.container2}>
-        <Container className={classes.containerItem}>
+        <div className={classes.containerItem}>
          <h1  className={classes.text}>Transforme
          <br/> 
          sua habilidade
@@ -298,12 +332,18 @@ function Start(props) {
           </span>
           </span>
           <Grow timeout={2000} in={checked}>
-          <div id="apps">
-            <img src={playstore}  alt="playstore" className={classes.app}/>
-            <img src={appstore}  alt="appstore" className={classes.app}/>
-          </div>
+            <>
+            <div id='apps' className={classes.apps}>
+                  <img src={appstore}  alt="appstore" className={classes.app}/>   
+                  <img src={playstore}  alt="playstore" className={classes.app}/> 
+            </div>
+            <div className={classes.loads}>
+                  <img src={loading}  alt="loading" className={classes.load}/>   
+                  <img src={loading}  alt="loading" className={classes.load}/> 
+            </div>
+            </>
           </Grow>
-         </Container>
+         </div>
          <Container className={`${classes.containerItem} ${classes.containerImg}`}>
          <div   className={classes.divC1}>
         <img src={c1} alt="c1" className={classes.c1}/>

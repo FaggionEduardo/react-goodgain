@@ -5,6 +5,7 @@ import background from '../../assets/arco2.svg';
 import phone from '../../assets/phone.png';
 import appstore from '../../assets/appstore2.png';
 import playstore from '../../assets/playstore2.png';
+import loading from '../../assets/load.png';
 import c1 from '../../assets/Group-159.png';
 import Fade from 'react-reveal/Fade';
 
@@ -145,26 +146,34 @@ const styles = (theme) => ({
       width:110,
       
     },
-    '&:hover > img': {
-      transition:'.4s  ease-in-out',
-      transform:'scale(0.95)',
+//     '&:hover > img': {
+//       transition:'.4s  ease-in-out',
+//       transform:'scale(0.95)',
       
-   },
-   '&:hover > div': {
-    transition:'.4s  ease-in-out',
-    transitionDelay:'0.4s',
-    transform:'scale(0.95,0.95)',
+//    },
+//    '&:hover > div': {
+//     transition:'.4s  ease-in-out',
+//     transitionDelay:'0.4s',
+//     transform:'scale(0.95,0.95)',
     
- },
- '&:hover > div > h2': {
-  transition:'.4s  ease-in-out',
-  transitionDelay:'0.6s',
-  transform:'scale(1,1)',
+//  },
+//  '&:hover > div > h2': {
+//   transition:'.4s  ease-in-out',
+//   transitionDelay:'0.6s',
+//   transform:'scale(1,1)',
   
-},
+// },
   },
   imgApp:{
-    width:'100%'
+    width:'100%',
+    opacity:0.4
+  },
+  imgLoad:{
+    width:'100%',
+    left:0,
+    top:'10%',
+    position:'absolute',
+    
   },
   c1:{
     position:'absolute',
@@ -267,10 +276,12 @@ function Download(props) {
       <div className={classes.apps}>
         <div className={classes.app}>
           <img src={appstore}  alt="appstore" className={classes.imgApp}/> 
+          <img src={loading}  alt="loading" className={classes.imgLoad}/> 
           <div className={classes.animation}><h2 className={classes.textAnimation}>Baixe agora!</h2></div>
         </div>
         <div className={classes.app}>
           <img src={playstore}  alt="playstore" className={classes.imgApp}/>
+          <img src={loading}  alt="loading" className={classes.imgLoad}/> 
           <div className={classes.animation}><h2 className={classes.textAnimation}>Baixe agora!</h2></div>
         </div>   
       </div>

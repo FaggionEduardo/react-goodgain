@@ -56,7 +56,7 @@ const styles = (theme) => ({
     [theme.breakpoints.down("sm")]: {
       width: '100%',
       alignItems:'center',
-    justifyContent:'center',
+      justifyContent:'center',
     },
   },
   buttons:{
