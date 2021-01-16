@@ -4,7 +4,7 @@ import logo from '../../assets/GoodGain-logo.png'
 import kingdom from '../../assets/united-kingdom.png'
 import brazil from '../../assets/brazil.png'
 import { withStyles } from '@material-ui/core/styles';
-import {Link} from 'react-router-dom';
+import {Link, useLocation} from 'react-router-dom';
 import AppBar from '../components/AppBar';
 import Toolbar from '../components/Toolbar';
 import ButtonMenu from '../components/ButtonMenu';
@@ -223,8 +223,7 @@ appBar:{
 
 function AppAppBar(props) {
   const { classes } = props;
- 
-  
+  const location = useLocation();
   return (
     <div>
       <AppBar id="fixed"  className={classes.appBar}>
@@ -314,7 +313,7 @@ function AppAppBar(props) {
             <div className={classes.divFlag2} >
             <Link
             to={{
-              pathname: "/en",
+              pathname: location.pathname+"en",
             }}
             
           >
@@ -396,7 +395,7 @@ function AppAppBar(props) {
             <div className={classes.divFlag} >
             <Link
             to={{
-              pathname: "/en",
+              pathname: location.pathname+"en",
             }}
             
           >
@@ -407,14 +406,14 @@ function AppAppBar(props) {
             <a
             
             className={classes.login}
-            href="/login"
+            href="/loading"
           >
             {'Entre'}
           </a>
           <a
             
             className={classes.button}
-            href="/register"
+            href="/loading"
           >
             {'Cadastre-se'}
           </a>

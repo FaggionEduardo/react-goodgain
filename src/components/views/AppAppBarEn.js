@@ -4,7 +4,7 @@ import logo from '../../assets/GoodGain-logo.png'
 import kingdom from '../../assets/united-kingdom.png'
 import brazil from '../../assets/brazil.png'
 import { withStyles } from '@material-ui/core/styles';
-import {Link} from 'react-router-dom';
+import {Link,useLocation} from 'react-router-dom';
 import AppBar from '../components/AppBar';
 import Toolbar from '../components/Toolbar';
 import ButtonMenu from '../components/ButtonMenu';
@@ -38,14 +38,6 @@ function scrollGames() {
 }
 function scrollBenefits() {
   scroller.scrollTo('benefits', {
-    duration: 1500,
-    delay: 100,
-    smooth: true,
-
-  })
-}
-function scrollTransfer() {
-  scroller.scrollTo('transfer', {
     duration: 1500,
     delay: 100,
     smooth: true,
@@ -223,7 +215,7 @@ appBar:{
 
 function AppAppBar(props) {
   const { classes } = props;
- 
+  const location = useLocation();
   
   return (
     <div>
@@ -308,7 +300,7 @@ function AppAppBar(props) {
             <img src={kingdom} alt="kingdom" className={classes.flag}/>
             <Link
             to={{
-              pathname: "/",
+              pathname: location.pathname.replace('en',''),
             }}
             
           >
@@ -382,7 +374,7 @@ function AppAppBar(props) {
             <img src={kingdom} alt="kingdom" className={classes.flag}/>
             <Link
             to={{
-              pathname: "/",
+              pathname: location.pathname.replace('en',''),
             }}
             
           >
@@ -392,14 +384,14 @@ function AppAppBar(props) {
             <a
             
             className={classes.login}
-            href="/login"
+            href="/loadingEn"
           >
             {'Login'}
           </a>
           <a
             
             className={classes.button}
-            href="/register"
+            href="/loadingEn"
           >
             {'Sing Up'}
           </a>

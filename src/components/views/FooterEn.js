@@ -140,8 +140,8 @@ function Footer(props) {
       <div className={classes.container}>
         <div className={classes.divRight}>
         <div className={classes.buttons}>
-          <a href='/termsEn' className={classes.link}>Terms of Use</a>
-          <a href='/policyEn' className={classes.link}>Privacy Policy</a>
+          <a href='/termsen' className={classes.link}>Terms of Use</a>
+          <a href='/policyen' className={classes.link}>Privacy Policy</a>
         </div>
         <div className={classes.text} style={{paddingTop: 50}}>
           The GoodGain company doesn’t have any association, relation, or affiliation with the games or consoles developers. All content, titles, and artwork are trademarks, and their rights belong to their respective owners.

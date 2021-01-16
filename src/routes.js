@@ -8,6 +8,8 @@ import Policy from './pages/Policy';
 import PolicyEn from './pages/PolicyEn';
 import Forgot from "./pages/Forgot";
 import Login from "./pages/Login";
+import Loading from "./pages/Loading";
+import LoadingEn from "./pages/LoadingEn";
 import Register from "./pages/Register";
 import Credit from "./pages/Credit";
 import Dashboard from "./pages/Dashboard";
@@ -47,9 +49,11 @@ const Routes = () => (
       <Route exact path="/" component={Land} />
       <Route exact path="/en" component={LandEn} />
       <Route exact path="/terms" component={Terms} />
-      <Route exact path="/termsEn" component={TermsEn} />
+      <Route exact path="/termsen" component={TermsEn} />
       <Route exact path="/policy" component={Policy} />
-      <Route exact path="/policyEn" component={PolicyEn} />
+      <Route exact path="/policyen" component={PolicyEn} />
+      <Route exact path="/loading" component={Loading} />
+      <Route exact path="/loadingEn" component={LoadingEn} />
       <NoPrivateRoute exact path="/login" component={Login} />
       <NoPrivateRoute exact path="/forgot" component={Forgot} />
       <NoPrivateRoute exact path="/register" component={Register} />
