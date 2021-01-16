@@ -63,8 +63,11 @@ const styles = (theme) => ({
     margin:0,
     padding:0,
     marginTop:-49,
+    display:'flex',
+    justifyContent:'space-between',
+    width:300,
     [theme.breakpoints.down("xs")]: {
-      width:'110%'
+      width:'100%'
     },
   },
   link:{
@@ -72,8 +75,8 @@ const styles = (theme) => ({
     fontFamily:"'Gilroy',Helvetica,Arial,Lucida,sans-serif",
     fontWeight:600,
     textDecoration:'none',
-    fontSize:14,
-    marginRight:20,
+    fontSize:12,
+  
     
   },
   text:{
@@ -142,6 +145,7 @@ function Footer(props) {
         <div className={classes.buttons}>
           <a href='/terms' className={classes.link}>Termos de Uso</a>
           <a href='/policy' className={classes.link}>Política de Privacidade</a>
+          <a href='/faq' className={classes.link}>FAQ</a>
         </div>
         <div className={classes.text} style={{paddingTop: 50}}>
           A GoodGain não possui vínculos, afiliações ou relações com nenhum desenvolvedor de jogos ou consoles. Todo o conteúdo, título e artes são marcas comerciais com direitos autorais assegurados aos seus respectivos proprietários

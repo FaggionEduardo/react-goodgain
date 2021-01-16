@@ -55,7 +55,7 @@ function HomeCarousel() {
             <Element name="home" >
                 <Carousel
                 className={classes.carousel}
-                    autoPlay={false}
+                    autoPlay={true}
                     timer={500}
                     animation="slide"
                     indicators={true}

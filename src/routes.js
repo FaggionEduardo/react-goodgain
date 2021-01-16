@@ -13,6 +13,7 @@ import LoadingEn from "./pages/LoadingEn";
 import Register from "./pages/Register";
 import Credit from "./pages/Credit";
 import Dashboard from "./pages/Dashboard";
+import FAQ from "./pages/Faq";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
 
@@ -54,6 +55,8 @@ const Routes = () => (
       <Route exact path="/policyen" component={PolicyEn} />
       <Route exact path="/loading" component={Loading} />
       <Route exact path="/loadingEn" component={LoadingEn} />
+      <Route exact path="/faq" component={FAQ} />
+      <Route exact path="/faqen" render={props =><Redirect to={{ pathname: "/en", state: { from: props.location }}} />} />
       <NoPrivateRoute exact path="/login" component={Login} />
       <NoPrivateRoute exact path="/forgot" component={Forgot} />
       <NoPrivateRoute exact path="/register" component={Register} />
