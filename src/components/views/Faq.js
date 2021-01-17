@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
         fontSize:'2vw',
     },
     [theme.breakpoints.down("xs")]: {
-        fontSize:'2.6vw',
+        fontSize:'4vw',
     },
   },
   title:{
@@ -170,7 +170,7 @@ export default function SimpleAccordion() {
           expandIcon={<ExpandMoreIcon style={{color:'#e6007e'}} />}
           
         >
-          <Typography className={classes.heading}>Informações sobre sua carteira digital, depósitos e saques</Typography>
+          <Typography className={classes.heading}>Informações sobre carteira digital</Typography>
         </AccordionSummary>
         <AccordionDetails className={classes.text}>
           <Typography>

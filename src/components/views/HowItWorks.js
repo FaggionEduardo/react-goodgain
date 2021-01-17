@@ -252,7 +252,7 @@ function HowItWorks(props) {
         <div className={classes.itemText}>
         <h1 className={classes.num}>1</h1>
           <h3 className={classes.text}>
-          <strong><span className={classes.numMobile}>1.</span> Crie sua conta </strong><span>e escolha </span><span>seu jogo </span><span>favorito.</span>
+          <strong><span className={classes.numMobile}>1.</span> Crie sua conta grátis</strong><span>e escolha </span><span>seu jogo </span><span>favorito.</span>
           </h3>
         </div>
         <div className={classes.divItemImg}>

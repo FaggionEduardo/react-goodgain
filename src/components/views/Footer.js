@@ -67,7 +67,7 @@ const styles = (theme) => ({
     justifyContent:'space-between',
     width:300,
     [theme.breakpoints.down("xs")]: {
-      width:'100%'
+      width:280
     },
   },
   link:{

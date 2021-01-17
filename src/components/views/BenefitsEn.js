@@ -216,7 +216,7 @@ function Benefits(props) {
         <div className={classes.itemDiv}>
           <img src={wallet} alt="wallet" className={classes.img}/>
           <p className={classes.title}>
-            Fair Price
+            Fair price
           </p>
           <img src={rectangle} alt="rectangle" className={classes.rectangle}/>
           <p className={classes.subTitle}>
