@@ -6,7 +6,7 @@ import logo from '../../assets/whiteLogo.png';
 import { Form } from '@unform/web';
 import Input from '../Form/input';
 import MoneyMask from '../Form/moneyMask';
-import api from '../../services/api2'
+import api from '../../services/api'
 
 const styles = (theme) => ({
   root: {

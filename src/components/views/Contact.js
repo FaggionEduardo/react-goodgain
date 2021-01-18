@@ -232,6 +232,10 @@ const styles = (theme) => ({
     width:'100%',
     textAlign:'center',
     fontSize:20,
+    [theme.breakpoints.down("xs")]: {
+      fontSize:15,
+      
+    },
   }
 
 });
