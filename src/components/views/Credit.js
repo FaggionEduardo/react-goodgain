@@ -199,9 +199,10 @@ function Credit(props) {
       }
       var stringReal=stringAmount
       stringAmount=stringAmount.replace("R$", "")
-      stringAmount=stringAmount.replace(".", "")
+      stringAmount=stringAmount.replace(/\./g, "")
       stringAmount=stringAmount.replace(",", "")
       stringAmount=parseInt(stringAmount)
+      
       let objAmount={amount:{value:stringAmount,currency: "BRL"}}
       var obj=Object.assign({}, data, objAmount)
       obj.payment_method.card.exp_year='20'+obj.payment_method.card.exp_year
@@ -237,7 +238,7 @@ function Credit(props) {
   return (
     <div className={classes.root}>
       <img src={logo}  alt="logo" className={classes.logo}/> 
-    <div className={classes.title}>Adicionar Crédito</div>
+    <div className={classes.title}>Adicionar crédito</div>
     <div className={classes.div}>
     
       <div className={classes.content}>

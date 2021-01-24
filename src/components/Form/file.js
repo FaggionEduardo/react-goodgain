@@ -13,7 +13,6 @@ const ImageInput= ({ name, ...rest }) => {
 
   const handlePreview = useCallback((e) => {
     const file = e.target.files?.[0];
-
     if (!file) {
       setPreview(null);
     }
@@ -24,6 +23,7 @@ const ImageInput= ({ name, ...rest }) => {
   }, []);
 
   useEffect(() => {
+    
     registerField({
       name: fieldName,
       ref: inputRef.current,
@@ -40,13 +40,14 @@ const ImageInput= ({ name, ...rest }) => {
 
   return (
     <>
-      { preview && <img src={preview} alt="Preview" className="preview" width="100" /> }
+      
       <input
         type="file"
         ref={inputRef}
         onChange={handlePreview}
         {...rest}
       />
+      { preview && <img src={preview} alt="Preview" className="preview" width="100%" /> }
     </>
   );
 };

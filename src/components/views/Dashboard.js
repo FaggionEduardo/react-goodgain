@@ -156,7 +156,6 @@ function Dashboard(props) {
   const { classes } = props;
   const personaldata=JSON.parse(localStorage.getItem('personaldata'))
   const [money,setMoney] = React.useState(personaldata.money);
-  console.log(personaldata)
   useEffect(async () => {
     let response=await api.post(`/checkmoneyxp`, {token:localStorage.getItem('token')})
     setMoney(response.data.money)

@@ -15,7 +15,7 @@ export default function Input({ name, ...rest }) {
 
   return (
       <div>
-  <input ref={inputRef} defaultValue={defaultValue} {...rest} /><br/>
+  <input ref={inputRef} defaultValue={defaultValue} {...rest} />
   {error && <span className={"Error"}>{error}</span> }
   </div>
 

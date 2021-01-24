@@ -12,6 +12,7 @@ import Loading from "./pages/Loading";
 import LoadingEn from "./pages/LoadingEn";
 import Register from "./pages/Register";
 import Credit from "./pages/Credit";
+import Withdraw from "./pages/Withdraw";
 import Dashboard from "./pages/Dashboard";
 import FAQ from "./pages/Faq";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
@@ -62,6 +63,7 @@ const Routes = () => (
       <NoPrivateRoute exact path="/register" component={Register} />
       <PrivateRoute exact path="/dashboard" component={Dashboard}/>
       <PrivateRoute exact path="/credit" component={Credit}/>
+      <PrivateRoute exact path="/withdraw" component={Withdraw}/>
     </Switch>
   </BrowserRouter>
 );
