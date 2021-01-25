@@ -10,7 +10,7 @@ const styles = (theme) => ({
     backgroundImage: `url(${background})`,
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
-    height:'100vh',
+    height:'100%',
     width:'100%',
     display:'flex',
     flexDirection:'column',
