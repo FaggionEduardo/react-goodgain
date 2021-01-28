@@ -9,6 +9,9 @@ import itau from '../../assets/itau.png';
 import nubank from '../../assets/nubank.png';
 import picpay from '../../assets/picpayLogo.png';
 import pix from '../../assets/pix.png';
+import check from '../../assets/check.png';
+import clock from '../../assets/clock.png';
+import error from '../../assets/error.png';
 import { Form } from '@unform/web';
 import Input from '../Form/input';
 import Select from '../Form/select';
@@ -22,6 +25,7 @@ const styles = (theme) => ({
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     minHeight:'100vh',
+    height:'100%',
     width:'100%',
     display:'flex',
     flexDirection:'column',
@@ -32,6 +36,7 @@ const styles = (theme) => ({
   div:{
     width:'35%',
     marginBottom:'10%',
+    position:'relative',
     [theme.breakpoints.down("sm")]: {
       width:'90%',
       
@@ -49,6 +54,7 @@ const styles = (theme) => ({
     zIndex: 5,
     display:'flex',
     flexDirection:'column',
+    height:'100%'
 
   },
   
@@ -64,6 +70,8 @@ const styles = (theme) => ({
     fontWeight:600,
     margin:'5% 0',
     backgroundImage: "linear-gradient(180deg,#e6007e 0%,#e94834 100%)",
+    textDecoration:'none',
+    textAlign:'center'
 
   },
   '@font-face': {
@@ -135,8 +143,9 @@ const styles = (theme) => ({
     alignItems:'center',
     borderRadius: 30,
     transform:'translatey(-100%)',
-    height:180,
-    backgroundColor:'#D84141'
+    backgroundColor:'#D84141',
+    position:'absolute',
+    width:'100%'
   },
   input:{
     fontFamily: "'Gilroy',Helvetica,Arial,Lucida,sans-serif",
@@ -214,6 +223,14 @@ const styles = (theme) => ({
     textAlign:'center',
     padding:'10px 0'
   },
+  response:{
+    fontFamily: "'Gilroy',Helvetica,Arial,Lucida,sans-serif!important",
+    fontSize:24,
+    fontWeight:600,
+    width:'100%',
+    textAlign:'center',
+    padding:'10px 0'
+  },
   bankContainer:{
     padding:10,
     borderRadius:25,
@@ -253,6 +270,11 @@ const styles = (theme) => ({
   },
   bank:{
     height:70
+  },
+  lastIcon:{
+    width:100,
+    height:100,
+    margin:'auto'
   }
   
   
@@ -264,8 +286,13 @@ function Withdraw(props) {
   const formRef =useRef(null)
   const personaldata=JSON.parse(localStorage.getItem('personaldata'))
   const [money,setMoney] = React.useState(personaldata.money);
-  const [error, setError] = React.useState('none');
+  const [req, setReq] = React.useState({});
+  const [base64, setBase64] = React.useState('');
   const [amount, setAmount] = React.useState('');
+  const [response, setResponse] = React.useState('');
+  const [responseText, setResponseText] = React.useState('');
+  const [responseColor, setResponseColor] = React.useState('#E6007E');
+  const [icon, setIcon] = React.useState(clock);
   const [stage, setStage] = React.useState(0);
   const [bank, setBank] = React.useState('');
   const [transferData, setTransferData] = React.useState('');
@@ -287,8 +314,34 @@ function Withdraw(props) {
     let response=await api.post(`/checkmoneyxp`, {token:localStorage.getItem('token')})
     setMoney(response.data.money)
   });
-  function confirm(){
-    console.log('Enviado')
+  async function confirm(){
+    setStage(2)
+    let response=await api.post(`/updocument`, {token:localStorage.getItem('token'), docbase64:base64})
+    if(response.status==200){
+      let response2=await api.post(`/mycash`, req)
+      if(response2.statusText=='OK'){
+        setResponse('Saque solicitado.')
+        setResponseText(<span>O saque no valor de <strong>{amount}</strong> já está em processamento e em até 3 dias úteis estará na sua conta.</span>)
+        setIcon(check)
+        setResponseColor('#41D886')
+        
+      }else{
+        let d = new Date(response2.data.last_date); 
+        d.setDate(d.getDate() + 7);
+        setResponse('Você já realizou um saque essa semana.')
+        setResponseText(<span>O limite de saques é de 1 por semana, você poderá realizar outro saque no dia {(d.getDate()) + "/" + ((d.getMonth() + 1)) + "/" + d.getFullYear()}.</span>)
+        setIcon(clock)
+        setResponseColor('#E6007E')
+      }
+    }else{
+      setResponse('Erro ao sacar')
+      setResponseText(<span>Houve um erro no envio do seu documento CPF, tente novamente.</span>)
+      setIcon(error)
+      setResponseColor('#E6007E')
+    }
+    
+    
+
   }
   function changeBank(){
     if(formRef.current.getFieldValue('bank')=='picpay'){
@@ -317,7 +370,6 @@ function Withdraw(props) {
     reader.onerror = error => reject(error);
 });
   async function handleSubmit (data) {
-    try{
       let stringAmount=amount
       let arrayAmount=amount.split('')
       let commaPosition=arrayAmount.indexOf(',')
@@ -331,8 +383,8 @@ function Withdraw(props) {
       }   
       stringAmount=stringAmount.replace("R$", "")
       stringAmount=stringAmount.replace(/\./g, "")
-      stringAmount=stringAmount.replace(",", "")
-      stringAmount=parseInt(stringAmount)
+      stringAmount=stringAmount.replace(",", ".")
+      stringAmount=parseFloat(stringAmount)
       
       var obj={
       token:token,
@@ -369,20 +421,18 @@ function Withdraw(props) {
         </div>)
     }
     var base64=await toBase64(data.cpf)
-    
+    setReq(obj)
+    setBase64(base64)
     setBank(data.bank)
     setStage(1)
     
     
-    }catch(err){
-      console.log(err)
-      
-      
-    }
+    
   }
   return (
     <div className={classes.root}>
       <img src={logo}  alt="logo" className={classes.logo}/> 
+  
     <div className={classes.title}>Realizar saque</div>
     <div className={classes.div}>
     
@@ -433,9 +483,24 @@ function Withdraw(props) {
         :
         ''
       }
+      {
+        stage==2?
+        <>
+        <img src={icon}  alt="icon" className={classes.lastIcon}/>
+        <span style={{color:responseColor}} className={classes.response}>{response}</span>
+        <span style={{fontWeight:400}} className={classes.firstTitle}>{responseText}</span>
         
+        
+        
+        <a href="/dashboard" className={classes.btn}>Ir para início</a>
+       
+        </>
+        :
+        ''
+      }
+      
       </div>
-      <div style={{display:error}} onClick={()=>setError('none')} className={classes.finishDiv}><div className={classes.finishTitle}><span>Algo está errado! </span> <span> Pagamento não autorizado.</span> </div></div>
+      
     </div>
     </div>
   );
