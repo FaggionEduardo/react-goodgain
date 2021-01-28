@@ -341,6 +341,23 @@ const useStyles = makeStyles(theme =>({
     '&> div':{
       display:'none'
     }
+  },
+  singIn:{
+    fontFamily: "'Gilroy-regular',Helvetica,Arial,Lucida,sans-serif!important",
+    color:'#121212',
+    fontSize:14,
+    width:'100%',
+    textAlign:'center',
+    
+  },
+  singInLink:{
+    fontFamily: "'Gilroy-regular',Helvetica,Arial,Lucida,sans-serif!important",
+    color:'#121212',
+    fontSize:14,
+    width:'100%',
+    textAlign:'center',
+    textDecoration:'none',
+    fontWeight:600
   }
 }));
 
@@ -481,9 +498,9 @@ function Register(props) {
       try{
         let response=await api.post(`/register`, obj)
         document.getElementsByClassName("mailChimpForm")[0][2].click()
-        setLastMsg(response.data)
+        setLastMsg('Cadastrado com sucesso!')
       }catch(err){
-        setLastMsg(err.response.data)
+        setLastMsg('Erro ao cadastrar, tente novamente.')
       }
     }
     setStage(stage+1)
@@ -547,7 +564,7 @@ function Register(props) {
           <div className={classes.divTitle} ><span className={classes.title}>Você está a poucos passos de iniciar sua experiência GoodGain.</span></div>
           <div className={classes.subTitle}>Precisamos apenas de algumas informações.</div>
           <button className={classes.btn} onClick={()=>setStage(1)}>Criar minha conta</button>
-       
+          <div className={classes.singIn}>Já possui conta? <a href='/login' className={classes.singInLink}>Entre aqui</a></div>
       </div>
     </div>
     :''
