@@ -6,7 +6,9 @@ import logo from '../../assets/whiteLogo.png';
 import brand from '../../assets/marcaLogo.png';
 import { Form } from '@unform/web';
 import Input from '../Form/input';
-import api from '../../services/api'
+import api from '../../services/api';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEye} from '@fortawesome/free-solid-svg-icons'
 
 const styles = (theme) => ({
   root: {
@@ -56,7 +58,8 @@ const styles = (theme) => ({
     padding:16,
     width:'100%',
     marginTop:'1%',
-    marginBottom:'4%'
+    marginBottom:'4%',
+    position:'relative'
   },
   btn:{
     color: '#fff',
@@ -152,7 +155,16 @@ const styles = (theme) => ({
     textAlign:'center',
     textDecoration:'none',
     fontWeight:600
-  }
+  },
+  iconPassword:{
+      color: '#383838',
+      right: 21,
+      top: 8,
+      height: 44,
+      fontSize:20,
+      position: 'absolute',
+
+  },
 });
 
 
@@ -160,6 +172,14 @@ function Login(props) {
   const { classes } = props;
   const formRef =useRef(null)
   const [error, setError] = React.useState(false);
+  const [password, setPassword] = React.useState('password');
+  function changePassword(){
+    if(password=='password'){
+      setPassword('text')
+    }else{
+      setPassword('password')
+    }
+  }
   async function handleSubmit (data) {
     try{
       let response=await api.post(`/login`, data)
@@ -182,7 +202,11 @@ function Login(props) {
           <label className={classes.label}>E-mail</label>
           <Input required name="email" type="email"  placeholder='Informe seu e-mail cadastrado' className={classes.input}/>
           <label className={classes.label}>Senha</label>
-          <Input required name="pass" type="password"  placeholder='Informe sua senha' className={classes.input}/>
+          <div style={{position:'relative'}}>
+          <Input className={classes.input} required name="pass" type={password}  placeholder='Informe sua senha' />
+          <FontAwesomeIcon onClick={changePassword} className={classes.iconPassword} icon={faEye} />
+          </div>
+       
           <div className={classes.forgotDiv}><a  className={classes.forgot} href='/forgot'>Esqueceu sua senha?</a></div>
           
           <button className={classes.btn} type="submit">Entrar</button>

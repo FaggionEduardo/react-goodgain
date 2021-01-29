@@ -11,7 +11,8 @@ import Input from '../Form/input';
 import Select from '../Form/select';
 import api from '../../services/api'
 import Mailchimp from 'react-mailchimp-form'
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEye} from '@fortawesome/free-solid-svg-icons'
 
 const useStyles = makeStyles(theme =>({
   root: {
@@ -358,7 +359,16 @@ const useStyles = makeStyles(theme =>({
     textAlign:'center',
     textDecoration:'none',
     fontWeight:600
-  }
+  },
+  iconPassword:{
+    color: '#383838',
+    right: 21,
+    top: 8,
+    height: 44,
+    fontSize:20,
+    position: 'absolute',
+
+},
 }));
 
 function useForceUpdate(){
@@ -377,6 +387,7 @@ function Register(props) {
   const [password, setPassword] = React.useState('');
   const [confirm, setConfirm] = React.useState('disabled');
   const [strength, setStrength] = React.useState(0);
+  const [passwordV, setPasswordV] = React.useState('password');
   const [jsonForm, setJsonForm] = React.useState({});
   const [consoles, setConsoles] = React.useState(
     {
@@ -538,6 +549,13 @@ function Register(props) {
     setRows(array)
     forceUpdate()
   }
+  function changePasswordV(){
+    if(passwordV=='password'){
+      setPasswordV('text')
+    }else{
+      setPasswordV('password')
+    }
+  }
 
   function cpfMask(value){
     return value
@@ -593,7 +611,7 @@ function Register(props) {
           </div>
           <label className={classes.label}>CPF</label>
           <Input required onChange={handleChangeCpf} name="cpf" type="text" maxLength='14' value={cpf} placeholder='Informe seu CPF' className={classes.input}/>
-          <label className={classes.label}>Pais</label>
+          <label className={classes.label}>País</label>
           <div className={classes.divSelect}>
           <CountryDropdown
           className={classes.input}
@@ -659,7 +677,7 @@ function Register(props) {
 
     
       <div className={classes.content}>
-      <span className={classes.lastTitle}>Este é o ultimo passo.</span>
+      <span className={classes.lastTitle}>Este é o último passo.</span>
           <label className={classes.label}>E-mail</label>
           <Mailchimp
         action='https://goodgain.us7.list-manage.com/subscribe/post?u=bd4e98710f0ff6729e682cd79&amp;id=09fe9c3e2e'
@@ -683,10 +701,16 @@ function Register(props) {
           <Input required style={{visibility:'none',height:0, margin:0,padding:0, border:'none'}} tabIndex="-1" name="email" type="email" />
           
           <label className={classes.label}>Senha</label>
-          <Input required name="pass" type="password"  placeholder='Informe uma senha' onChange={changePassword} className={classes.input}/>
+          <div style={{position:'relative'}}>
+          <Input required name="pass" type={passwordV}  placeholder='Informe uma senha' onChange={changePassword} className={classes.input}/>
+          <FontAwesomeIcon onClick={changePasswordV} className={classes.iconPassword} icon={faEye} />
+          </div>
           <PasswordStrengthBar onChangeScore={score=>{setStrength(score)}} shortScoreWord='Muito curta' scoreWords={['Fraca', 'Fraca', 'OK', 'Boa', 'Forte']} className={classes.password} password={password} />
           <label className={classes.label}>Confirme a senha</label>
-          <Input required name="confirmpass" type="password"  placeholder='Confirme a senha' onChange={confirmPassword} className={classes.input}/>
+          <div style={{position:'relative'}}>
+          <Input required name="confirmpass" type={passwordV}  placeholder='Confirme a senha' onChange={confirmPassword} className={classes.input}/>
+          <FontAwesomeIcon onClick={changePasswordV} className={classes.iconPassword} icon={faEye} />
+          </div>
           <button onClick={()=>formRef.current.setFieldValue('email',document.getElementsByClassName("mailChimpForm")[0][0].value)} disabled={strength>1?confirm:'disabled'} className={classes.btn}>Criar conta</button>
           </Form>
           <span className={classes.back} onClick={()=>setStage(2)}>Voltar</span>

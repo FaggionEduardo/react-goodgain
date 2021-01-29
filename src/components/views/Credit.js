@@ -2,6 +2,9 @@ import React,{ useEffect, useRef } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import GilroyRegular from '../../assets/Gilroy-Regular.ttf';
 import background from '../../assets/backgroundControls.jpg';
+import pagseguro from '../../assets/pagseguro.svg';
+import errorIcon from '../../assets/error.png';
+import successIcon from '../../assets/check.png';
 import logo from '../../assets/whiteLogo.png';
 import { Form } from '@unform/web';
 import Input from '../Form/input';
@@ -143,6 +146,7 @@ const styles = (theme) => ({
     color:'#121212',
     fontSize:24,
     width:'100%',
+    marginBottom:10
   
   },
   response:{
@@ -150,25 +154,44 @@ const styles = (theme) => ({
     flexDirection:'column',
     width:'100%'
   },
-  finishTitle:{
+  
+  errorDiv:{
+    width:'100%',
     display:'flex',
-    justifyContent:'center',
-    alignItems:'center',
-    fontSize: 16,
-    fontFamily: "'Gilroy',Helvetica,Arial,Lucida,sans-serif!important",
-    fontWeight:600,
-    color: '#fff',
-    flexDirection:'column'
+    flexDirection:'column',
+    color:'#E6007E',
+    marginBottom:'2%'
+
     
   },
-  finishDiv:{
+  pagseguro:{
+    width:'40%',
+    marginBottom:'6%',
+    [theme.breakpoints.down("xs")]: {
+      width:'80%',
+      
+    },
+  },
+  errorIcon:{
+    width:30,
+    height:30
+  },
+  successIcon:{
+    width:40,
+    height:40,
+    marginRight:5
+  },
+  errorTitle:{
+    fontSize:20,
     display:'flex',
-    justifyContent:'center',
-    alignItems:'center',
-    borderRadius: 30,
-    transform:'translatey(-100%)',
-    height:180,
-    backgroundColor:'#D84141'
+    alignItems:'center'
+  },
+  subtitle:{
+    fontFamily: "'Gilroy-regular',Helvetica,Arial,Lucida,sans-serif!important",
+    color:'grey',
+    fontSize:14,
+    paddingLeft:'2%',
+    marginBottom:'4%'
   }
   
 });
@@ -216,9 +239,11 @@ function Credit(props) {
         setStage(0)
         setError('flex')
       }else{
-        setApproved(<span style={{color:'#41D886', fontWeight:600}}>Pagamento aprovado!</span>)
+
+        setApproved(<span style={{color:'#41D886', fontWeight:600, display:'flex', alignItems:'start'}}><img src={successIcon}  alt="successIcon" className={classes.successIcon}/>  Seu pagamento foi aprovado!</span>)
         setResponse(
         <div className={classes.response}>
+          <span className={classes.subtitle}>O valor transferido será adicionado na sua carteira digital após validação no nosso sistema.<br/> Fique de olho na central de notificações!</span>
           <span className={classes.label}><strong>Cod. PagSeguro:</strong> {response.data.data.id}</span>
           <span className={classes.label}><strong>Ref:</strong> {response.data.data.reference_id}</span>
           <span className={classes.label}><strong>Descrição:</strong> {response.data.data.description}</span>
@@ -242,9 +267,13 @@ function Credit(props) {
     <div className={classes.div}>
     
       <div className={classes.content}>
+
       {
           stage==0?
           <>
+          <span>Pagamento processado pelo</span>
+          <img src={pagseguro}  alt="pagseguro" className={classes.pagseguro}/> 
+          <div style={{display:error}} className={classes.errorDiv}><strong className={classes.errorTitle}><img src={errorIcon}  alt="errorIcon" className={classes.errorIcon}/> Ops! Algo deu errado.</strong><span>Verifique suas informações ou entre em contato com o suporte gg@goodgain.gg </span></div>
           <Form style={{position:'relative'}} ref={formRef} onSubmit={handleSubmit}>
           <label className={classes.label}>Valor</label>
           <MoneyMask required onChange={(val)=>setAmount(val.target.value)} type="text"  placeholder='Informe o valor que deseja adicionar' className={classes.input}/>
@@ -296,7 +325,7 @@ function Credit(props) {
       }
         
       </div>
-      <div style={{display:error}} onClick={()=>setError('none')} className={classes.finishDiv}><div className={classes.finishTitle}><span>Algo está errado! </span> <span> Pagamento não autorizado.</span> </div></div>
+     
     </div>
     </div>
   );
