@@ -9,7 +9,7 @@ import logo from '../../assets/whiteLogo.png';
 import { Form } from '@unform/web';
 import Input from '../Form/input';
 import MoneyMask from '../Form/moneyMask';
-import api from '../../services/api'
+import api from '../../services/api2'
 
 const styles = (theme) => ({
   root: {
@@ -112,8 +112,11 @@ const styles = (theme) => ({
   label:{
     fontFamily: "'Gilroy-regular',Helvetica,Arial,Lucida,sans-serif!important",
     color:'#121212',
-    fontSize:16,
-    paddingLeft:'2%'
+    fontSize:'0.9vw',
+    paddingLeft:'2%',
+    [theme.breakpoints.down("sm")]: {
+      fontSize:'3.5vw',
+    },
   },
  
   back:{
@@ -144,10 +147,13 @@ const styles = (theme) => ({
   approved:{
     fontFamily: "'Gilroy-regular',Helvetica,Arial,Lucida,sans-serif!important",
     color:'#121212',
-    fontSize:24,
+    fontSize:'1.6vw',
     width:'100%',
-    marginBottom:10
-  
+    marginBottom:10,
+    [theme.breakpoints.down("sm")]: {
+      fontSize:'4.5vw',
+      
+    },
   },
   response:{
     display:'flex',
@@ -189,9 +195,13 @@ const styles = (theme) => ({
   subtitle:{
     fontFamily: "'Gilroy-regular',Helvetica,Arial,Lucida,sans-serif!important",
     color:'grey',
-    fontSize:14,
+    fontSize:'0.9vw',
     paddingLeft:'2%',
-    marginBottom:'4%'
+    marginBottom:'4%',
+    [theme.breakpoints.down("sm")]: {
+      fontSize:'3.5vw',
+      
+    },
   }
   
 });
@@ -243,7 +253,7 @@ function Credit(props) {
         setApproved(<span style={{color:'#41D886', fontWeight:600, display:'flex', alignItems:'start'}}><img src={successIcon}  alt="successIcon" className={classes.successIcon}/>  Seu pagamento foi aprovado!</span>)
         setResponse(
         <div className={classes.response}>
-          <span className={classes.subtitle}>O valor transferido será adicionado na sua carteira digital após validação no nosso sistema.<br/> Fique de olho na central de notificações!</span>
+          <span className={classes.subtitle}>O valor transferido será adicionado na sua carteira digital após validação no nosso sistema. Fique de olho na central de notificações!</span>
           <span className={classes.label}><strong>Cod. PagSeguro:</strong> {response.data.data.id}</span>
           <span className={classes.label}><strong>Ref:</strong> {response.data.data.reference_id}</span>
           <span className={classes.label}><strong>Descrição:</strong> {response.data.data.description}</span>
